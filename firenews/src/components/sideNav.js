@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import '../colors.css';
 
 // Width of side-nav
 let width = 100;
 
 const Container = styled.div`
-    position: fixed;
-    top: 0; left: 0
     width: ${width + 'px'};
     height: 100vh;
     border-right: 2px solid var(--color-border);
@@ -94,13 +92,25 @@ const SideNav = (props) => {
         );
     });
 
+    const handleIconClick = (e) => {
+        props.setCategory('all');
+
+        // Smooth scroll to top if already on the home page
+        // if (page === this.currentPath) {
+        //     e.preventDefault();
+        //     window.scrollTo({ top: 0, behavior: 'smooth' });
+        // }
+    }
+
     return (
         <Container>
-            <Icon
-                onClick={() => props.setCategory('all')}
-            >
-                <Image src={'icons/icon.svg'} width={'60%'}></Image>
-            </Icon>
+            <Link to='/'>
+                <Icon
+                    onClick={(e) => handleIconClick(e)}
+                >
+                    <Image src={'icons/icon.svg'} width={'60%'}></Image>
+                </Icon>
+            </Link>
 
             {/* Render all category boxes */}
             {boxes}
