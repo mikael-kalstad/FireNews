@@ -96,14 +96,8 @@ const Home = (props) => {
         );
     }
 
-    // for (let i = 0; i < 5; i++){
-    //     articles.push(
-    //         <Box key={i}>{i}</Box>
-    //     )
-    // }
-
     // Render articles if data exists
-    if (props.data) {
+    if (props.data != null && props.data != 'undefined' && props.data.length != 0) {
         // Remove skeleton data
         articles = [];
 

@@ -104,27 +104,27 @@ const ArticleCard = (props) => {
     
     const card = (
         <SkeletonTheme color={'#F9FAFC'}>
-                <Container>
-                    {!props.img && <Logo></Logo>}
+            <Container>
+                {!props.img && <Logo></Logo>}
 
-                    {props.img && <Overlay></Overlay>}
+                {props.img && <Overlay></Overlay>}
 
-                    {/* Lazy load image until props.img is defined */}
-                    {props.img ? null :
-                        <SkeletonTheme color={'#F1F1F9'}>
-                            <Skeleton height={props.size === 'big' ? 300 : 180} />
-                        </SkeletonTheme>
-                    }
-                    <Title>{props.title || <Skeleton count={2}/>}</Title>
+                {/* Lazy load image until props.img is defined */}
+                {props.img ? null :
+                    <SkeletonTheme color={'#F1F1F9'}>
+                        <Skeleton height={props.size === 'big' ? 300 : 180} />
+                    </SkeletonTheme>
+                }
+                <Title>{props.title || <Skeleton count={2}/>}</Title>
 
-                    <ReadMore>
-                        <Text>Read more</Text> 
-                        <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
-                    </ReadMore>
+                <ReadMore>
+                    <Text>Read more</Text> 
+                    <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
+                </ReadMore>
 
-                    <Time>{props.time || <Skeleton />}</Time>
-                </Container>
-            </SkeletonTheme>
+                <Time>{props.time || <Skeleton />}</Time>
+            </Container>
+        </SkeletonTheme>
     );
         
 

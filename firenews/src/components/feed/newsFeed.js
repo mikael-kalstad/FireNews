@@ -7,6 +7,7 @@ const Container = styled.div`
     height: 100vh;
     background-color: var(--color-light);
     border-left: 2px solid var(--color-border);
+    padding-top: 20px;
 `;
 
 const Title = styled.p`
@@ -14,7 +15,7 @@ const Title = styled.p`
     font-weight: 700;
     color: var(--color-main);
     margin-left: 40px;
-    margin-top: 0;
+    padding-bottom: 10px;
 `;
 
 const NewsFeed = (props) => {
@@ -22,8 +23,8 @@ const NewsFeed = (props) => {
         <Container>
             <Title>Latest news</Title>
             <NewsFeedCard
-                time={props.data.time}
-                content={props.data.content}
+                time={props.data.date}
+                content={props.data.summary}
             ></NewsFeedCard>
         </Container>
     );

@@ -14,6 +14,7 @@ const App = () => {
 
   // Get article data when component mounts
   useEffect(() => {
+    setNewsFeedData({"summary": "The rainforest is burning at 50x faster rate than expected", "date": "12:53"})
     // setTimeout(() => {
         // Get all categories from DB
         fetch('http://localhost:4000/articles', {
