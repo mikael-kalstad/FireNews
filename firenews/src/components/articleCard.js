@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 
 // Overlay to make it easier to read text over any picture
 const Overlay = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 120px;
+    height: 60%;
     background-image: linear-gradient(rgba(0,0,0, 0.0), rgb(0,0,0));
     border-radius: 5px;
 `;
@@ -16,10 +17,16 @@ const Overlay = styled.div`
 let marginLeft = 30;
 
 const ArticleCard = (props) => {
+    let width = (window.innerWidth - 100 - 240 - 40 );
+    let height = window.innerHeight;
+    
+    console.log("Window with: " + window.innerWidth + " Width: " + width);
+
     const Container = styled.div`
         position: relative;
-        width: ${(props.size === 'small' ? 225 : 470) + 'px'};
-        height: ${(props.size === 'small' ? 180 : 300) + 'px'};
+        /* width: ${(props.size === 'big' ? width*0.66 : width*0.33 ) + 'px'}; */
+        height: ${(props.size === 'big' ? (props.width/(2/3))/1.5 : (props.width/(1/3))/1.25) + 'px'};
+        /* height: 100px; */
         border-radius: 5px;
         background-color: var(--color-light);
         background-image: url(${props.img});
@@ -44,6 +51,45 @@ const ArticleCard = (props) => {
         width: 70%;
         margin-left: ${marginLeft + 'px'};
         color: ${props.img ? 'white' : '#44519e'};
+        transition: all 200ms ease;
+
+        /* Hover should only work when the title is loaded */
+        ${props.title} && ${Container}:hover & {
+            bottom: 50px;
+        }
+    `;
+
+    const ReadMore = styled.div`
+        position: absolute;
+        bottom: 45px;
+        margin-left: ${marginLeft + 'px'};
+        height: ${(props.size === 'big' ? 40 : 20) + 'px'};
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+        align-items: center;
+        opacity: 0;
+        transition: all 200ms ease;
+
+        /* Hover should only work when the title is loaded */
+        ${props.title} && ${Container}:hover & {
+            opacity: 1;
+        }
+    `;
+
+    const ArrowLogo = styled.img`
+        height: 40%;
+        transition: all 200ms ease;
+
+        ${Container}:active & {
+            margin-left: 10px;
+        }
+    `
+
+    const Text = styled.p`
+        font-size: ${(props.size === 'big' ? 14 : 7) + 'px'};
+        font-weight: ${props.img ? 200 : 700};
+        color: ${props.img ? 'white': '#B9C0D3'};
     `;
 
     const Time = styled.p`
@@ -55,26 +101,41 @@ const ArticleCard = (props) => {
         margin-left: ${marginLeft + 'px'};
         color: ${props.img ? 'white': '#B9C0D3'};
     `;
-        
-    return (
+    
+    const card = (
         <SkeletonTheme color={'#F9FAFC'}>
-            <Container>
-                {(props.title || props.time) && <Logo></Logo>}
+                <Container>
+                    {!props.img && <Logo></Logo>}
 
-                {props.img && <Overlay></Overlay>}
+                    {props.img && <Overlay></Overlay>}
 
-                {/* Lazy load image until props.img is defined */}
-                {props.img ? null :
-                    <SkeletonTheme color={'#F1F1F9'}>
-                        <Skeleton height={props.size === 'big' ? 300 : 180} />
-                    </SkeletonTheme>
-                }
+                    {/* Lazy load image until props.img is defined */}
+                    {props.img ? null :
+                        <SkeletonTheme color={'#F1F1F9'}>
+                            <Skeleton height={props.size === 'big' ? 300 : 180} />
+                        </SkeletonTheme>
+                    }
+                    <Title>{props.title || <Skeleton count={2}/>}</Title>
 
-                <Title>{props.title || <Skeleton /> }</Title>
-                <Time>{props.time || <Skeleton />}</Time>
-            </Container>
-        </SkeletonTheme>
-    ); 
+                    <ReadMore>
+                        <Text>Read more</Text> 
+                        <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
+                    </ReadMore>
+
+                    <Time>{props.time || <Skeleton />}</Time>
+                </Container>
+            </SkeletonTheme>
+    );
+        
+
+    if (props.link) 
+        return (
+            <Link to={props.link}>
+                {card}
+            </Link>
+        );
+
+    return card;
 }
 
 export default ArticleCard;

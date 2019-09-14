@@ -8,29 +8,24 @@ import Article from './components/pages/article';
 import Add from './components/pages/add';
 
 const App = () => {
-  const [category, setCategory] = useState('all');
+  const [category, setCategory] = useState('Main');
   const [newsFeedData, setNewsFeedData] = useState('');
   const [articleData, setArticleData] = useState([]);
 
   // Get article data when component mounts
   useEffect(() => {
     // setTimeout(() => {
-      async function getData() {
         // Get all categories from DB
-        const res = await fetch('http://localhost:4000/articles', {
+        fetch('http://localhost:4000/articles', {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=utf-8'
             },
             body: JSON.stringify()
         })
+        .then(res => res.json())
+        .then(data => setArticleData(data))
         .catch(err => console.log('Error: ', err));
-
-        const data = await res.json();
-        setArticleData(data);
-    }
-
-    getData();
     // }, 3000);
   }, []);
 
@@ -42,7 +37,7 @@ const App = () => {
         newsFeedData={newsFeedData}
       >
         <Switch>
-          <Route path='/' exact render={(props) => <Home {...props} data={articleData} />} />
+          <Route path='/' exact render={(props) => <Home {...props} data={articleData} category={category} />} />
           <Route path='/article/:id' render={(props) => <Article {...props} data={articleData} />} />
           <Route path='/add' component={Add} />
         </Switch>

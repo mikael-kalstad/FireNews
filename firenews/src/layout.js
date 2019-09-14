@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import SideNav from './components/sideNav';
+import SideNav from './components/nav/sideNav';
 import NewsFeed from './components/feed/newsFeed';
-import FloatButton from './components/floatButton/floatButton';
-
-let sideNavWidth = 0;
-let newsFeedWidth = 0;
+import FloatButton from './components/floatButton';
 
 const SizeWrapper = styled.div`
     position: fixed;
@@ -17,36 +14,57 @@ const SizeWrapper = styled.div`
 `; 
 
 const Layout = (props) => {
-    useEffect(() => {
-        sideNavWidth = document.getElementById('sideNav-wrapper').clientWidth;
-        newsFeedWidth = document.getElementById('newsFeed-wrapper').clientWidth;
-    });
+    // const [sideNavWidth, setSideNavWidth] = useState(0);
+    // const [newsFeedWidth, setNewsFeedWidth] = useState(0);
+
+    // useEffect(() => {
+    //     setSideNavWidth(document.getElementById('sideNav-wrapper').clientWidth);
+    //     setNewsFeedWidth(document.getElementById('newsFeed-wrapper').clientWidth);
+    // });
+
+    const Container = styled.div`
+        display: grid; 
+        grid-template-columns: 100px 1fr 240px;
+    `;
 
     const Content = styled.div`
+        /* overflow-x: scroll; */
         position: relative;
-        margin-left: ${sideNavWidth + 'px'};
-        margin-right: ${newsFeedWidth + 'px'};
+    `;
+
+    const SideNavBox = styled.div`
+        width: 100px;
+        height: 100vh;
+    `;
+
+    const NewsFeedBox = styled.div`
+        width: 240px;
+        height: 100vh;
     `;
 
     return (
-        <>
+        <Container id='layout-container'>
             <SizeWrapper left={true} id='sideNav-wrapper'>
                 <SideNav
                     category={props.category}
                     setCategory={props.setCategory}
                 ></SideNav>
             </SizeWrapper>
+            
+            <SideNavBox></SideNavBox>
 
             {/* Render children inside layout component */}
             <Content>
+                {/* <FloatButton></FloatButton> */}
                 {props.children}
-                <FloatButton></FloatButton>
             </Content>
 
             <SizeWrapper right={true} id='newsFeed-wrapper'>
                 <NewsFeed data={props.newsFeedData}></NewsFeed>
-            </SizeWrapper>            
-        </>
+            </SizeWrapper>   
+
+            <NewsFeedBox></NewsFeedBox>         
+        </Container>
     );
 }
 

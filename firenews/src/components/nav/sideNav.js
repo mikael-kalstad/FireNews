@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import '../colors.css';
+import '../../colors.css';
 
 // Width of side-nav
 let width = 100;
@@ -42,22 +42,17 @@ const SideNav = (props) => {
 
     // Get category data when component mounts
     useEffect(() => {
-        async function getData() {
-            // Get all categories from DB
-            const res = await fetch('http://localhost:4000/categories', {
-                method: 'GET',
-                headers: {
-                    'Content-type': 'application/json; charset=utf-8'
-                },
-                body: JSON.stringify()
-            })
-            .catch(err => console.log('Error: ', err));
-    
-            const data = await res.json();
-            setData(data);
-        }
-
-        getData();
+        // Get all categories from DB
+        fetch('http://localhost:4000/categories', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(data => setData(data))
+        .catch(err => console.log('Error: ', err));
     }, []);
 
     // Container box for each category
@@ -93,7 +88,7 @@ const SideNav = (props) => {
     });
 
     const handleIconClick = (e) => {
-        props.setCategory('all');
+        props.setCategory('Main');
 
         // Smooth scroll to top if already on the home page
         // if (page === this.currentPath) {

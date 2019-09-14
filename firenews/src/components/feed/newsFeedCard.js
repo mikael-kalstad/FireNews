@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const Container = styled.div`
-    width: 100%;
+    /* width: 100%; */
     height: 90px;
     background-color: var(--color-light-secondary);
     border-top: 2px solid var(--color-border);

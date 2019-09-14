@@ -1,9 +1,32 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 
+// Image upload
+// const multer = require('multer');
+// const path = require('path');
+
+// const storage = multer.diskStorage({
+//     destination: './public/uploads/',
+//     filename: function(req, file, cb) {
+//         // Callback function
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
+
+// app.use(express.static('../public/'));
+
+// const upload = multer({
+//     storage: storage;
+
+// }).single();
+
 // Use middleware json
 app.use(express.json());
+
+// Allow requests from any origins
+app.use(cors());
 
 // DB setup
 mongoose.connect('mongodb://localhost/FireNews', { useNewUrlParser: true });

@@ -1,0 +1,35 @@
+{
+    "author": "Mikael Kalstad",
+    "title": "The rainforest is burning",
+    "content": "Across the burning Amazon, smoke is rising and fine particles of charcoal are falling softly to the ground. At last count, more than 93,000 fires were alight in the Brazilian Amazon, up more than 60 percent from the same time last year, and the highest number since 2010. According to NASA, this year’s fires are more intense than in previous years, too.But Brazil’s National Institute of Space Research (INPE) has only been keeping fire records since 1998, and two decades isn’t long in the life of a forest where trees live for centuries and humans have been setting fires for millennia.Paleoecology—the study of ancient environments—offers unique insights into how the first Amazonian peoples manipulated fire in the landscape, the effects of those fires on the forest’s ecology over time, and lessons that might help to prevent modern fires.Layers of charcoal buried below the rainforest’s surface reveal that for thousands of years, the Amazon’s ancient inhabitants used fire to clear the forest floor for agriculture—and that it had a lasting effect, making those areas more fire prone today. But unlike many of the current fires, set to flatten the forest entirely, those indigenous fire practices left trees standing.",
+    "summary": "Parts of the Amazon are more prone to fire today because farmers thousands of years ago regularly set the undercarriage alight.",
+    "img": "https://images.unsplash.com/photo-1544177817-a197b1d0a3dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "frontPage": true
+},
+
+{
+    "author": "Mikael Kalstad",
+    "title": "Why working long hours benefit no one",
+    "content": "During the war, Britain needed to manufacture weapons and ammunition quickly. Because so many men were off fighting, women – who had not typically worked in factories at the time – were called into service as munitionettes. Their work included tasks like drilling screw threads on parts of weapons before they were assembled, and turning fuse bodies, which likely meant turning a piece of metal as a machine cut it and bore holes in it. In 1915, the government established the Health of Munition Workers Committee (HMWC) to monitor working conditions and advise on matters such as working hours. The committee managed to collect a rich set of data that can tell us a lot about what happens when people work long hours.The information is especially useful because of the nature of the work and the workers: there was only one shift, and each worker did the same tasks, which were easy to count. The committee could verify which days and hours they worked by looking at the factory's electricity logs. Because the information is unambiguous and measurable, it's great data for researchers.",
+    "summary": "A short overtime sprint won't kill you but, as data from World War One shows, consistently putting in too many hours at work hurts employees and employers",
+    "img": "https://images.unsplash.com/photo-1489081449618-7e76dc369f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "frontPage": false
+},
+
+{
+    "author": "Bård Tufte Johansen",
+    "title": "5 Signs You Are Wasting Your Life",
+    "content": "Life is precious and we only get one shot at it. Nevertheless, a lot of people spend their life merely passing the time rather than making the most of the short time they have left.Young people are especially guilty of this — we are in the springtime of our lives. If ever there was a time to plant a tree, it’s now. Yet most of us don’t do that. Young people spend their time partying, eating junk food…",
+    "summary": "Stop wasting your life, 5 signs can indicate if you are indeed wasting your life",
+    "img": "https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "frontPage": true
+},
+
+{
+    "author": "Barack Obama",
+    "title": "Living and Dying on Airbnb",
+    "content": "The dangers of renting an airbnb can be many, just hope you don't die. Airbnb have no safety regulations that controls the conditions of the apartments that are rented to up to thousands of people a year. The system needs more rules.",
+    "summary": "My dad died in an Airbnb rental, and he’s not the only one. What can the company do to improve safety?",
+    "img": "https://images.unsplash.com/photo-1521239365713-1e26965c69ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+    "frontPage": true
+}
