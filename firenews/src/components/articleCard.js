@@ -17,16 +17,9 @@ const Overlay = styled.div`
 let marginLeft = 30;
 
 const ArticleCard = (props) => {
-    let width = (window.innerWidth - 100 - 240 - 40 );
-    let height = window.innerHeight;
-    
-    console.log("Window with: " + window.innerWidth + " Width: " + width);
-
     const Container = styled.div`
         position: relative;
-        /* width: ${(props.size === 'big' ? width*0.66 : width*0.33 ) + 'px'}; */
-        height: ${(props.size === 'big' ? (props.width/(2/3))/1.5 : (props.width/(1/3))/1.25) + 'px'};
-        /* height: 100px; */
+        padding-bottom: ${(props.size === 'small' ? 75 : 62) + '%'};
         border-radius: 5px;
         background-color: var(--color-light);
         background-image: url(${props.img});
@@ -54,8 +47,12 @@ const ArticleCard = (props) => {
         transition: all 200ms ease;
 
         /* Hover should only work when the title is loaded */
-        ${props.title} && ${Container}:hover & {
+        ${Container}:hover & {
             bottom: 50px;
+        }
+
+        @media screen and (min-width: 1200px) {
+            font-size: ${(props.size === 'big' ? 40 : 25) + 'px'};
         }
     `;
 
@@ -72,7 +69,7 @@ const ArticleCard = (props) => {
         transition: all 200ms ease;
 
         /* Hover should only work when the title is loaded */
-        ${props.title} && ${Container}:hover & {
+        ${Container}:hover & {
             opacity: 1;
         }
     `;

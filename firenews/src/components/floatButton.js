@@ -45,7 +45,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     align-items: center;
     padding-right: 10px;
     transition: all 200ms ease;
-    // cursor: pointer;
+    text-decoration: none;
 
     opacity: ${props => props.menuopen === 'true' ? 1 : 0};
     transform: scale(${props => props.menuopen === 'true' ? 1 : 0.3});

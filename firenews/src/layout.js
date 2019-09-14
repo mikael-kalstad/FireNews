@@ -14,13 +14,11 @@ const SizeWrapper = styled.div`
 `; 
 
 const Layout = (props) => {
-    // const [sideNavWidth, setSideNavWidth] = useState(0);
-    // const [newsFeedWidth, setNewsFeedWidth] = useState(0);
+    const [width, setWidth] = useState(0);
 
-    // useEffect(() => {
-    //     setSideNavWidth(document.getElementById('sideNav-wrapper').clientWidth);
-    //     setNewsFeedWidth(document.getElementById('newsFeed-wrapper').clientWidth);
-    // });
+    useEffect(() => {
+        setWidth(window.innerWidth);
+    });
 
     const Container = styled.div`
         display: grid; 

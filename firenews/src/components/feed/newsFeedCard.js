@@ -49,7 +49,7 @@ const ArrowLogo = styled.img`
 `;
 
 const NewsFeedCard = (props) => (
-    <Link to={props.link}>
+    <Link to={props.link} style={{ textDecoration: 'none' }}>
         <Container>
             {/* <SkeletonTheme color={'#F1F1F9'}> */}
             <Time>{props.time || <Skeleton />}</Time>
