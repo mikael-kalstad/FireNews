@@ -25,10 +25,16 @@ const App = () => {
             body: JSON.stringify()
         })
         .then(res => res.json())
-        .then(data => setArticleData(data))
+        .then(data => setData(data))
         .catch(err => console.log('Error: ', err));
     // }, 3000);
   }, []);
+
+  // Set data if DB responded
+  let setData = (data) => {
+    if (data.message && data.message === 'pool destroyed') return;
+    else setArticleData(data);
+  }
 
   return (
     <Router>

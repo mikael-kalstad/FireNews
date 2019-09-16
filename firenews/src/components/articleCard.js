@@ -102,14 +102,12 @@ const ArticleCard = (props) => {
     const card = (
         <SkeletonTheme color={'#F9FAFC'}>
             <Container>
-                {!props.img && <Logo></Logo>}
-
-                {props.img && <Overlay></Overlay>}
+                {props.img ? <Overlay></Overlay> : <Logo></Logo>}
 
                 {/* Lazy load image until props.img is defined */}
-                {props.img ? null :
+                {!props.img && !props.title &&
                     <SkeletonTheme color={'#F1F1F9'}>
-                        <Skeleton height={props.size === 'big' ? 300 : 180} />
+                        <Skeleton />
                     </SkeletonTheme>
                 }
                 <Title>{props.title || <Skeleton count={2}/>}</Title>
@@ -123,6 +121,8 @@ const ArticleCard = (props) => {
             </Container>
         </SkeletonTheme>
     );
+
+    // console.log("Title: " + props.title + ", Img: " + props.img);
         
 
     if (props.link) 

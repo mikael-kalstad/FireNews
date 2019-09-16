@@ -32,4 +32,11 @@
     "summary": "My dad died in an Airbnb rental, and he’s not the only one. What can the company do to improve safety?",
     "img": "https://images.unsplash.com/photo-1521239365713-1e26965c69ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
     "frontPage": true
+}, 
+
+{
+    "title" : "America is on the rise again!",
+    "author" : "Henry Olsen",
+    "content" : "America fuck yeah!",
+    "summary" : "American is on the rise again with president Donald Trump"
 }

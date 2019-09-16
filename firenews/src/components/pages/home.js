@@ -7,10 +7,10 @@ import SecondaryNav from '../nav/secondaryNav';
 
 // Main container
 const Container = styled.div`
-    margin: 10px 40px;
+    margin: 40px 40px;
 
     @media screen and (min-width: 1100px) {
-        margin: 10px 60px;
+        margin: 30px 60px;
     }
 
     @media screen and (min-width: 1300px) {
@@ -18,13 +18,14 @@ const Container = styled.div`
     }
 
     @media screen and (min-width: 1700px) {
-        margin: 10px 240px;
+        margin: 40px 240px;
     }
 `;
 
 // Container for all articles on front page
 const FrontPage = styled.div`
     position: relative;
+    margin-bottom: 80px;
     display: grid;
     grid-gap: 40px;
     grid-template-columns: 1fr 1fr 1fr;
@@ -59,12 +60,28 @@ const BigArticle = styled.div`
     grid-column: 1/3;
 `;
 
+const Line = styled.div`
+    /* width: 100%; */
+    height: 2px;
+    background-color: var(--color-border);
+`
+
+// Container for all articles that did not fit on the front page
+const Articles = styled.div`
+    border-top: 4px solid var(--color-border);
+    padding-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+`
+
 const Home = (props) => {
     const [width, setWidth] = useState(0);
 
     useEffect(() => {
         window.addEventListener('resize', setWidth(window.innerWidth)); 
-    }, []);
+        setWidth(window.innerWidth);
+    });
 
     // Render "skeleton" articles for loading
     let articles = [];
@@ -73,11 +90,11 @@ const Home = (props) => {
             <ArticleCard 
                 key={i}
                 size={i === 0 ? 'big' : 'small'}
-            ></ArticleCard>
+            />
         );
     }
 
-    console.log("width " + width);
+    // console.log("width " + width);
 
     // Render articles if data exists
     if (props.data != null && props.data != 'undefined' && props.data.length != 0) {
@@ -95,8 +112,7 @@ const Home = (props) => {
                     title={a.title}
                     time={timeFormat(new Date(a.date))}
                     size={i === 0 ? 'big' : 'small'}
-                >
-                </ArticleCard>
+                />
             );
         }
     }
@@ -123,8 +139,12 @@ const Home = (props) => {
                     </SideArticles> : null
                 }
 
-                <FloatButton></FloatButton>
+                <FloatButton />
             </FrontPage>
+
+            <Articles>
+                {width > 1000 ? articles.slice(5) : articles.slice(3)}
+            </Articles>
         </Container>      
     );
 }

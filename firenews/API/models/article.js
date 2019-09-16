@@ -20,8 +20,7 @@ const articleSchema = new mongoose.Schema({
     },
     summary: String,
     img: {
-        type: String,
-        default: 'no img'
+        type: String
     },
     frontPage: {
         type: Boolean,
