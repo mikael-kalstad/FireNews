@@ -127,7 +127,7 @@ const ArticleCard = (props) => {
 
     if (props.link) 
         return (
-            <Link to={props.link}>
+            <Link to={props.link} onClick={() => window.scrollTo(0, 0)}>
                 {card}
             </Link>
         );

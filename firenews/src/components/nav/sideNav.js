@@ -68,12 +68,12 @@ const SideNav = (props) => {
         )
     }
 
-    if (data != null && data != 'undefined' && data.length != 0) {
+    if (data !== null && data !== undefined && data.length !== 0) {
         // Clear skeleton data
         boxes = [];
 
         // Add categories with data from DB
-        data.map(c => {
+        data.forEach(c => {
             boxes.push(
                 <CategoryBox 
                     key={c._id}
@@ -87,14 +87,15 @@ const SideNav = (props) => {
         });
     }
 
-    const handleIconClick = (e) => {
+    const handleIconClick = () => {
+        // Change to default category
         props.setCategory('Main');
-
-        // Smooth scroll to top if already on the home page
-        // if (page === this.currentPath) {
-        //     e.preventDefault();
-        //     window.scrollTo({ top: 0, behavior: 'smooth' });
-        // }
+        
+        //Smooth scroll to top if already on the home page
+        if (window.location.pathname === '/')
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        else 
+            window.scrollTo(0, 0);
     }
 
     return (

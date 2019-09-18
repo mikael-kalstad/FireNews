@@ -59,6 +59,7 @@ const Text = styled.p`
     font-weight: 500;
     justify-self: start;
     transition: all 200ms ease;
+    margin-right: 8px;
 
     ${StyledLink}:hover & {
         margin-top: 5px;
@@ -99,15 +100,21 @@ const FloatButton = (props) => {
         // Menu can only be actived by hovering the circle component
         // Menu can only be hidden by leaving the mouse from the container component
         <Container onMouseLeave={onHoverLeave}>
-            <StyledLink width={100} menuopen={menuOpen.toString()} to='/add'>
-                <Logo src={'/icons/add.svg'}></Logo>
-                <Text>Add article</Text>
-            </StyledLink>
+            {/* Render if the current location is not the same as the link*/}
+            {window.location.pathname !== '/add' &&
+                <StyledLink menuopen={menuOpen.toString()} to='/add'>
+                    <Logo src={'/icons/add.svg'}></Logo>
+                    <Text>Add article</Text>
+                </StyledLink>
+            }
 
-            <StyledLink width={70} menuopen={menuOpen.toString()} to='/edit'>
-                <Logo src={'/icons/edit.svg'} heigth='50%'></Logo>
-                <Text>Edit</Text>
-            </StyledLink>
+            {/* Render if the current location is not the same as the link*/}
+            {window.location.pathname !== '/edit' &&
+                <StyledLink menuopen={menuOpen.toString()} to='/edit'>
+                    <Logo src={'/icons/edit.svg'} heigth='50%'></Logo>
+                    <Text>Edit</Text>
+                </StyledLink>
+            }
 
             <Circle
                 onMouseEnter={onHover}

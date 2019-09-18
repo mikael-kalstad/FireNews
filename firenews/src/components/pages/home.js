@@ -7,7 +7,10 @@ import SecondaryNav from '../nav/secondaryNav';
 
 // Main container
 const Container = styled.div`
-    margin: 40px 40px;
+    margin: 80px auto;
+    max-width: 50vw;
+    /* margin: 40px 40px;
+    
 
     @media screen and (min-width: 1100px) {
         margin: 30px 60px;
@@ -19,7 +22,7 @@ const Container = styled.div`
 
     @media screen and (min-width: 1700px) {
         margin: 40px 240px;
-    }
+    } */
 `;
 
 // Container for all articles on front page
@@ -43,7 +46,6 @@ const MainArticles = styled.div`
     display: grid;
     grid-template-columns: repeat(2, auto-fill);
     grid-auto-rows: max-content;
-    /* grid-template-rows: 200px 200px; */
     grid-gap: 40px;
 `;
 
@@ -51,7 +53,6 @@ const MainArticles = styled.div`
 const SideArticles = styled.div`
     display: grid; 
     grid-auto-rows: max-content;
-    /* grid-template-rows: 200px 200px; */
     grid-gap: 40px;
 `
 
@@ -59,12 +60,6 @@ const SideArticles = styled.div`
 const BigArticle = styled.div`
     grid-column: 1/3;
 `;
-
-const Line = styled.div`
-    /* width: 100%; */
-    height: 2px;
-    background-color: var(--color-border);
-`
 
 // Container for all articles that did not fit on the front page
 const Articles = styled.div`
@@ -81,7 +76,7 @@ const Home = (props) => {
     useEffect(() => {
         window.addEventListener('resize', setWidth(window.innerWidth)); 
         setWidth(window.innerWidth);
-    });
+    }, []);
 
     // Render "skeleton" articles for loading
     let articles = [];
@@ -94,10 +89,8 @@ const Home = (props) => {
         );
     }
 
-    // console.log("width " + width);
-
     // Render articles if data exists
-    if (props.data != null && props.data != 'undefined' && props.data.length != 0) {
+    if (props.data !== null && props.data !== undefined && props.data.length !== 0) {
         // Remove skeleton data
         articles = [];
 
@@ -121,7 +114,7 @@ const Home = (props) => {
         <Container>
             <Title><span style={{fontWeight: 700}}>{props.category}</span> news</Title>
 
-            <SecondaryNav></SecondaryNav>
+            <SecondaryNav refreshData={props.refreshData} />
 
             <FrontPage id='frontPage-container'>
                 <MainArticles>
@@ -130,20 +123,20 @@ const Home = (props) => {
                     </BigArticle>
 
 
-                    {width > 1000 ? articles.slice(1, 3) : articles.slice(1,5)}
+                    {articles.slice(1, 3)}
                 </MainArticles>
 
-                { (width > 1000) ? 
+                { (width > 1000) && 
                     <SideArticles>
                         {articles.slice(3, 5)}
-                    </SideArticles> : null
+                    </SideArticles>
                 }
 
                 <FloatButton />
             </FrontPage>
 
             <Articles>
-                {width > 1000 ? articles.slice(5) : articles.slice(3)}
+                {articles.slice(5)}
             </Articles>
         </Container>      
     );

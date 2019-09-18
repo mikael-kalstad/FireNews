@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SideNav from './components/nav/sideNav';
 import NewsFeed from './components/feed/newsFeed';
-import FloatButton from './components/floatButton';
 
 const SizeWrapper = styled.div`
     position: fixed;
@@ -18,7 +17,10 @@ const Layout = (props) => {
 
     useEffect(() => {
         setWidth(window.innerWidth);
-    });
+
+        window.addEventListener('resize', () => setWidth(window.innerWidth));
+        return () => window.removeEventListener('resize', setWidth(window.innerWidth));
+    }, []);
 
     const Container = styled.div`
         display: grid; 
@@ -40,6 +42,8 @@ const Layout = (props) => {
         height: 100vh;
     `;
 
+    let mobileView = width < 600;
+
     return (
         <Container id='layout-container'>
             <SizeWrapper left={true} id='sideNav-wrapper'>
@@ -49,19 +53,19 @@ const Layout = (props) => {
                 ></SideNav>
             </SizeWrapper>
             
-            <SideNavBox></SideNavBox>
+            <SideNavBox />
 
             {/* Render children inside layout component */}
             <Content>
-                {/* <FloatButton></FloatButton> */}
                 {props.children}
             </Content>
+            
 
             <SizeWrapper right={true} id='newsFeed-wrapper'>
                 <NewsFeed data={props.newsFeedData}></NewsFeed>
             </SizeWrapper>   
 
-            <NewsFeedBox></NewsFeedBox>         
+            <NewsFeedBox />      
         </Container>
     );
 }

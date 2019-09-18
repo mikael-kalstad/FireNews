@@ -6,7 +6,7 @@ export function timeFormat(date) {
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     // Get the current day
-    let dateNow = new Date;
+    let dateNow = new Date();
     let difference = daysBetween(dateNow, date);
     // console.log('Days between ' + difference);
 

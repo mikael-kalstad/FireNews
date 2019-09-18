@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 import '../../colors.css';
 
 // Text below category icon
@@ -27,7 +28,7 @@ const ImageBox = styled.div`
 
 const CategoryBox = (props) => {
     // Container box for each category
-    const Box = styled.div`
+    const Container = styled.div`
         /* padding-top: 50%; */
         height: ${props.width + 'px'};
         background-color: ${props.active ? '#F1F1F9' : 'white'};
@@ -44,16 +45,26 @@ const CategoryBox = (props) => {
         justify-items: center;
     `;
 
-    return (
-        <Box onClick={() => props.setCategory(props.name)}>
+    const Box = (
+        <Container onClick={() => props.setCategory(props.name)}>
             {props.img 
                 ? <Image src={props.img}></Image>
                 : <ImageBox />
             }
 
             <Text>{props.name || <Skeleton />}</Text>
-        </Box>
+        </Container>
     );
+
+    if (props.name != 'undefined' || props.name == null) {
+        return (
+            <Link to='/' style={{ textDecoration: 'none' }}>
+                {Box}
+            </Link>
+        )
+    }
+
+    return {Box};
 
 }
 

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 
-import {timeFormat} from '../timeFormat';
+// import {timeFormat} from '../timeFormat';
 
 const Container = styled.div`
     max-width: 900px;
@@ -17,18 +17,28 @@ const Title = styled.h1`
     width: 75%;
 `
 
+const AuthorWrapper = styled.div`
+    width: fit-content;
+    height: fit-content;
+    padding: 3px;
+`
+
 const Author = styled.p`
     font-size: 14px;
     font-weight: 500;
     color: #7A7A7A;
-    width: 30%;
 `;
 
 const Line = styled.div`
-    width: 10%;
-    height: 2px; 
+    width: 80%;
+    height: 5px; 
     border-radius: 10px;
     background-color: #F85757;
+    transition: all 250ms ease;
+
+    ${AuthorWrapper}:hover & {
+        width: 70%;
+    }
 `;
 
 const Summary = styled.p`
@@ -41,41 +51,77 @@ const Summary = styled.p`
 const Image = styled.img`
     border-radius: 5px;
     width: 100%;
-    max-height: ${props => props.imageLarge ? '1000px' : '350px'};
+    max-height: 350px;
     object-fit: cover;
-    margin: 30px 0;
-    transition: max-height 400ms ease;
-    cursor: ${props => props.imageLarge ? 'zoom-out' : 'zoom-in'};
+    transition: max-height 300ms ease;
+    cursor: pointer;
+`;  
+
+const ImageDescription = styled.p`
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 150%;
+    color: #7A7A7A;
 `;
 
 const Text = styled.p`
     font-size: 18px;
     /* font-weight: 300; */
     line-height: 170%;
+    margin-top: 60px;
+
+    ::first-letter {
+        font-size: 70px;
+        font-weight: 700;
+        line-height: 50px;
+        color: #f9a404;
+        float:left;
+        /* padding-top: 2px; */
+        padding-right: 10px;
+        padding-left: 3px;
+    }
 `;
 
-const Box = styled.div`
-    height: 1200px;
-`
-
 const Article = (props) => {
-    const [imageLarge, setImageLarge] = useState(false);
-
+    let imgLarge = false;
+  
     // Find aricle with the given id
-    // const article = undefined
-    const article = props.data.find(a => a._id == props.match.params.id);
-    let render = article != undefined;
+    const article = props.data.find(a => a._id === props.match.params.id);
+    let render = article !== undefined;
+
+    let handleImgClick = () => {
+        let img = document.getElementById('article-img');
+        img.style.maxHeight = imgLarge ? '350px' : '600px';
+        
+        imgLarge = !imgLarge;
+    }
 
     return (
         <Container>
             <Title>{render && article.title || <Skeleton count={3} />}</Title>
-            {render && <Author>By {article.author}, {props.time}</Author> || <Skeleton width={'30%'} />}  
-            <Line></Line>
+            
+            <AuthorWrapper>
+                {render && <Author>By {article.author}, {props.time}</Author> || <Skeleton width={'30%'} />}  
+                <Line></Line>
+            </AuthorWrapper>
 
             <Summary>{render && article.summary || <Skeleton count={3}/>}</Summary>
-            {render && 
-                <Image src={article.img} large={imageLarge} onClick={() => setImageLarge(!setImageLarge)}/> || <Skeleton height={300} />}
+            
+            {render &&
+                <Image 
+                    src={article.img} id='article-img' 
+                    onClick={() => handleImgClick()}
+                /> 
+                || <Skeleton height={300} />
+            }
+
+            {render &&
+                <ImageDescription>{article.imgDescription}</ImageDescription>
+                || <Skeleton />
+            }
             <Text>{render && article.content || <Skeleton count={5}/>}</Text>
+            
+            {/* Extra component only for loading */}
             <Text>{render || <Skeleton count={5}/>}</Text>
         </Container>
     );

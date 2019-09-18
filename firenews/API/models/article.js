@@ -22,6 +22,9 @@ const articleSchema = new mongoose.Schema({
     img: {
         type: String
     },
+    imgDescription: {
+        type: String
+    },
     frontPage: {
         type: Boolean,
         required: true
