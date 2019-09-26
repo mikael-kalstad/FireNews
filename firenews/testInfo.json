@@ -5,7 +5,7 @@
     "summary": "Parts of the Amazon are more prone to fire today because farmers thousands of years ago regularly set the undercarriage alight.",
     "img": "https://images.unsplash.com/photo-1544177817-a197b1d0a3dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
     "frontPage": true
-},
+}
 
 {
     "author": "Mikael Kalstad",
@@ -14,7 +14,7 @@
     "summary": "A short overtime sprint won't kill you but, as data from World War One shows, consistently putting in too many hours at work hurts employees and employers",
     "img": "https://images.unsplash.com/photo-1489081449618-7e76dc369f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
     "frontPage": false
-},
+}
 
 {
     "author": "Bård Tufte Johansen",
@@ -23,7 +23,7 @@
     "summary": "Stop wasting your life, 5 signs can indicate if you are indeed wasting your life",
     "img": "https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
     "frontPage": true
-},
+}
 
 {
     "author": "Barack Obama",
@@ -32,14 +32,15 @@
     "summary": "My dad died in an Airbnb rental, and he’s not the only one. What can the company do to improve safety?",
     "img": "https://images.unsplash.com/photo-1521239365713-1e26965c69ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
     "frontPage": true
-}, 
+}
 
 {
     "title" : "America is on the rise again!",
     "author" : "Henry Olsen",
     "content" : "America fuck yeah!",
-    "summary" : "American is on the rise again with president Donald Trump"
-},
+    "summary" : "American is on the rise again with president Donald Trump",
+    "frontPage": false
+}
 
 {
     "title": "What is a class?",

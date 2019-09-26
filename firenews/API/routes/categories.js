@@ -18,4 +18,19 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    let category = new Category({
+        name: req.body.name
+    });
+
+    try {
+        const newCategory = await category.save();
+        // Status 201 - Succesful creating something...
+        res.status(201).json(newCategory);
+    }
+    catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 module.exports = router;

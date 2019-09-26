@@ -22,10 +22,10 @@ const NewsFeed = (props) => {
     return (
         <Container>
             <Title>Latest news</Title>
-            <NewsFeedCard
+            {/* <NewsFeedCard
                 time={props.data.date}
                 content={props.data.summary}
-            ></NewsFeedCard>
+            ></NewsFeedCard> */}
         </Container>
     );
 }

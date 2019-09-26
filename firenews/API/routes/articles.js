@@ -24,14 +24,14 @@ router.get('/:id', getArticle, (req, res) => {
 });
 
 // Adding article
-router.post('/add', async (req, res) => {
+router.post('/', async (req, res) => {
     let article = new Article({
         author: req.body.author,
         title: req.body.title,
         content: req.body.content,
         date: Date.now(),
         summary: req.body.summary,
-        img: req.body.img || 'no image',
+        img: req.body.img || null,
         frontPage: req.body.frontPage
     });
 

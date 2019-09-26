@@ -1,17 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import '../../colors.css';
+import FireIcon from '../btn/fireIcon';
 import CategoryBox from './categoryBox';
+import '../../colors.css';
 
 // Width of side-nav
 let width = 100;
 
 const Container = styled.div`
-    /* position: relative; */
     width: ${width + 'px'};
     height: 100vh;
     border-right: 2px solid var(--color-border);
+    background-color: white;
+    overflow-y: overlay;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        position: absolute;
+        display: none;
+    }
+
+    :hover {
+        ::-webkit-scrollbar {
+            width: 5px;
+            display: block;
+        }
+    }
+
+    /*  The draggable scrolling element resizes depending on the size of the scrollable element. */
+    ::-webkit-scrollbar-thumb {
+        background-color: #cfcfcf;
+        border-radius: 10px;
+    }
+`;
+
+const CategoriesWrapper = styled.div`
+    /* max-width: 100vh; */
+    overflow-y: scroll;
 `;
 
 // Container for icon box
@@ -32,28 +57,13 @@ const Img = styled.img`
 `;
 
 const SideNav = (props) => {
-    const [data, setCategoryData] = useState([]);
+    const handleBoxClick = (name) => {
+        // Set category
+        props.setCategory(name);
 
-    // Get category data when component mounts
-    useEffect(() => {
-        // Get all categories from DB
-        fetch('http://localhost:4000/categories', {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify()
-        })
-        .then(res => res.json())
-        .then(data => setData(data))
-        .catch(err => console.log('Error: ', err));
-    }, []);
-
-    // Set data if DB responded
-    let setData = (data) => {
-        if (data.message && data.message === 'pool destroyed') return;
-        else setCategoryData(data);
-      }
+        // Toggle side-nav if on mobile
+        if (props.mobile) props.toggleSideNav();
+    }
 
     // Array for category-boxes
     let boxes = [];
@@ -68,17 +78,20 @@ const SideNav = (props) => {
         )
     }
 
-    if (data !== null && data !== undefined && data.length !== 0) {
-        // Clear skeleton data
+    if (props.categoryData !== null && 
+        props.categoryData !== undefined && 
+        props.categoryData.length !== 0) {
+       
+            // Clear skeleton data
         boxes = [];
 
         // Add categories with data from DB
-        data.forEach(c => {
+        props.categoryData.forEach(c => {
             boxes.push(
                 <CategoryBox 
                     key={c._id}
                     active={props.category === c.name}
-                    setCategory={props.setCategory}
+                    handleClick={handleBoxClick}
                     img='icons/flame.svg'
                     name={c.name}
                     width={width}
@@ -87,27 +100,23 @@ const SideNav = (props) => {
         });
     }
 
-    const handleIconClick = () => {
-        // Change to default category
-        props.setCategory('Main');
-        
-        //Smooth scroll to top if already on the home page
-        if (window.location.pathname === '/')
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        else 
-            window.scrollTo(0, 0);
-    }
-
     return (
         <Container>
-            <Link to='/'>
-                <Icon onClick={() => handleIconClick()}>
-                    <Img src='/icons/icon.svg'/>
+            {/* Render a different logo and onclick for mobile view */}
+            {props.mobile ? 
+                <Icon onClick={() => props.toggleSideNav()}>
+                    <Img src='/icons/cross.svg' />
                 </Icon>
-            </Link>
+            :
+                <Icon>
+                    <FireIcon setCategory={props.setCategory}/>
+                </Icon>
+            }
 
             {/* Render all category boxes */}
-            {boxes}
+            {/* <CategoriesWrapper> */}
+                {boxes}
+            {/* </CategoriesWrapper> */}
         </Container>
     );
 }

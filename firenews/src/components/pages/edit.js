@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import EditTop from '../form/editTop';
 
 let titlePlaceHolder = 'The rain forest is burning';
 let summarylaceHolder = 'This area will contain the brief. A few sentences that summaries and explains the content of the article. The length of the brief should not be much longer than this.';
 let imagePlaceHolder = 'Image description';
 
 const Container = styled.div`
-
+    width: 100%;
 `;
 
 const TitleInput = styled.textarea`
@@ -57,6 +58,8 @@ const Image = styled.div`
 const Edit = (props) => {
     return (
         <Container>
+            <EditTop data={props.categoryData}/>
+
             <TitleInput
                 placeholder={titlePlaceHolder}
             />

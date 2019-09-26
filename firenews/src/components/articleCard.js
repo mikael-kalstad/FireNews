@@ -110,7 +110,7 @@ const ArticleCard = (props) => {
                         <Skeleton />
                     </SkeletonTheme>
                 }
-                <Title>{props.title || <Skeleton count={2}/>}</Title>
+                {/* <Title>{props.title || <Skeleton count={2}/>}</Title> */}
 
                 <ReadMore>
                     <Text>Read more</Text> 

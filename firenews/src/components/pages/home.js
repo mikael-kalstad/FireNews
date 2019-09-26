@@ -3,35 +3,15 @@ import ArticleCard from '../articleCard';
 import { timeFormat } from '../timeFormat';
 import styled from 'styled-components';
 import FloatButton from '../floatButton';
-import SecondaryNav from '../nav/secondaryNav';
 
 // Main container
 const Container = styled.div`
     margin: 80px auto;
     max-width: 50vw;
-    /* margin: 40px 40px;
-    
-
-    @media screen and (min-width: 1100px) {
-        margin: 30px 60px;
+   
+    @media screen and (max-width: 600px) {
+        max-width: 85vw;
     }
-
-    @media screen and (min-width: 1300px) {
-        margin: 10px 120px;
-    }
-
-    @media screen and (min-width: 1700px) {
-        margin: 40px 240px;
-    } */
-`;
-
-// Container for all articles on front page
-const FrontPage = styled.div`
-    position: relative;
-    margin-bottom: 80px;
-    display: grid;
-    grid-gap: 40px;
-    grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const Title = styled.h2`
@@ -71,11 +51,13 @@ const Articles = styled.div`
 `
 
 const Home = (props) => {
-    const [width, setWidth] = useState(0);
+    const [width, setWidth] = useState();
 
     useEffect(() => {
-        window.addEventListener('resize', setWidth(window.innerWidth)); 
         setWidth(window.innerWidth);
+
+        window.addEventListener('resize', setWidth(window.innerWidth)); 
+        return () => window.removeEventListener('resize', setWidth(window.innerWidth));
     }, []);
 
     // Render "skeleton" articles for loading
@@ -110,11 +92,20 @@ const Home = (props) => {
         }
     }
 
+    let breakpoint = 1200;
+
+    // Container for all articles on front page
+    const FrontPage = styled.div`
+        position: relative;
+        margin-bottom: 80px;
+        display: grid;
+        grid-gap: 40px;
+        grid-template-columns: ${width > breakpoint ? '1fr 1fr 1fr' : '1fr 1fr'};
+    `;
+
     return (
         <Container>
             <Title><span style={{fontWeight: 700}}>{props.category}</span> news</Title>
-
-            <SecondaryNav refreshData={props.refreshData} />
 
             <FrontPage id='frontPage-container'>
                 <MainArticles>
@@ -123,10 +114,10 @@ const Home = (props) => {
                     </BigArticle>
 
 
-                    {articles.slice(1, 3)}
+                    {width > breakpoint ? articles.slice(1, 3) : articles.slice(1, 5)}
                 </MainArticles>
 
-                { (width > 1000) && 
+                {width > breakpoint && 
                     <SideArticles>
                         {articles.slice(3, 5)}
                     </SideArticles>

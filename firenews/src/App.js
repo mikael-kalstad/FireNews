@@ -18,18 +18,25 @@ const GlobalStyles = createGlobalStyle`
 `
 
 const App = () => {
+  // Current category
   const [category, setCategory] = useState('Main');
+
+  // States that hold data
   // const [newsFeedData, setNewsFeedData] = useState('');
   const [articleData, setArticleData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+
 
   // Get article data when component mounts
   useEffect(() => {
     // setTimeout(() => {
-    refreshData();
+      getArticles();
+      getCategories();
     // }, 3000);
   }, []);
 
-  let refreshData = () => {
+  // Function for updating article data, can be imported from any component
+  let getArticles = () => {
     fetch('http://localhost:4000/articles', {
         method: 'GET',
         headers: {
@@ -38,17 +45,29 @@ const App = () => {
         body: JSON.stringify()
     })
     .then(res => res.json())
-    .then(data => {
-      setData(data);
-    })
+    .then(data => checkData(data) && setArticleData(data))
     .catch(err => console.log('Error: ', err));
-  } 
-
-  // Set data if DB responded
-  let setData = (data) => {
-    if (data.message && data.message === 'pool destroyed') return;
-    else setArticleData(data);
   }
+
+  let getCategories = () => {
+    fetch('http://localhost:4000/categories', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(data => checkData(data) && setCategoryData(data))
+        .catch(err => console.log('Error: ', err));
+  }
+
+  // Method to check if data is valid
+  let checkData = (data) => {
+    if (!data) return false;
+    if (data.message && data.message === 'pool destroyed') return false;
+    return true;
+  } 
 
   return (
     <Router>
@@ -56,19 +75,20 @@ const App = () => {
       <Layout
         category={category}
         setCategory={setCategory}
-        newsFeedData={articleData}
+        categoryData={categoryData}
+        refreshData={getArticles}
       >
         <Switch>
           <Route path='/' exact render={(props) => 
             <Home {...props} 
               data={articleData} 
               category={category} 
-              refreshData={refreshData}
+              refreshData={getArticles}
             />} 
           />
           <Route path='/article/:id' render={(props) => <Article {...props} data={articleData} />} />
           <Route path='/add' component={Add} />
-          <Route path='/edit' component={Edit} />
+          <Route path='/edit' render={(props) => <Edit {...props} categoryData={categoryData} />} />
         </Switch>
       </Layout>
     </Router>

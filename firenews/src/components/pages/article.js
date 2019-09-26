@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
+import Back from '../btn/back';
 
 // import {timeFormat} from '../timeFormat';
 
@@ -98,28 +99,33 @@ const Article = (props) => {
 
     return (
         <Container>
-            <Title>{render && article.title || <Skeleton count={3} />}</Title>
+            <Back />
+
+            <Title>{(render && article.title) || <Skeleton count={3} />}</Title>
             
             <AuthorWrapper>
-                {render && <Author>By {article.author}, {props.time}</Author> || <Skeleton width={'30%'} />}  
+                {(render && <Author>By {article.author}, {props.time}</Author>) || <Skeleton width={'30%'} />}  
                 <Line></Line>
             </AuthorWrapper>
 
-            <Summary>{render && article.summary || <Skeleton count={3}/>}</Summary>
+            <Summary>{(render && article.summary) || <Skeleton count={3}/>}</Summary>
             
-            {render &&
+            {/* Image */}
+            {(render &&
                 <Image 
                     src={article.img} id='article-img' 
                     onClick={() => handleImgClick()}
-                /> 
+                />)
                 || <Skeleton height={300} />
             }
 
-            {render &&
-                <ImageDescription>{article.imgDescription}</ImageDescription>
+            {/* Image description */}
+            {(render &&
+                <ImageDescription>{article.imgDescription}</ImageDescription>)
                 || <Skeleton />
             }
-            <Text>{render && article.content || <Skeleton count={5}/>}</Text>
+
+            <Text>{(render && article.content) || <Skeleton count={5}/>}</Text>
             
             {/* Extra component only for loading */}
             <Text>{render || <Skeleton count={5}/>}</Text>
@@ -127,4 +133,4 @@ const Article = (props) => {
     );
 };
 
-export default Article;
+export default Article; 

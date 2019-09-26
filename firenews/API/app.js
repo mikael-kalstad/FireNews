@@ -29,7 +29,11 @@ app.use(express.json());
 app.use(cors());
 
 // DB setup
-mongoose.connect('mongodb://localhost/FireNews', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost/FireNews', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://mikael:admin@firenews-xopnn.gcp.mongodb.net/FireNews?retryWrites=true&w=majority',
+    { useNewUrlParser: true, useUnifiedTopology: true}
+)
+;
 const db = mongoose.connection;
 db.on('error', error => console.log(error));
 db.once('open', () => console.log('Conntected to database'));

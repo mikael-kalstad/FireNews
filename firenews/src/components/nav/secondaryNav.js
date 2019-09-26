@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import RefreshIcon from '../btn/refreshIcon';
 
 const Container = styled.div`
     position: absolute;
     width: 370px;
     height: 225px;
-    /* padding-top: 15px; */
     right: 0;
     top: 0;
     background: linear-gradient(180deg, #F1F1F9 0%, rgba(241, 241, 249, 0) 100%);
@@ -35,42 +35,14 @@ const StyledLink = styled(props => <Link {...props} />)`
     transition: all 500ms ease;
 `;
 
-const Refresh = styled.img`
-    height: 18px;
-    cursor: pointer;
-    transition: all 400ms ease;
-    transform: 'rotate(${props => props.rotate ? props.rotate : 0})';
-
-    :hover {
-        transform: rotate(50deg);
-    }
-
-    :active {
-        transform: rotate(330deg);
-    }
-`;
-
 const SecondaryNav = (props) => {
-    // Handle refresh icon click
-    let handleClick = () => {
-        // Fetch new data
-        props.refreshData();
-
-        // Rotate icon 
-        document.getElementById('refreshIcon').style.transform = 'rotate(360deg)';
-    }
-
     return (
         <Container>
             <LinkWrapper>
                 <StyledLink to='/add'>New article</StyledLink>
                 <StyledLink to='/edit'>Edit</StyledLink>
                 
-                <Refresh 
-                    src='/icons/refresh.svg'
-                    id='refreshIcon'
-                    onMouseUp={() => handleClick()}
-                />
+                <RefreshIcon refreshData={props.refreshData}/>
             </LinkWrapper>
         </Container>
     );

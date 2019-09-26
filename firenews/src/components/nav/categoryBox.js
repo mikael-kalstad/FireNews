@@ -46,7 +46,7 @@ const CategoryBox = (props) => {
     `;
 
     const Box = (
-        <Container onClick={() => props.setCategory(props.name)}>
+        <Container onClick={() => props.handleClick(props.name)}>
             {props.img 
                 ? <Image src={props.img}></Image>
                 : <ImageBox />
@@ -56,7 +56,7 @@ const CategoryBox = (props) => {
         </Container>
     );
 
-    if (props.name != 'undefined' || props.name == null) {
+    if (props.name !== 'undefined' || props.name === null) {
         return (
             <Link to='/' style={{ textDecoration: 'none' }}>
                 {Box}
