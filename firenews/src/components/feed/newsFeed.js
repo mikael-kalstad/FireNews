@@ -19,13 +19,25 @@ const Title = styled.p`
 `;
 
 const NewsFeed = (props) => {
+    let cards = [];
+
+    if (props.data) {
+        props.data.forEach(a => {
+            cards.push(
+                <NewsFeedCard
+                    key={a._id}
+                    link={'/article/' + a._id}
+                    time={a.date}
+                    content={a.title}
+                />
+            )
+        });
+    }
+
     return (
         <Container>
             <Title>Latest news</Title>
-            {/* <NewsFeedCard
-                time={props.data.date}
-                content={props.data.summary}
-            ></NewsFeedCard> */}
+            {cards}
         </Container>
     );
 }

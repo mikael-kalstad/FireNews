@@ -71,9 +71,9 @@ const MobileLayout = (props) => {
                 <SideNav 
                     mobile={true} 
                     toggleSideNav={toggleSideNav}
-                    category={props.category}
-                    categoryData={props.categoryData}
-                    setCategory={props.setCategory}
+                    category={props.data.category}
+                    categoryData={props.data.categoryData}
+                    setCategory={props.data.setCategory}
                 />
             </SideNavWrapper>
 
@@ -81,14 +81,14 @@ const MobileLayout = (props) => {
                 <BtnWrapper>
                     <Icon src='/icons/category.svg' align='left' onClick={() => toggleSideNav()} />
                     
-                    <FireIcon setCategory={props.setCategory} />
+                    <FireIcon setCategory={props.data.setCategory} />
 
-                    <RefreshIcon size='70%' align='right' refreshData={props.refreshData}/>
+                    <RefreshIcon size='70%' align='right' refreshData={props.data.refreshData}/>
                 </BtnWrapper>
             </Header>
 
             <Content>
-                {props.children}
+                {props.data.children}
             </Content>
         </Container>
     );

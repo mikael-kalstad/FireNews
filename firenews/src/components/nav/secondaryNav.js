@@ -3,19 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import RefreshIcon from '../btn/refreshIcon';
 
-const Container = styled.div`
-    position: absolute;
-    width: 370px;
-    height: 225px;
-    right: 0;
-    top: 0;
-    background: linear-gradient(180deg, #F1F1F9 0%, rgba(241, 241, 249, 0) 100%);
-
-    @media screen and (min-width: 1200px) {
-        width: 500px;
-    }
-`;
-
 const LinkWrapper = styled.div`
     position: relative;
     width: 200px;
@@ -36,13 +23,28 @@ const StyledLink = styled(props => <Link {...props} />)`
 `;
 
 const SecondaryNav = (props) => {
+    const Container = styled.div`
+        position: absolute;
+        margin-right: ${props.margin};
+        width: 370px;
+        height: 225px;
+        right: 0;
+        top: 0;
+        background: linear-gradient(180deg, #F1F1F9 0%, rgba(241, 241, 249, 0) 100%);
+
+        @media screen and (min-width: 1200px) {
+            width: 500px;
+        }
+    `;
+
+
     return (
         <Container>
             <LinkWrapper>
                 <StyledLink to='/add'>New article</StyledLink>
                 <StyledLink to='/edit'>Edit</StyledLink>
                 
-                <RefreshIcon refreshData={props.refreshData}/>
+                <RefreshIcon refreshData={props.refreshData} dark={true}/>
             </LinkWrapper>
         </Container>
     );

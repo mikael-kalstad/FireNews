@@ -67,7 +67,7 @@ const App = () => {
     if (!data) return false;
     if (data.message && data.message === 'pool destroyed') return false;
     return true;
-  } 
+  }
 
   return (
     <Router>
@@ -77,6 +77,7 @@ const App = () => {
         setCategory={setCategory}
         categoryData={categoryData}
         refreshData={getArticles}
+        articleData={articleData}
       >
         <Switch>
           <Route path='/' exact render={(props) => 

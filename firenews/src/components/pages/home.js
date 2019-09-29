@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import ArticleCard from '../articleCard';
-import { timeFormat } from '../timeFormat';
+import { shortHandTimeFormat } from '../../scripts/timeFormat';
 import styled from 'styled-components';
 import FloatButton from '../floatButton';
 
@@ -85,7 +85,7 @@ const Home = (props) => {
                     link={`/article/${a._id}`}
                     img={a.img}
                     title={a.title}
-                    time={timeFormat(new Date(a.date))}
+                    time={shortHandTimeFormat(new Date(a.date))}
                     size={i === 0 ? 'big' : 'small'}
                 />
             );

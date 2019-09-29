@@ -14,7 +14,7 @@ let scroll_borderRadius = '5px';
 
 const Slider = styled.div`
     max-width: 100%;
-    padding: 30px;
+    padding-bottom: 30px;
     -webkit-overflow-scrolling: touch;
     overflow-x: auto;        
 
@@ -27,7 +27,6 @@ const Slider = styled.div`
         background-color: #F5F5F5;
         border: 1px solid ${scroll_color};
         border-radius: ${scroll_borderRadius};
-        margin: 30px;
     }
 
     /*  The draggable scrolling element resizes depending on the size of the scrollable element. */
@@ -55,7 +54,7 @@ const CategoryChooser = (props) => {
                 <CategorySelector 
                     key={c._id}
                     name={c.name}
-                    active={props.active}
+                    active={props.active === c.name}
                     setActive={props.setActive}
                 />
             );

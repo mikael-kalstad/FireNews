@@ -12,26 +12,24 @@ const Layout = (props) => {
         return () => window.removeEventListener('resize', setWidth(window.innerWidth));
     }, []);
 
-    let mobileView = width < 600;
+    // Check for mobileview if width is defined, default view is desktop
+    let mobileView = width ? width < 600 : false;
+
+    // The same data will be passed to both layouts
+    let data = {
+        children: props.children,
+        category: props.category,
+        setCategory: props.setCategory,
+        categoryData: props.categoryData,
+        refreshData: props.refreshData,
+        articleData: props.articleData
+    };
 
     return (
         <div id='layout-container'>    
              {mobileView 
-                ? 
-                <MobileLayout 
-                    children={props.children} 
-                    setCategory={props.setCategory}
-                    categoryData={props.categoryData}
-                    refreshData={props.refreshData}
-                />
-                : 
-                <DesktopLayout 
-                    children={props.children} 
-                    setCategory={props.setCategory}
-                    categoryData={props.categoryData}
-                    newsFeedData={props.newsFeedData}
-                    refreshData={props.refreshData}
-                />
+                ? <MobileLayout data={data} />
+                : <DesktopLayout data={data} />
             }    
         </div>
     );

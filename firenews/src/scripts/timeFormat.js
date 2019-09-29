@@ -1,7 +1,6 @@
-export function timeFormat(date) {
-    // Must be an object of type Date
-    if (!date instanceof Date) return false;
-
+export function shortHandTimeFormat(date) {
+    date = new Date(date);
+    
     let timeFormat = ''; 
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -25,6 +24,15 @@ export function timeFormat(date) {
     }
 
     return timeFormat;
+}
+
+export function timeFormat(date) {
+     // Must be an object of type Date
+     if (!date instanceof Date) return false;
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+     return date.getDay() + '.' + months[date.getMonth()] + ' ' + date.getFullYear();
 }
 
 const daysBetween = (first, second) => {

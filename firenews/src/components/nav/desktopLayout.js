@@ -4,61 +4,37 @@ import SideNav from './sideNav';
 import NewsFeed from '../feed/newsFeed';
 import SecondaryNav from './secondaryNav';
 
-
-const SizeWrapper = styled.div`
-    position: fixed;
-    z-index: 9;
-    top: 0; 
-    left: ${props => props.left ? '0' : 'auto'};
-    right: ${props => props.right ? '0' : 'auto'};
-    width: fit-content;
-    height: fit-content;
-`; 
+const SideNavWidth = '100px';
+const NewsFeedWidth = '240px';
 
 const DesktopLayout = (props) => {
     const Container = styled.div`
+        max-width: 100vw;
         display: grid; 
-        grid-template-columns: 100px 1fr 240px;
+        grid-template-columns: auto 1fr auto;
     `;
 
     const Content = styled.div`
         position: relative;
-    `;
-
-    const SideNavBox = styled.div`
-        width: 100px;
-        height: 100vh;
-    `;
-
-    const NewsFeedBox = styled.div`
-        width: 240px;
-        height: 100vh;
+        width: calc(100vw - ${SideNavWidth} - ${NewsFeedWidth} - 30px);
     `;
 
     return (
         <Container id='layout-container'>    
-            <SizeWrapper left={true} id='sideNav-wrapper'>
-                <SideNav
-                    category={props.category}
-                    categoryData={props.categoryData}
-                    setCategory={props.setCategory}
-                />
-            </SizeWrapper>
-            
-            <SideNavBox />
+            <SideNav
+                category={props.data.category}
+                categoryData={props.data.categoryData}
+                setCategory={props.data.setCategory}
+            />
+
+            <SecondaryNav refreshData={props.data.refreshData} margin={NewsFeedWidth} />
 
             {/* Render children inside layout component */}
             <Content>
-                {props.children}
+                {props.data.children}
             </Content>
-
-            <SecondaryNav refreshData={props.refreshData} />
             
-            <SizeWrapper right={true} id='newsFeed-wrapper'>
-                <NewsFeed data={props.newsFeedData}/>
-            </SizeWrapper>   
-
-            <NewsFeedBox />  
+            <NewsFeed data={props.data.articleData}/>
         </Container>
     );
 }

@@ -13,7 +13,7 @@ const RefreshIcon = (props) => {
     const Icon = styled.img`
         height: ${props.size ? props.size : '18px'};
         justify-self: ${props.align ? props.align : 'auto'};
-        filter: invert(100%);
+        filter: ${props.dark ? '' : 'invert(100%)'};
         cursor: pointer;
         transition: all 400ms ease;
         transform: 'rotate(${props => props.rotate ? props.rotate : 0})';

@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import EditTop from '../form/editTop';
+import PublishTopPanel from '../form/publishTopPanel';
+import ImageUpload from '../form/imageUpload';
 
 let titlePlaceHolder = 'The rain forest is burning';
 let summarylaceHolder = 'This area will contain the brief. A few sentences that summaries and explains the content of the article. The length of the brief should not be much longer than this.';
 let imagePlaceHolder = 'Image description';
 
-const Container = styled.div`
-    width: 100%;
+const Wrapper = styled.div`
+    padding: 60px;
+    background-color: var(--color-form-background);
 `;
 
 const TitleInput = styled.textarea`
@@ -15,15 +17,18 @@ const TitleInput = styled.textarea`
     font-size: 60px; 
     font-weight: 500;
     text-transform: uppercase;
-    width: 75%;
+    width: 60%;
     height: 200px;
     outline: none;
     border: none;
     border-bottom: 1px solid black;
     resize: none;
-    
-    :hover { 
-        background-color: var(--color-light);
+    background-color: var(--color-form-background);
+    overflow: hidden;
+    padding-bottom: 30px;
+
+    ::placeholder {
+        color: var(--color-form-contrast);
     }
 `;
 
@@ -39,6 +44,8 @@ const TextInput = styled.textarea`
     border: none;
     border-bottom: 1px solid black;
     resize: none;
+    color: var(--color-form-contrast);
+    background-color: var(--color-form-background);
 `;
 
 const Summary = styled.p`
@@ -48,28 +55,21 @@ const Summary = styled.p`
     margin-top: 30px;
 `;
 
-const Image = styled.div`
-    width: 100%;
-    height: 300px;
-    border-radius: 5px;
-    background-color: #D3B112;
-`
+
 
 const Edit = (props) => {
     return (
-        <Container>
-            <EditTop data={props.categoryData}/>
+        <>
+            <PublishTopPanel data={props.categoryData}/>
 
-            <TitleInput
-                placeholder={titlePlaceHolder}
-            />
-            
-            <TextInput placeholder={summarylaceHolder} />
+            <Wrapper>
+                <TitleInput placeholder={titlePlaceHolder}/>
+                <TextInput placeholder={summarylaceHolder} />
         
-
-            <Image></Image>
-            <TextInput placeholder={imagePlaceHolder} />
-        </Container>
+                <ImageUpload />
+                <TextInput placeholder={imagePlaceHolder} />
+            </Wrapper>
+        </>
     );
 } 
 

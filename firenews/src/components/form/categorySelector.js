@@ -8,29 +8,30 @@ const CategorySelector = (props) => {
         height: 70px;
         padding: 20px;
         border-radius: 5px;
-        background-color: ${props.active === props.name ? 'var(--color-main)' : '#F1F1F1'};
+        background-color: ${props.active ? '#2ABC7E' : '#F1F1F1'};
         display: grid;
         grid-template-rows: 1fr 1fr;
         cursor: pointer;
 
         :hover {
-            background-color: ${props.active === props.name ? '#4d5bb0' : '#ebebeb'};
+            background-color: ${props.active ? '#2AB67B' : '#ebebeb'};
         }
     `;
 
     const Icon = styled.img`
-        height: 20px;
+        height: 25px;
+        filter: ${props.active ? 'invert(100%)' : ''};
     `;
 
     const Text = styled.p`
         font-size: 18px;
         font-weight: 500;
-        color: ${props.active === props.name ? 'white' : '#2E2F41'};
+        color: ${props.active ? 'white' : '#2E2F41'};
     `;
 
     return (
         <Container onClick={() => props.setActive(props.name)}>
-            <Icon src={props.icon} />
+            <Icon src={'/icons/flame.svg'} />
             <Text>{props.name}</Text>
         </Container>
     );
