@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PublishTopPanel from '../form/publishTopPanel';
 import ImageUpload from '../form/imageUpload';
+import UploadBtn from '../btn/uploadBtn';
 
 let titlePlaceHolder = 'The rain forest is burning';
 let summarylaceHolder = 'This area will contain the brief. A few sentences that summaries and explains the content of the article. The length of the brief should not be much longer than this.';
@@ -60,6 +61,7 @@ const Summary = styled.p`
 const Edit = (props) => {
     return (
         <>
+            <UploadBtn />
             <PublishTopPanel data={props.categoryData}/>
 
             <Wrapper>
