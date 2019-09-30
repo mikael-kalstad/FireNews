@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Spinner from 'react-spinner-material';
+import { Redirect } from 'react-router-dom';
 
 const Container = styled.div`
-
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 100px;
 `;
 
 const Button = styled.button`
@@ -20,22 +24,23 @@ const Button = styled.button`
     display: grid;
     justify-items: center;
     align-items: center;
+    cursor: ${props =>  props.loading || props.finished ? 'default' : 'pointer'};
 
     :hover {
-        background-color: 
+        filter: 
             ${props => 
                 !props.loading && 
                 !props.finished &&
-                '#6DC6DA'
+                'brightness(95%)'
             };
      }
 
     :active {
-        background-color: 
+        filter: 
             ${props => 
                 !props.loading && 
                 !props.finished &&
-                '#80D7EA'
+                'brightness(100%)'
             };
     }
 `;
@@ -53,6 +58,7 @@ const Text = styled.p`
 const UploadBtn = (props) => {
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
+    const [redirect, setRedirect] = useState(false);
     
     const handleClick = () => {
         // Set state to loading
@@ -68,6 +74,19 @@ const UploadBtn = (props) => {
         }, 1500);
     }
 
+    // Redirect to article after a delay
+    if (finished) {
+        let delay = 1500;
+
+        setTimeout(() => {
+            setRedirect(true);
+        }, delay);
+    }
+
+    if (finished && redirect) {
+        return <Redirect to='/article/5d83378e61c870333821818b' />
+    }
+
     return (
         <Container>
             <Button 
@@ -79,7 +98,7 @@ const UploadBtn = (props) => {
                 ? <Spinner size={35} spinnerColor='#FFF' spinnerWidth={4} visible={loading}/>
                 : (finished 
                     ? <Logo src='/icons/check.svg'/>
-                    : 'Upload')}
+                    : props.name)}
             </Button>
 
             <Text>

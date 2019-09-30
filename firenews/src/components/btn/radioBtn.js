@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    padding: 10px;
-`;
-
 const Circle = styled.div`
     width: 30px;
     height: 30px;
@@ -18,6 +11,7 @@ const Circle = styled.div`
     justify-items: center;
     align-items: center;
     transition: all 80ms ease;
+    cursor: pointer;
 
     :hover {
         background-color: ${props => props.active ? '#47A9C9' : '#EAEAEA'};
@@ -32,11 +26,9 @@ const RadioBtn = () => {
     const [active, setActive] = useState(false);
  
     return (
-        <>
-            <Circle active={active} onClick={() => setActive(!active)}>
-                {active && <Logo src='/icons/check.svg'/>}
-            </Circle>
-        </>       
+        <Circle active={active} onClick={() => setActive(!active)}>
+            {active && <Logo src='/icons/check.svg'/>}
+        </Circle>    
     );
 }
 

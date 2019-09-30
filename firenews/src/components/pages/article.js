@@ -85,9 +85,12 @@ const Text = styled.p`
 
 const Article = (props) => {
     let imgLarge = false;
+    let article;
   
     // Find aricle with the given id
-    const article = props.data.find(a => a._id === props.match.params.id);
+    if (props.data)
+        article = props.data.find(a => a._id === props.match.params.id);
+    
     let render = article !== undefined;
 
     let handleImgClick = () => {
@@ -99,7 +102,7 @@ const Article = (props) => {
 
     return (
         <Container>
-            <Back />
+            {!props.hideBackBtn && <Back />}
 
             <Title>{(render && article.title) || <Skeleton count={3} />}</Title>
             
