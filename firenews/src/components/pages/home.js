@@ -2,14 +2,14 @@ import React, { useEffect, useState} from 'react';
 import ArticleCard from '../articleCard';
 import { shortHandTimeFormat } from '../../scripts/timeFormat';
 import styled from 'styled-components';
-import FloatButton from '../floatButton';
+import FloatButton from '../btn/floatButton';
 
 // Main container
 const Container = styled.div`
-    margin: 80px auto;
+    margin: 20px auto;
     max-width: 50vw;
    
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 1000px) {
         max-width: 85vw;
     }
 `;
@@ -78,6 +78,9 @@ const Home = (props) => {
 
         for (let i = 0; i < props.data.length; i++) {
             let a = props.data[i];
+
+            // If category is set, 
+            // if (props.category && props.category !== a.category) continue;  
 
             articles.push(
                 <ArticleCard

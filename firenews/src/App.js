@@ -9,6 +9,7 @@ import Home from './components/pages/home';
 import Article from './components/pages/article';
 import Add from './components/pages/add';
 import Edit from './components/pages/edit';
+import PageNotFound from './components/pages/pageNotFound';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -69,29 +70,37 @@ const App = () => {
     return true;
   }
 
+  const RouteWithLayout = ({layout, component, render, ...rest}) => (
+    <Layout
+      category={category}
+      setCategory={setCategory}
+      categoryData={categoryData}
+      refreshData={getArticles}
+      articleData={articleData}
+    >
+      <Route {...rest} render={render} component={component}/>
+    </Layout>
+  );
+
   return (
     <Router>
       <GlobalStyles />
-      <Layout
-        category={category}
-        setCategory={setCategory}
-        categoryData={categoryData}
-        refreshData={getArticles}
-        articleData={articleData}
-      >
         <Switch>
-          <Route path='/' exact render={(props) => 
+          <RouteWithLayout path='/' exact render={(props) => 
             <Home {...props} 
               data={articleData} 
               category={category} 
               refreshData={getArticles}
-            />} 
-          />
-          <Route path='/article/:id' render={(props) => <Article {...props} data={articleData} />} />
-          <Route path='/add' component={Add} />
-          <Route path='/edit' render={(props) => <Edit {...props} categoryData={categoryData} />} />
+            />
+          }/>
+
+          <RouteWithLayout path='/article/:id' render={(props) => <Article {...props} data={articleData} />}/>
+          <RouteWithLayout path='/edit' component={Edit}/>
+          <RouteWithLayout path='/add' render={(props) => <Add {...props} updateArticles={getArticles} categoryData={categoryData} />} />
+
+           {/* 404 page not found */}
+          <Route component={PageNotFound} />
         </Switch>
-      </Layout>
     </Router>
   );
 };

@@ -1,11 +1,18 @@
 /**
  * Component that will split the screen in two tabs.
  * The content of the two tabs will be the components passed as a prop.
- * 
+ * The prop 'rerender' will determine if both components should be rendered at all times,
+ * can be useful for components with state that should be saved when chaning tabs
  */
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
+const Container = styled.div`
+    position: relative;
+    background-color: ${props => props.backgroundColor ? props.backgroundColor : 'white'};
+    border: ${props => props.border ? props.border : 'none'};
+`;
 
 const TabWrapper = styled.div`
     height: 40px;
@@ -34,19 +41,22 @@ const FloatTab = styled.div`
 const Text = styled.p`
     font-size: 18px;
     font-weight: 500;
-    color: #5E5E5E;
+    color: ${props => props.textColor ? props.textColor : '#5E5E5E'};
     margin: 0;
     z-index: 2;
+`;
+
+const LeftWrapper = styled.div`
+    display: ${props => props.tabOpen === 1 ? 'block' : 'none'}
+`;
+
+const RightWrapper = styled.div`
+    display: ${props => props.tabOpen === 2 ? 'block' : 'none'}
 `;
 
 const TabSplit = (props) => {
     // Tabs are indexed with 1 for left and 2 for right
     const [tabOpen, setTabOpen] = useState(1);
-
-    const Container = styled.div`
-        position: relative;
-        background-color: ${props.backgroundColor ? props.backgroundColor : 'white'};
-    `;
 
     const handleClick = () => setTabOpen(tabOpen === 1 ? 2 : 1);
 
@@ -58,16 +68,23 @@ const TabSplit = (props) => {
                 onClick={() => handleClick()}
             />
             
-            <Container>
+            <Container backgroundColor={props.backgroundColor} border={props.border}>
                 <TabWrapper onClick={() => handleClick()}>
-                    <Text>{props.tabLeftName || 'tab1'}</Text>
-                    <Text>{props.tabRightName || 'tab2'}</Text>
+                    <Text textColor={props.textColor}>{props.tabLeftName || 'tab1'}</Text>
+                    <Text textColor={props.textColor}>{props.tabRightName || 'tab2'}</Text>
                 </TabWrapper>
 
                 {/* Display components based on which tab is open */}
-                {tabOpen === 1
-                    ? props.componentLeft
-                    : props.componentRight
+                {!props.rerender 
+                    ? 
+                        <>
+                            <LeftWrapper tabOpen={tabOpen}>{props.componentLeft}</LeftWrapper>
+                            <RightWrapper tabOpen={tabOpen}>{props.componentRight}</RightWrapper>
+                        </>
+                    : 
+                        tabOpen === 1
+                        ? props.componentLeft
+                        : props.componentRight
                 }
             </Container>
         </>

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import NewsFeedCard from './newsFeedCard';
 
 const Container = styled.div`
+    position: fixed;
+    right: 0;
     width: 240px;
     height: 100vh;
     background-color: var(--color-light);

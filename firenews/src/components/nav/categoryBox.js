@@ -6,8 +6,8 @@ import '../../colors.css';
 
 // Text below category icon
 const Text = styled.p`
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     text-align: center;
     color: var(--color-main);

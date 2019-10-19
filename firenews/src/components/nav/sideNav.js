@@ -8,6 +8,7 @@ import '../../colors.css';
 let width = 100;
 
 const Container = styled.div`
+    position: fixed;
     width: ${width + 'px'};
     height: 100vh;
     border-right: 2px solid var(--color-border);
@@ -32,11 +33,6 @@ const Container = styled.div`
         background-color: #cfcfcf;
         border-radius: 10px;
     }
-`;
-
-const CategoriesWrapper = styled.div`
-    /* max-width: 100vh; */
-    overflow-y: scroll;
 `;
 
 // Container for icon box

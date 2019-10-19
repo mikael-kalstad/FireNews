@@ -13,7 +13,7 @@ const Layout = (props) => {
     }, []);
 
     // Check for mobileview if width is defined, default view is desktop
-    let mobileView = width ? width < 600 : false;
+    let mobileView = width ? width < 1000 : false;
 
     // The same data will be passed to both layouts
     let data = {

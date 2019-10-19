@@ -70,6 +70,7 @@ const Text = styled.p`
     /* font-weight: 300; */
     line-height: 170%;
     margin-top: 60px;
+    white-space: pre-wrap;
 
     ::first-letter {
         font-size: 70px;
@@ -90,6 +91,9 @@ const Article = (props) => {
     // Find aricle with the given id
     if (props.data)
         article = props.data.find(a => a._id === props.match.params.id);
+
+    if (props.previewData)
+        article = props.previewData;
     
     let render = article !== undefined;
 
@@ -98,6 +102,27 @@ const Article = (props) => {
         img.style.maxHeight = imgLarge ? '350px' : '600px';
         
         imgLarge = !imgLarge;
+    }
+
+    if (props.preview) {
+        return (
+            <Container>
+                <Title>{article.title}</Title>
+                <AuthorWrapper>
+                    <Author>By {article.author ? article.author : 'Author name'}, {article.time}</Author>
+                    <Line></Line>
+                </AuthorWrapper>
+
+                <Summary>{article.summary ? article.summary : 'Article summary'}</Summary>
+                
+                <Image src={article.img} />
+                {article.imgDescription && 
+                    <ImageDescription>{article.imgDescription}</ImageDescription>
+                }
+
+                <Text>{article.content ? article.content : 'Article content'}</Text>
+            </Container>
+        );
     }
 
     return (

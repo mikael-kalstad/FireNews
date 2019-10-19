@@ -22,11 +22,18 @@ const Logo = styled.img`
     height: 60%;
 `;
 
-const RadioBtn = () => {
+const RadioBtn = props => {
     const [active, setActive] = useState(false);
  
+    const handleClick = () => {
+        setActive(!active)
+        
+        if (props.handleClick)
+            props.handleClick(active);
+    }
+
     return (
-        <Circle active={active} onClick={() => setActive(!active)}>
+        <Circle active={active} onClick={handleClick}>
             {active && <Logo src='/icons/check.svg'/>}
         </Circle>    
     );

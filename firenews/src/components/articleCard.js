@@ -51,7 +51,7 @@ const ArticleCard = (props) => {
             bottom: 50px;
         }
 
-        @media screen and (min-width: 1200px) {
+        @media screen and (min-width: 1400px) {
             font-size: ${(props.size === 'big' ? 40 : 25) + 'px'};
         }
     `;
@@ -110,7 +110,7 @@ const ArticleCard = (props) => {
                         <Skeleton />
                     </SkeletonTheme>
                 }
-                {/* <Title>{props.title || <Skeleton count={2}/>}</Title> */}
+                <Title>{props.title || <Skeleton count={2}/>}</Title>
 
                 <ReadMore>
                     <Text>Read more</Text> 

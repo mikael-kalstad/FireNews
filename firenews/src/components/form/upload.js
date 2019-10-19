@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Spinner from 'react-spinner-material';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import LogoButton from '../btn/logoBtn';
 
 const Container = styled.div`
     display: grid;
     justify-items: center;
     align-items: center;
-    margin-bottom: 100px;
+    padding-bottom: 50px;
 `;
 
 const Button = styled.button`
@@ -19,19 +20,20 @@ const Button = styled.button`
     border-radius: ${props => props.loading || props.finished ? '50%' : '5px'};
     outline: none;
     border: none;
-    background-color: ${props => props.finished ? '#84DB76' : '#80D7EA'};
+    background-color: ${props => props.loading ? '#80D7EA' : '#84DB76'};
     transition: all 200ms ease;
     display: grid;
     justify-items: center;
     align-items: center;
     cursor: ${props =>  props.loading || props.finished ? 'default' : 'pointer'};
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     :hover {
         filter: 
             ${props => 
                 !props.loading && 
                 !props.finished &&
-                'brightness(95%)'
+                'brightness(105%)'
             };
      }
 
@@ -42,6 +44,8 @@ const Button = styled.button`
                 !props.finished &&
                 'brightness(100%)'
             };
+    
+        box-shadow: none;
     }
 `;
 
@@ -55,28 +59,64 @@ const Text = styled.p`
     color: black;
 `;
 
-const UploadBtn = (props) => {
+const WarningText = styled.p`
+    font-size: 18px;
+    font-weight: 700;
+    color: #EB7C74;
+    display: ${props => props.show ? 'block' : 'none'};
+`;
+
+const StyledLink = styled(props => <Link {...props} />)`
+    transition: all 500ms ease;
+    display: ${props => props.redirect ? 'block' : 'hidden'};
+    opacity: ${props => props.redirect ? '1' : '0'};
+    transform: translateY(${props => props.redirect ? '0px' : '50px'});
+    text-decoration: none;
+`;
+
+const Upload = (props) => {
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    const [error, setError] = useState(false);
+    const [id, setId] = useState('');
     
     const handleClick = () => {
-        // Set state to loading
-        setLoading(!loading);
+        if (!props.checkInputs()) {
+            setError(true);
+            return;
+        }
+        setError(false);
 
-        // Call parent method
-        if(props.handleClick) 
-            props.handleUpload();
+        // // Set state to loading
+        setLoading(true);
+        console.log('props data', props.data)
 
-        setTimeout(() => {
+        // Upload article to API server
+        fetch('http://localhost:4000/articles', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(props.data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setId(data._id);
             setFinished(true);
             setLoading(false);
-        }, 1500);
+        })
+        .catch(err => console.log('Error: ', err));
+
+        // setTimeout(() => {
+        //     setFinished(true);
+        //     setLoading(false);
+        // }, 1500);
     }
 
     // Redirect to article after a delay
     if (finished) {
-        let delay = 1500;
+        let delay = 1000;
 
         setTimeout(() => {
             setRedirect(true);
@@ -84,7 +124,7 @@ const UploadBtn = (props) => {
     }
 
     if (finished && redirect) {
-        return <Redirect to='/article/5d83378e61c870333821818b' />
+        // return <Redirect to={'/article/' + id} />
     }
 
     return (
@@ -105,8 +145,18 @@ const UploadBtn = (props) => {
                 {loading && 'Please wait'}
                 {finished && 'Article published'}
             </Text>
+
+            <WarningText show={error}>Check all inputs, some are required</WarningText>
+
+            <StyledLink to={'/article/' + id} redirect={redirect} onClick={() => props.updateArticles()}>
+                <LogoButton 
+                    logo='/icons/exit.svg' 
+                    text='Go to article' 
+                    color='#80D7EA'
+                />
+            </StyledLink>
         </Container>
     );
 }
 
-export default UploadBtn;
+export default Upload;

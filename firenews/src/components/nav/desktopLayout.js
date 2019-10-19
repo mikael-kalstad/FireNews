@@ -16,7 +16,18 @@ const DesktopLayout = (props) => {
 
     const Content = styled.div`
         position: relative;
-        width: calc(100vw - ${SideNavWidth} - ${NewsFeedWidth} - 30px);
+        width: calc(100vw - ${SideNavWidth} - ${NewsFeedWidth} - 17px);
+        margin-top: 40px;
+    `;
+
+    const SideNavBox = styled.div`
+        width: 100px;
+        height: 100vh;
+    `
+
+    const NewsFeedBox = styled.div`
+        width: 240px;
+        height: 100vh;
     `;
 
     return (
@@ -26,6 +37,7 @@ const DesktopLayout = (props) => {
                 categoryData={props.data.categoryData}
                 setCategory={props.data.setCategory}
             />
+            <SideNavBox />
 
             <SecondaryNav refreshData={props.data.refreshData} margin={NewsFeedWidth} />
 
@@ -35,6 +47,7 @@ const DesktopLayout = (props) => {
             </Content>
             
             <NewsFeed data={props.data.articleData}/>
+            <NewsFeedBox />
         </Container>
     );
 }
