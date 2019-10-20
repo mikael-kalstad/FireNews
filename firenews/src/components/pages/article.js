@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import Back from '../btn/back';
 
-// import {timeFormat} from '../timeFormat';
-
 const Container = styled.div`
     max-width: 900px;
     margin: auto;
@@ -16,7 +14,16 @@ const Title = styled.h1`
     font-weight: 500;
     text-transform: uppercase;
     width: 75%;
+    margin: 0;
 `
+const UnderTitle = styled.h2`
+    font-size: 18px;
+    font-weight: 300;
+    width: 12%;
+    text-transform: uppercase;
+    color: #555;
+    margin: 50px 0 10px 0;
+`;
 
 const AuthorWrapper = styled.div`
     width: fit-content;
@@ -107,6 +114,7 @@ const Article = (props) => {
     if (props.preview) {
         return (
             <Container>
+                <UnderTitle>{render && article.category || <Skeleton />}</UnderTitle>
                 <Title>{article.title}</Title>
                 <AuthorWrapper>
                     <Author>By {article.author ? article.author : 'Author name'}, {article.time}</Author>
@@ -129,6 +137,7 @@ const Article = (props) => {
         <Container>
             {!props.hideBackBtn && <Back />}
 
+            <UnderTitle>{render && article.category || <Skeleton />}</UnderTitle>
             <Title>{(render && article.title) || <Skeleton count={3} />}</Title>
             
             <AuthorWrapper>

@@ -20,7 +20,7 @@ const Image = styled.img`
 `;
 
 const ImageBox = styled.div`
-    width: 50%;
+    width: 40%;
     padding-bottom: 50%;
     border-radius: 50%;
     background-color: var(--color-light);
@@ -30,7 +30,7 @@ const CategoryBox = (props) => {
     // Container box for each category
     const Container = styled.div`
         /* padding-top: 50%; */
-        height: ${props.width + 'px'};
+        height: ${props.width*1.2 + 'px'};
         background-color: ${props.active ? '#F1F1F9' : 'white'};
         border-bottom: 2px solid var(--color-border);
         cursor: ${props.name ? 'pointer' : 'default'};

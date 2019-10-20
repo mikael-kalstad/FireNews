@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 
 import PublishSettings from '../form/publishSettings';
-import ImageUpload from '../form/imageUpload';
 import Upload from '../form/upload';
 import TabSplit from '../form/tabSplit';
 import Article from './article';
@@ -75,8 +74,6 @@ const TextArea = styled.textarea`
     }
 `;
 
-let article = <div>This is the article preview</div>;
-
 const Add = (props) => {
     const [inputs, setInputs] = useState({
         'title': {
@@ -89,11 +86,11 @@ const Add = (props) => {
             required: true,
             warning: false
         },
-        'imageLink': {
+        'img': {
             value: '',
             required: false
         },
-        'imageDescription': {
+        'imgDescription': {
             value: '',
             required: false,
             warning: false
@@ -113,6 +110,32 @@ const Add = (props) => {
     const [frontPage, setFrontPage] = useState(false);
     const [category, setCategory] = useState('');
     const [categoryWarning, setCategoryWarning] = useState(false);
+
+    // If article data is provided as a prop find article and set inputs
+    useEffect(() => {
+        let articleData = null;
+        if (props.data && props.id) {
+            articleData = props.data.find(a => a._id === props.id);
+        }
+
+        if (!articleData) return;
+
+         // Convert object into array
+         const arr = Object.entries(inputs);
+
+        // Check every inpuut in array
+        for (let i in arr) {
+            // Only update input if articleData is defined
+            if (articleData[arr[i][0]])
+                arr[i][1].value = articleData[arr[i][0]];
+        }
+
+        if (articleData.category)
+            setCategory(articleData.category);
+
+        if (articleData.frontPage)
+            setFrontPage(articleData.frontPage);
+    }, [])
 
     // Handle change for all inputs
     const handleChange = e => {
@@ -188,9 +211,10 @@ const Add = (props) => {
             'title': inputs['title'].value,
             'summary': inputs['summary'].value,
             'content': inputs['content'].value,
-            'img': inputs['imageLink'].value !== '' ? inputs['imageLink'].value : null,
-            'imgDescription': inputs['imageDescription'].value !== '' ? inputs['imageDescription'].value : null,
-            'frontPage': frontPage
+            'img': inputs['img'].value !== '' ? inputs['img'].value : null,
+            'imgDescription': inputs['imgDescription'].value !== '' ? inputs['imgDescription'].value : null,
+            'frontPage': frontPage,
+            'category': category
         };
     }
 
@@ -236,22 +260,22 @@ const Add = (props) => {
                     name='imageLink'
                     placeholder='Link to image'
                     onChange={handleChange}
-                    value={inputs['imageLink'].value}
-                    warning={inputs['imageLink'].warning}
+                    value={inputs['img'].value}
+                    warning={inputs['img'].warning}
                     fontSize='20px'
                 />
-                <WarningText show={inputs['imageLink'].warning}>An image is required for an image description</WarningText>
+                <WarningText show={inputs['img'].warning}>An image is required for an image description</WarningText>
 
                 <Spacing size='20px'/>
                 <Input 
                     name='imageDescription'
                     placeholder='Image description'
                     onChange={handleChange}
-                    value={inputs['imageDescription'].value}
-                    warning={inputs['imageDescription'].warning}
+                    value={inputs['imgDescription'].value}
+                    warning={inputs['imgDescription'].warning}
                     fontSize='20px'
                 />
-                <WarningText show={inputs['imageDescription'].warning}>A description of the image is required</WarningText>
+                <WarningText show={inputs['imgDescription'].warning}>A description of the image is required</WarningText>
 
                 <Spacing />
                 <InputTitle>Content</InputTitle>
@@ -284,6 +308,7 @@ const Add = (props) => {
                 data={props.categoryData}
                 category={category}
                 setCategory={handleCategoryClick}
+                frontPage={frontPage}
                 setFrontPage={setFrontPage}
                 warning={categoryWarning}
             />

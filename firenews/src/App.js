@@ -9,6 +9,7 @@ import Home from './components/pages/home';
 import Article from './components/pages/article';
 import Add from './components/pages/add';
 import Edit from './components/pages/edit';
+import EditArticle from './components/pages/editArticle';
 import PageNotFound from './components/pages/pageNotFound';
 
 const GlobalStyles = createGlobalStyle`
@@ -95,7 +96,8 @@ const App = () => {
           }/>
 
           <RouteWithLayout path='/article/:id' render={(props) => <Article {...props} data={articleData} />}/>
-          <RouteWithLayout path='/edit' component={Edit}/>
+          <RouteWithLayout path='/edit' exact render={(props) => <Edit {...props} data={articleData} />}/>
+          <RouteWithLayout path='/edit/:id' render={(props) => <EditArticle {...props} data={articleData} categoryData={categoryData} />}/>
           <RouteWithLayout path='/add' render={(props) => <Add {...props} updateArticles={getArticles} categoryData={categoryData} />} />
 
            {/* 404 page not found */}

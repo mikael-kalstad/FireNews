@@ -32,7 +32,8 @@ router.post('/', async (req, res) => {
         date: Date.now(),
         summary: req.body.summary,
         img: req.body.img || null,
-        frontPage: req.body.frontPage
+        frontPage: req.body.frontPage,
+        category: req.body.category
     });
 
     try {
@@ -65,6 +66,12 @@ router.patch('/:id', getArticle, async (req, res) => {
 
     if (req.body.img != null)
         res.article.img = req.body.img;
+    
+    if (req.body.imgDescription != null)
+        res.article.imgDescription = req.body.imgDescription;
+
+    if (req.body.img != null)
+        res.article.category = req.body.category;
 
     // Try to update the object in DB
     try {

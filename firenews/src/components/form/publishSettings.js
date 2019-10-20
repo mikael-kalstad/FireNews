@@ -15,17 +15,15 @@ const Container = styled.div`
 const Title = styled.h2`
     font-size: 50px;
     font-weight: 600;
-    color: black;
 `;
 
 const UnderTitle = styled.h3`
     font-size: 24px;
     font-weight: 600;
-    color: black;
 `;
 
 const Text = styled.p`
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
     color: #6A6A6A;
     margin-bottom: 100px;
@@ -33,9 +31,9 @@ const Text = styled.p`
 
 const CheckWrapper = styled.div`
     display: grid; 
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 60px 1fr;
     align-items: center;
-    grid-gap: 50px;
+    grid-gap: 10px;
     margin-top: 80px;
 `;
 
@@ -71,11 +69,10 @@ const PublishSettings = (props) => {
             <WarningText show={props.warning}>Please choose a category that is suitable for the article</WarningText>
 
             <CheckWrapper>
-                <UnderTitle>Front page 
-                    <HelpBtn text='Select this option if you want the article you are publishing to appear on the front page' />
-                </UnderTitle>
-                <RadioBtn handleClick={props.setFrontPage}/>
-                <Text>Do you want the article to show on the front page?</Text>
+                <UnderTitle>Front page</UnderTitle>
+                <HelpBtn text='Select this option if you want the article you are publishing to appear on the front page' />
+                <div></div>
+                <RadioBtn handleClick={props.setFrontPage} active={props.frontPage} />
             </CheckWrapper>
         </Container>
     );

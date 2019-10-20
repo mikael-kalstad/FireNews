@@ -24,6 +24,11 @@ const ArticleCard = (props) => {
         background-color: var(--color-light);
         background-image: url(${props.img});
         background-size: cover;
+        transition: all 150ms ease;
+
+        :hover {
+            box-shadow: ${props.editMode && '0px 5px 5px rgba(0, 0, 0, 0.3)'};
+        }
     `;
 
     const Logo = styled.div`
@@ -48,7 +53,7 @@ const ArticleCard = (props) => {
 
         /* Hover should only work when the title is loaded */
         ${Container}:hover & {
-            bottom: 50px;
+            bottom: ${props.editMode ? 'none' : '50px'};
         }
 
         @media screen and (min-width: 1400px) {
@@ -70,7 +75,7 @@ const ArticleCard = (props) => {
 
         /* Hover should only work when the title is loaded */
         ${Container}:hover & {
-            opacity: 1;
+            opacity: ${props.editMode ? 0 : 1};
         }
     `;
 

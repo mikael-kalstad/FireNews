@@ -48,6 +48,14 @@ const Articles = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
+
+    @media screen and (max-width: 1200px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 750px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Home = (props) => {

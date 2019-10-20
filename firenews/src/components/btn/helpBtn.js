@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
     positon: relative;
-    width: 200px;
-    height: 50px;
+    width: fit-content;
 `;
 
 const Circle = styled.div`
@@ -25,43 +24,39 @@ const Img = styled.img`
 
 const TextContainer = styled.div`
     position: absolute;
-    width: 100;
-    height: 100;
+    max-width: 250px;
     border-radius: 10px;
-    background-color: #999;
-    display: hidden;
-    opacity: 0;
+    background-color: #FB7A42;
+    padding: 15px;
+    z-index: 99;
+    display: ${props => props.show ? 'block' : 'hidden'};;
+    opacity: ${props => props.show ? 1 : 0};
     transition: all 100ms ease;
-
-    ${Wrapper}:hover & {
-        display: block;
-        opacity: 1;
-    }
 `;
 
 const Text = styled.p`
+    line-height: 160%;
+    margin: 0;
     font-size: 16px;
     font-weight: 400;
-    color: black;
-
-    opacity: 0;
+    color: white;
     transition: all 100ms ease;
-
-    ${Wrapper}:hover & {
-        opacity: 1;
-    }
 `;
 
-const HelpBtn = (props) => (
-    <Wrapper>
-        <Circle>
-            <Img src='/icons/help.svg' />
-        </Circle>
-        
-        <TextContainer>
-        <Text>{props.text}</Text>
-        </TextContainer>
-    </Wrapper>
-);
+const HelpBtn = (props) => { 
+    const [display, setDisplay] = useState(false);
+
+    return (
+        <Wrapper onMouseLeave={() => setDisplay(false)} >
+            <Circle onMouseOver={() => setDisplay(true)} onClick={() => setDisplay(true)}>
+                <Img src='/icons/help.svg' />
+            </Circle>
+            
+            <TextContainer show={display}>
+                <Text>{props.text}</Text>
+            </TextContainer>
+        </Wrapper>
+    );
+}
 
 export default HelpBtn;

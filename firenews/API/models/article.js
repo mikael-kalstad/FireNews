@@ -28,6 +28,10 @@ const articleSchema = new mongoose.Schema({
     frontPage: {
         type: Boolean,
         required: true
+    },
+    category: {
+        type: String,
+        required: true
     }
 });
 

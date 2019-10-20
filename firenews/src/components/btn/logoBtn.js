@@ -33,7 +33,7 @@ const Container = styled.div`
 const Text = styled.p`
     text-align: start;
     font-size: 14px;
-    color: white;
+    color: ${props => props.color ? props.color : 'white'};
     font-weight: 500;
     justify-self: start;
     transition: all 200ms ease;
@@ -47,7 +47,7 @@ const Logo = styled.img`
 const LogoBtn = props => (
     <Container onClick={props.handleClick} color={props.color}>
         <Logo src={props.logo}/>
-        <Text>{props.text}</Text>
+        <Text color={props.textColor}>{props.text}</Text>
     </Container>
 );
 

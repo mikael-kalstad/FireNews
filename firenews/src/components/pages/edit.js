@@ -1,71 +1,89 @@
 import React from 'react';
 import styled from 'styled-components';
-
-let titlePlaceHolder = 'The rain forest is burning';
-let summarylaceHolder = 'This area will contain the brief. A few sentences that summaries and explains the content of the article. The length of the brief should not be much longer than this.';
-let imagePlaceHolder = 'Image description';
+import ArticleCard from '../articleCard';
+import { shortHandTimeFormat } from '../../scripts/timeFormat';
 
 const Container = styled.div`
+    margin: 60px;
 
-`;
-
-const TitleInput = styled.textarea`
-    font-family: 'Rubik';
-    font-size: 60px; 
-    font-weight: 500;
-    text-transform: uppercase;
-    width: 75%;
-    height: 200px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid black;
-    resize: none;
-    
-    :hover { 
-        background-color: var(--color-light);
+    @media screen and (max-width: 1000px) {
+        margin: 30px;
     }
 `;
 
-const TextInput = styled.textarea`
-    font-family: 'Rubik';
-    font-size: 22px;
-    font-weight: 300;
-    line-height: 150%;
-    margin-top: 30px;
-    width: 100%;
-    height: 100px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid black;
-    resize: none;
+const Title = styled.h2`
+    font-size: 50px;
+    font-weight: 600;
 `;
 
-const Summary = styled.p`
-    font-size: 22px;
-    font-weight: 300;
-    line-height: 150%;
-    margin-top: 30px;
+const UnderTitle = styled.h3`
+    font-size: 24px;
+    font-weight: 600;
 `;
 
-const Image = styled.div`
-    width: 100%;
-    height: 300px;
-    border-radius: 5px;
-    background-color: #D3B112;
-`
+const Text = styled.p`
+    font-size: 20px;
+    font-weight: 300;
+    color: #6A6A6A;
+    margin-bottom: 100px;
+`;
 
-const Edit = (props) => {
+const ArticleGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+
+    @media screen and (max-width: 1200px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 750px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
+const Edit = props => {
+    // Render "skeleton" articles for loading
+    let articles = [];
+    for (let i = 0; i < 12; i++) {
+        articles.push(
+            <ArticleCard 
+                key={i}
+                size='small'
+            />
+        );
+    }
+
+    // Render articles if data exists
+    if (props.data !== null && props.data !== undefined && props.data.length !== 0) {
+        // Remove skeleton data
+        articles = [];
+
+        for (let i = 0; i < props.data.length; i++) {
+            let a = props.data[i];
+
+            articles.push(
+                <ArticleCard
+                    key={a._id}
+                    link={`/edit/${a._id}`}
+                    img={a.img}
+                    title={a.title}
+                    time={shortHandTimeFormat(new Date(a.date))}
+                    size={'small'}
+                    editMode={true}
+                />
+            );
+        }
+    }
+
     return (
         <Container>
-            <TitleInput
-                placeholder={titlePlaceHolder}
-            />
-            
-            <TextInput placeholder={summarylaceHolder} />
-        
+            <Title>Edit</Title>        
+            <Text>Select an article to edit or delete</Text>
 
-            <Image></Image>
-            <TextInput placeholder={imagePlaceHolder} />
+            <ArticleGrid>
+                {articles}
+            </ArticleGrid>
         </Container>
     );
 } 
