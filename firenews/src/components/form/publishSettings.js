@@ -52,9 +52,9 @@ const WarningWrapper = styled.div`
 const PublishSettings = (props) => {
     return (
         <Container>
-            <Title>Publish an article</Title>
+            <Title>{props.title}</Title>
 
-            <Text>Write an article below and publish something you would like to share with the world.</Text>
+            <Text>{props.text}</Text>
 
             <UnderTitle>Choose a category</UnderTitle>
         

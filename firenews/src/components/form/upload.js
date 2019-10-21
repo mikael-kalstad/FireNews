@@ -3,54 +3,13 @@ import styled from 'styled-components';
 import Spinner from 'react-spinner-material';
 import { Redirect, Link } from 'react-router-dom';
 import LogoButton from '../btn/logoBtn';
+import LoadingBtn from '../btn/loadingBtn';
 
 const Container = styled.div`
     display: grid;
     justify-items: center;
     align-items: center;
     padding-bottom: 50px;
-`;
-
-const Button = styled.button`
-    width: ${props => props.loading || props.finished ? '50px' : '150px'};;
-    height: 50px;
-    font-size: 20px;
-    font-weight: 600;
-    color: white;
-    border-radius: ${props => props.loading || props.finished ? '50%' : '5px'};
-    outline: none;
-    border: none;
-    background-color: ${props => props.loading ? '#80D7EA' : '#84DB76'};
-    transition: all 200ms ease;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    cursor: ${props =>  props.loading || props.finished ? 'default' : 'pointer'};
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    :hover {
-        filter: 
-            ${props => 
-                !props.loading && 
-                !props.finished &&
-                'brightness(105%)'
-            };
-     }
-
-    :active {
-        filter: 
-            ${props => 
-                !props.loading && 
-                !props.finished &&
-                'brightness(100%)'
-            };
-    
-        box-shadow: none;
-    }
-`;
-
-const Logo = styled.img`
-    height: 70%;
 `;
 
 const Text = styled.p`
@@ -90,7 +49,6 @@ const Upload = (props) => {
 
         // // Set state to loading
         setLoading(true);
-        console.log('props data', props.data)
 
         // Upload article to API server
         fetch('http://localhost:4000/articles', {
@@ -107,39 +65,25 @@ const Upload = (props) => {
             setLoading(false);
         })
         .catch(err => console.log('Error: ', err));
-
-        // setTimeout(() => {
-        //     setFinished(true);
-        //     setLoading(false);
-        // }, 1500);
     }
 
     // Redirect to article after a delay
     if (finished) {
-        let delay = 1000;
+        let delay = 800;
 
         setTimeout(() => {
             setRedirect(true);
         }, delay);
     }
 
-    if (finished && redirect) {
-        // return <Redirect to={'/article/' + id} />
-    }
-
     return (
         <Container>
-            <Button 
-                onClick={handleClick}
+            <LoadingBtn 
+                name={props.name}
                 loading={loading}
                 finished={finished}
-            >
-                {loading
-                ? <Spinner size={35} spinnerColor='#FFF' spinnerWidth={4} visible={loading}/>
-                : (finished 
-                    ? <Logo src='/icons/check.svg'/>
-                    : props.name)}
-            </Button>
+                handleClick={handleClick}
+            />
 
             <Text>
                 {loading && 'Please wait'}

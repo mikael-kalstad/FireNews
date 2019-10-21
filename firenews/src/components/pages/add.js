@@ -126,8 +126,13 @@ const Add = (props) => {
         // Check every inpuut in array
         for (let i in arr) {
             // Only update input if articleData is defined
-            if (articleData[arr[i][0]])
-                arr[i][1].value = articleData[arr[i][0]];
+            if (articleData[arr[i][0]]) {
+                const obj = arr[i];
+                obj[1].value = articleData[arr[i][0]];
+                
+                // Update inputs with new object
+                setInputs({...inputs, [arr[i][0]]: obj});
+            }  
         }
 
         if (articleData.category)
@@ -291,7 +296,7 @@ const Add = (props) => {
             </Wrapper>
             
             <Upload 
-                name='Publish' 
+                name={props.btnText || 'Publish'} 
                 checkInputs={checkInputs}
                 data={formatData()}
                 updateArticles={props.updateArticles}
@@ -305,6 +310,8 @@ const Add = (props) => {
     return (
         <>
             <PublishSettings 
+                title={props.title || 'Publish an article'}
+                text={props.text || 'Write an article below and publish something you would like to share with the world.'}
                 data={props.categoryData}
                 category={category}
                 setCategory={handleCategoryClick}

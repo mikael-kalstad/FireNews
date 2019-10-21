@@ -1,75 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Add from './add';
+import { Redirect, Link } from 'react-router-dom';
+import LoadingBtn from '../btn/loadingBtn';
 
 const DangerWrapper = styled.div`
-    background: #F85757;
+    /* background: whi; */
+    border: 2px solid #F85757;
+    border-radius: 10px;
+    margin: 30px;
     padding-bottom: 50px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 `;
 
 const UnderTitle = styled.h4`
     font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: #F85757;
     padding: 50px 0;
     margin: 0;
     text-align: center;
 `;
 
-const Btn = styled.div`
-    margin: auto;
-    width: 150px;
-    height: 50px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10000px;
-    background-color: white;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    padding-right: 10px;
-    text-decoration: none;
-    transition: all 170ms ease;
+const Text = styled.p`
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+`;
 
-    display: grid; 
-    justify-items: center;
-    align-items: center;
-    cursor: pointer;
-
-    :hover {
-        filter: brightness(95%);
-    }
-
-    :active {
-        box-shadow: none;
-    }
-`;  
 
 
 const EditArticle = props => {
+    const [loading, setLoading] = useState(false);
+    const [finished, setFinished] = useState(false);
+
+    const deleteArticle = id => {
+        setLoading(true);
+
+        fetch('http://localhost:4000/articles/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json; charset=utf-8'
+            },
+        })
+        .then(() => {
+            setLoading(false);
+            setFinished(true);
+        })
+        .catch(err => console.log('Error: ', err));
+    }
+
     return (
         <>
             <Add 
+                title='Edit article'
+                text='Change the content of the article below and dont forget to save the changes! You can also delete article.'
+                btnText='Save changes'
                 data={props.data}
                 categoryData={props.categoryData}
                 id={props.match.params.id}
             />
             <DangerWrapper>
                 <UnderTitle>Danger Zone</UnderTitle>
-                <Btn onClick={() => deleteArticle(props.match.params.id)}>Delete article</Btn>
+                <LoadingBtn 
+                    name='Delete'
+                    loading={loading}
+                    finished={finished}
+                    handleClick={() => deleteArticle(props.match.params.id)}
+                    backgroundColor='#F85757'
+                />
+
+                {finished && <Text>Article deleted</Text>}
             </DangerWrapper>
+
+            {/* {finished && <Redirect to='/' />} */}
         </>
     )
-}
-
-const deleteArticle = id => {
-    fetch('http://localhost:4000/articles/' + id, {
-        method: 'DELETE',
-        headers: {
-            'Content-type': 'application/json; charset=utf-8'
-        },
-    })
-    .then(res => res.json())
-    .catch(err => console.log('Error: ', err));
 }
 
 export default EditArticle;
