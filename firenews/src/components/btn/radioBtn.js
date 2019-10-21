@@ -11,7 +11,7 @@ const Circle = styled.div`
     justify-items: center;
     align-items: center;
     transition: all 80ms ease;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'default' : 'pointer'};
 
     :hover {
         background-color: ${props => props.active ? '#47A9C9' : '#EAEAEA'};
@@ -24,12 +24,16 @@ const Logo = styled.img`
 
 const RadioBtn = props => {
     const handleClick = () => {
-        if (props.handleClick)
+        if (props.handleClick && !props.disabled)
             props.handleClick(!props.active);
     }
 
     return (
-        <Circle active={props.active} onClick={handleClick}>
+        <Circle 
+            active={props.active} 
+            onClick={handleClick}
+            disabled={props.disabled}
+        >
             {props.active && <Logo src='/icons/check.svg'/>}
         </Circle>    
     );

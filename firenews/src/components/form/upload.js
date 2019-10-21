@@ -83,6 +83,7 @@ const Upload = (props) => {
                 loading={loading}
                 finished={finished}
                 handleClick={handleClick}
+                disabled={props.disabled}
             />
 
             <Text>

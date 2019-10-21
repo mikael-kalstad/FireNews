@@ -11,7 +11,7 @@ const CategorySelector = (props) => {
         background-color: ${props.active ? '#2ABC7E' : '#F1F1F1'};
         display: grid;
         grid-template-rows: 1fr 1fr;
-        cursor: pointer;
+        cursor: ${props => props.disabled ? 'default' : 'pointer'};
 
         :hover {
             background-color: ${props.active ? '#2AB67B' : '#ebebeb'};
@@ -30,7 +30,7 @@ const CategorySelector = (props) => {
     `;
 
     return (
-        <Container onClick={() => props.setActive(props.name)}>
+        <Container onClick={() => !props.disabled && props.setActive(props.name)} disabled={props.disabled}>
             <Icon src={'/icons/flame.svg'} />
             <Text>{props.name}</Text>
         </Container>

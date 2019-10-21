@@ -24,14 +24,16 @@ const Button = styled.button`
     display: grid;
     justify-items: center;
     align-items: center;
-    cursor: ${props =>  props.loading || props.finished ? 'default' : 'pointer'};
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: ${props =>  props.loading || props.finished || props.disabled ? 'default' : 'pointer'};
+    box-shadow: ${props => !props.disabled && '0px 4px 4px rgba(0, 0, 0, 0.25)'};
+    opacity: ${props => props.disabled ? 0.75 : 1};
 
     :hover {
         filter: 
             ${props => 
                 !props.loading && 
                 !props.finished &&
+                !props.disabled &&
                 'brightness(95%)'
             };
      }
@@ -41,6 +43,7 @@ const Button = styled.button`
             ${props => 
                 !props.loading && 
                 !props.finished &&
+                !props.disabled &&
                 'brightness(100%)'
             };
     
@@ -56,11 +59,12 @@ const LoadingBtn = props => {
 
     return (
         <Button 
-            onClick={() => props.handleClick()}
+            onClick={() => !props.disabled && props.handleClick()}
             loading={props.loading}
             finished={props.finished}
             backgroundColor={props.backgroundColor}
             fontColor={props.fontColor}
+            disabled={props.disabled}
         >
             {props.loading
             ? <Spinner size={35} spinnerColor='#FFF' spinnerWidth={4} visible={props.loading}/>

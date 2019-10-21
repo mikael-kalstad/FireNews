@@ -56,6 +56,7 @@ const CategoryChooser = (props) => {
                     name={c.name}
                     active={props.active === c.name}
                     setActive={props.setActive}
+                    disabled={props.disabled}
                 />
             );
         });

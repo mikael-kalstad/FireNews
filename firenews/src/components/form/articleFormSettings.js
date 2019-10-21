@@ -49,11 +49,10 @@ const WarningWrapper = styled.div`
     border-radius: 5px;
 `;
 
-const PublishSettings = (props) => {
+const ArticleFormSettings = (props) => {
     return (
         <Container>
             <Title>{props.title}</Title>
-
             <Text>{props.text}</Text>
 
             <UnderTitle>Choose a category</UnderTitle>
@@ -63,6 +62,7 @@ const PublishSettings = (props) => {
                     data={props.data}
                     active={props.category}
                     setActive={props.setCategory}
+                    disabled={props.disabled}
                 />
             </WarningWrapper>
             
@@ -72,10 +72,14 @@ const PublishSettings = (props) => {
                 <UnderTitle>Front page</UnderTitle>
                 <HelpBtn text='Select this option if you want the article you are publishing to appear on the front page' />
                 <div></div>
-                <RadioBtn handleClick={props.setFrontPage} active={props.frontPage} />
+                <RadioBtn 
+                    handleClick={props.setFrontPage} 
+                    active={props.frontPage} 
+                    disabled={props.disabled}
+                />
             </CheckWrapper>
         </Container>
     );
 }
 
-export default PublishSettings;
+export default ArticleFormSettings;

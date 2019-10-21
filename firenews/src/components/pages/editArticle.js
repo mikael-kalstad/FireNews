@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Add from './add';
-import { Redirect, Link } from 'react-router-dom';
 import LoadingBtn from '../btn/loadingBtn';
+import ArticleForm from '../form/articleForm';
 
 const DangerWrapper = styled.div`
     /* background: whi; */
@@ -54,13 +53,14 @@ const EditArticle = props => {
 
     return (
         <>
-            <Add 
+            <ArticleForm 
                 title='Edit article'
                 text='Change the content of the article below and dont forget to save the changes! You can also delete article.'
-                btnText='Save changes'
+                btnName='Save changes'
                 data={props.data}
                 categoryData={props.categoryData}
                 id={props.match.params.id}
+                disabled={loading || finished}
             />
             <DangerWrapper>
                 <UnderTitle>Danger Zone</UnderTitle>
