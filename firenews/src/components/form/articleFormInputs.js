@@ -79,8 +79,7 @@ const TextArea = styled.textarea`
 
 const ArticleFormInputs = props => (
     <Wrapper>
-        <InputTitle>Your name</InputTitle>
-        Author: {console.log(props.inputs['title'])}
+        <InputTitle>Author</InputTitle>
         <Input 
             name='author'
             placeholder={titlePlaceHolder}

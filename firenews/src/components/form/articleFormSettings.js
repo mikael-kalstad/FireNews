@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import CategoryChooser from './categoryChooser';
 import RadioBtn from '../btn/radioBtn';
 import HelpBtn from '../btn/helpBtn';
+import Back from '../btn/back';
 
 const Container = styled.div`
     padding: 80px 60px 70px 60px;
@@ -52,6 +53,7 @@ const WarningWrapper = styled.div`
 const ArticleFormSettings = (props) => {
     return (
         <Container>
+            {props.backTo && <Back to={props.backTo} />}
             <Title>{props.title}</Title>
             <Text>{props.text}</Text>
 

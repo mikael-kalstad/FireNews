@@ -28,12 +28,12 @@ const Arrow = styled.img`
     }
 `;
 
-const Back = (prosp) => {
+const Back = props => {
     return (
-        <Link to='/' style={{ textDecoration: 'none' }}>
+        <Link to={props.to || '/'} style={{ textDecoration: 'none' }}>
             <Container>
                 <Arrow src='/icons/arrow.svg' />
-                <Text>{prosp.name || 'Back'}</Text>
+                <Text>{props.name || 'Back'}</Text>
             </Container>
         </Link>
     )

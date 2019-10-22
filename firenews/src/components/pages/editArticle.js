@@ -6,9 +6,10 @@ import LogoButton from '../btn/logoBtn';
 import { Link } from 'react-router-dom';
 
 const DangerWrapper = styled.div`
+    max-width: 1200px;
     border: 2px solid #F85757;
     border-radius: 10px;
-    margin: 30px;
+    margin: 30px auto;
     padding-bottom: 30px;
     display: grid;
     justify-items: center;
@@ -89,6 +90,7 @@ const EditArticle = props => {
                 text='Change the content of the article below and dont forget to save the changes! You can also delete article.'
                 btnName='Save changes'
                 finishedMsg='Save changed'
+                backTo='/edit'
                 data={props.data}
                 categoryData={props.categoryData}
                 id={props.match.params.id}

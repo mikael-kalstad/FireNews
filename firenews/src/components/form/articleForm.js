@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import Upload from './upload';
 import TabSplit from './tabSplit';
 import Article from '../pages/article';
 import ArticleFormInputs from './articleFormInputs';
 import ArticleFormSettings from './articleFormSettings';
+
+const Container = styled.div`
+    max-width: 1200px;
+    margin: auto;
+`;
 
 const ArticleForm = (props) => {
     // State object that holds all values to the inputs
@@ -65,9 +71,9 @@ const ArticleForm = (props) => {
             if (articleData[arr[i][0]]) {
                 const obj = arr[i];
                 obj[1].value = articleData[arr[i][0]];
-
+        
                 // Update inputs with new object
-                setInputs({...inputs, [arr[i][0]]: obj});
+                setInputs({...inputs, [arr[i][0]]: obj[1]});
             }  
         }
 
@@ -191,7 +197,7 @@ const ArticleForm = (props) => {
     const preview = <Article preview={true} previewData={formatData()} />
 
     return (
-        <>
+        <Container>
             <ArticleFormSettings 
                 title={props.title}
                 text={props.text}
@@ -202,6 +208,7 @@ const ArticleForm = (props) => {
                 setFrontPage={setFrontPage}
                 warning={categoryWarning}
                 disabled={props.disabled}
+                backTo={props.backTo}
             />
             <TabSplit 
                 componentLeft={form}
@@ -210,7 +217,7 @@ const ArticleForm = (props) => {
                 tabRightName='Preview'
                 backgroundColor='#F8F8F8'
             />
-        </>
+        </Container>
     );
 } 
 
