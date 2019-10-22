@@ -39,15 +39,14 @@ const Button = styled.button`
      }
 
     :active {
-        filter: 
-            ${props => 
-                !props.loading && 
-                !props.finished &&
-                !props.disabled &&
-                'brightness(100%)'
+        ${props => 
+            !props.loading && 
+            !props.finished &&
+            !props.disabled &&
+            'filter: brightness(100%); box-shadow: none;'
             };
     
-        box-shadow: none;
+        
     }
 `;
 
@@ -59,7 +58,12 @@ const LoadingBtn = props => {
 
     return (
         <Button 
-            onClick={() => !props.disabled && props.handleClick()}
+            onClick={() => 
+                !props.disabled && 
+                !props.loading && 
+                !props.finished && 
+                props.handleClick()
+            }
             loading={props.loading}
             finished={props.finished}
             backgroundColor={props.backgroundColor}

@@ -97,7 +97,7 @@ const App = () => {
 
           <RouteWithLayout path='/article/:id' render={(props) => <Article {...props} data={articleData} />}/>
           <RouteWithLayout path='/edit' exact render={(props) => <Edit {...props} data={articleData} />}/>
-          <RouteWithLayout path='/edit/:id' render={(props) => <EditArticle {...props} data={articleData} categoryData={categoryData} />}/>
+          <RouteWithLayout path='/edit/:id' render={(props) => <EditArticle {...props} data={articleData} updateArticles={getArticles} categoryData={categoryData} />}/>
           <RouteWithLayout path='/add' render={(props) => <Add {...props} updateArticles={getArticles} categoryData={categoryData} />} />
 
            {/* 404 page not found */}

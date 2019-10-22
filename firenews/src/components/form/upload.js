@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Spinner from 'react-spinner-material';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LogoButton from '../btn/logoBtn';
 import LoadingBtn from '../btn/loadingBtn';
 
@@ -47,29 +46,32 @@ const Upload = (props) => {
         }
         setError(false);
 
-        // // Set state to loading
+        // Set state to loading
         setLoading(true);
 
         // Upload article to API server
-        fetch('http://localhost:4000/articles', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(props.data)
-        })
+        // fetch('http://localhost:4000/articles', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json; charset=utf-8'
+        //     },
+        //     body: JSON.stringify(props.data)
+        // })
+        props.request(props.data, props.id)
         .then(res => res.json())
         .then(data => {
             setId(data._id);
             setFinished(true);
             setLoading(false);
         })
+        .then(() => console.log('Upload/saved article!'))
         .catch(err => console.log('Error: ', err));
     }
 
     // Redirect to article after a delay
     if (finished) {
         let delay = 800;
+        props.setDisabled(true);
 
         setTimeout(() => {
             setRedirect(true);
@@ -83,12 +85,12 @@ const Upload = (props) => {
                 loading={loading}
                 finished={finished}
                 handleClick={handleClick}
-                disabled={props.disabled}
+                disabled={props.disabled || finished || loading}
             />
 
             <Text>
                 {loading && 'Please wait'}
-                {finished && 'Article published'}
+                {finished && props.finishedMsg}
             </Text>
 
             <WarningText show={error}>Check all inputs, some are required</WarningText>

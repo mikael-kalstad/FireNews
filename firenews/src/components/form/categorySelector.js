@@ -12,6 +12,7 @@ const CategorySelector = (props) => {
         display: grid;
         grid-template-rows: 1fr 1fr;
         cursor: ${props => props.disabled ? 'default' : 'pointer'};
+        opacity: ${props => props.disabled ? 0.7 : 1};
 
         :hover {
             background-color: ${props.active ? '#2AB67B' : '#ebebeb'};

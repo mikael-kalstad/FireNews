@@ -43,6 +43,7 @@ const ArticleForm = (props) => {
     const [frontPage, setFrontPage] = useState(false);
     const [category, setCategory] = useState('');
     const [categoryWarning, setCategoryWarning] = useState(false);
+    const [disabled, setDisabled] = useState(false);
 
     // If article data is provided as a prop find article and set inputs
     useEffect(() => {
@@ -54,7 +55,7 @@ const ArticleForm = (props) => {
 
         // The rest of the code should only run if the articleData is defined
         if (!articleData) return;
-
+        console.log(articleData);
         // Convert object into array
         const arr = Object.entries(inputs);
 
@@ -64,7 +65,7 @@ const ArticleForm = (props) => {
             if (articleData[arr[i][0]]) {
                 const obj = arr[i];
                 obj[1].value = articleData[arr[i][0]];
-                
+
                 // Update inputs with new object
                 setInputs({...inputs, [arr[i][0]]: obj});
             }  
@@ -170,14 +171,18 @@ const ArticleForm = (props) => {
             <ArticleFormInputs 
                 inputs={inputs}
                 handleChange={handleChange}
-                disabled={props.disabled}
+                disabled={props.disabled || disabled}
             />
             <Upload 
                 name={props.btnName} 
                 checkInputs={checkInputs}
                 data={formatData()}
                 updateArticles={props.updateArticles}
+                finishedMsg={props.finishedMsg}
                 disabled={props.disabled}
+                request={props.request}
+                id={props.id}
+                setDisabled={setDisabled}
             />
         </>
     );

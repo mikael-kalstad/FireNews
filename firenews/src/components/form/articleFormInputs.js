@@ -80,9 +80,10 @@ const TextArea = styled.textarea`
 const ArticleFormInputs = props => (
     <Wrapper>
         <InputTitle>Your name</InputTitle>
+        Author: {console.log(props.inputs['title'])}
         <Input 
             name='author'
-            placeholder={namePlaceHolder}
+            placeholder={titlePlaceHolder}
             onChange={e => props.handleChange(e)}
             value={props.inputs['author'].value}
             warning={props.inputs['author'].warning}
@@ -137,8 +138,8 @@ const ArticleFormInputs = props => (
 
         <Spacing size='20px'/>
         <Input 
-            name={imgDesPlaceHolder}
-            placeholder='Image description'
+            name='imgDescription'
+            placeholder={imgDesPlaceHolder}
             onChange={e => props.handleChange(e)}
             value={props.inputs['imgDescription'].value}
             warning={props.inputs['imgDescription'].warning}
