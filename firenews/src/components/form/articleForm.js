@@ -177,7 +177,7 @@ const ArticleForm = (props) => {
             <ArticleFormInputs 
                 inputs={inputs}
                 handleChange={handleChange}
-                disabled={props.disabled || disabled}
+                disabled={disabled}
             />
             <Upload 
                 name={props.btnName} 
@@ -207,7 +207,7 @@ const ArticleForm = (props) => {
                 frontPage={frontPage}
                 setFrontPage={setFrontPage}
                 warning={categoryWarning}
-                disabled={props.disabled}
+                disabled={props.disabled || disabled}
                 backTo={props.backTo}
             />
             <TabSplit 

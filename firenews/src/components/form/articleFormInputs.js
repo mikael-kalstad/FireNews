@@ -43,7 +43,7 @@ const Input = styled.input`
     outline: none;
     padding-left: 10px;
     border-radius: 5px;
-    border: ${props => props.warning ? '1px solid #EB7C74' : 'none'};
+    border: ${props => props.warning ? '1px solid #EB7C74' : '1px solid #999'};
     color: #555
 
     // Prevent user from using input while loading or finished
@@ -66,7 +66,7 @@ const TextArea = styled.textarea`
     resize: none;
     padding: 10px;
     border-radius: 5px;
-    border: ${props => props.warning ? '1px solid #EB7C74' : 'none'};
+    border: ${props => props.warning ? '1px solid #EB7C74' : '1px solid #999'};
     color: #555
     
     // Prevent user from using input while loading or finished

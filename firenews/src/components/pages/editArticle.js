@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoadingBtn from '../btn/loadingBtn';
 import ArticleForm from '../form/articleForm';
 import LogoButton from '../btn/logoBtn';
 import { Link } from 'react-router-dom';
+import Dialog from '../dialog';
 
 const DangerWrapper = styled.div`
     max-width: 1200px;
@@ -50,15 +51,24 @@ const EditArticle = props => {
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    const [showDialog, setShowDialog] = useState(false);
+    const [error, setError] = useState(false);
 
-    const deleteArticle = id => {
+    const toggleShowDialog = () => setShowDialog(!showDialog);
+
+    const deleteArticle = () => {
+        toggleShowDialog();
+
         setLoading(true);
 
-        fetch('http://localhost:4000/articles/' + id, {
+        fetch('http://localhost:4000/articles/' + props.match.params.id, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json; charset=utf-8'
             },
+        })
+        .then(res => {
+            if (!res.ok) setError(true);
         })
         .then(() => {
             setLoading(false);
@@ -98,6 +108,19 @@ const EditArticle = props => {
                 updateArticles={props.updateArticles}
                 request={request}
             />
+
+            {showDialog && 
+                <Dialog 
+                    title='Delete article?'
+                    text='Are you sure you want to delete this article?'
+                    btnActionText='Yes, delete article'
+                    btnSecondaryText='Cancel'
+                    actionClick={deleteArticle}
+                    display={showDialog}
+                    toggleDisplay={toggleShowDialog}
+                />
+            }
+
             <DangerWrapper>
                 <UnderTitle>Danger Zone</UnderTitle>
                 <Text>NB! Deleting this article is irreversible.</Text>
@@ -105,11 +128,13 @@ const EditArticle = props => {
                     name='Delete'
                     loading={loading}
                     finished={finished}
-                    handleClick={() => deleteArticle(props.match.params.id)}
+                    error={error}
+                    handleClick={() => toggleShowDialog()}
                     backgroundColor='#F85757'
                 />
 
-                {finished && <Message>Article deleted</Message>}
+                {finished && !error && <Message>Article deleted</Message>}
+                {error && <Message>An error occured, could not delete the article</Message>}
 
                 <StyledLink to='/edit' redirect={redirect} onClick={() => props.updateArticles()}>
                     <LogoButton 
@@ -123,4 +148,4 @@ const EditArticle = props => {
     )
 }
 
-export default EditArticle;
+export default EditArticle; 

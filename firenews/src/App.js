@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './layout';
+import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from "styled-components";
-
+import Layout from './layout';
 
 // Pages for react router
 import Home from './components/pages/home';
@@ -18,6 +18,15 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
   }
 `
+
+const Overlay = styled.div`
+  position: fixed;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+`;
 
 const App = () => {
   // Current category
@@ -85,6 +94,7 @@ const App = () => {
 
   return (
     <Router>
+      <Overlay id='overlay'/>
       <GlobalStyles />
         <Switch>
           <RouteWithLayout path='/' exact render={(props) => 

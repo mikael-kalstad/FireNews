@@ -11,15 +11,7 @@ const Button = styled.button`
     border-radius: ${props => props.loading || props.finished ? '50%' : '5px'};
     outline: none;
     border: none;
-    background-color: ${props => 
-        props.loading 
-        ? '#80D7EA' 
-        : props.finished 
-            ? '#84DB76' :
-            (props.backgroundColor 
-                ? props.backgroundColor 
-                : '#84DB76')
-    };
+    background: ${props => props.backgroundColor ? props.backgroundColor : '#84DB76'}
     transition: all 200ms ease;
     display: grid;
     justify-items: center;
@@ -55,6 +47,12 @@ const Logo = styled.img`
 `;
 
 const LoadingBtn = props => {
+    const getBackgroundColor = () => {
+        if (props.error) return '#df2e06';
+        else if (props.loading) return props.backgroundColor ? props.backgroundColor : '#80D7EA';
+        else if (props.finished) return '#84DB76';
+        else return props.backgroundColor;
+    }
 
     return (
         <Button 
@@ -62,11 +60,13 @@ const LoadingBtn = props => {
                 !props.disabled && 
                 !props.loading && 
                 !props.finished && 
+                !props.error &&
                 props.handleClick()
             }
             loading={props.loading}
             finished={props.finished}
-            backgroundColor={props.backgroundColor}
+            error={props.error}
+            backgroundColor={getBackgroundColor()}
             fontColor={props.fontColor}
             disabled={props.disabled}
         >

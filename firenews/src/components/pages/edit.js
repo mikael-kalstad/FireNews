@@ -4,20 +4,17 @@ import ArticleCard from '../articleCard';
 import { shortHandTimeFormat } from '../../scripts/timeFormat';
 
 const Container = styled.div`
-    margin: 60px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px;
 
     @media screen and (max-width: 1000px) {
-        margin: 30px;
+        padding: 30px;
     }
 `;
 
 const Title = styled.h2`
     font-size: 50px;
-    font-weight: 600;
-`;
-
-const UnderTitle = styled.h3`
-    font-size: 24px;
     font-weight: 600;
 `;
 
