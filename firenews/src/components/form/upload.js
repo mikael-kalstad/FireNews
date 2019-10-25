@@ -24,13 +24,7 @@ const WarningText = styled.p`
     display: ${props => props.show ? 'block' : 'none'};
 `;
 
-const StyledLink = styled(props => <Link {...props} />)`
-    transition: all 500ms ease;
-    display: ${props => props.redirect ? 'block' : 'hidden'};
-    opacity: ${props => props.redirect ? '1' : '0'};
-    transform: translateY(${props => props.redirect ? '0px' : '50px'});
-    text-decoration: none;
-`;
+
 
 const Upload = (props) => {
     const [loading, setLoading] = useState(false);
@@ -38,34 +32,38 @@ const Upload = (props) => {
     const [redirect, setRedirect] = useState(false);
     const [error, setError] = useState(false);
     const [id, setId] = useState('');
+
+    const StyledLink = styled(props => <Link {...props} />)`
+        transition: all 500ms ease;
+        display: ${redirect ? 'block' : 'hidden'};
+        opacity: ${redirect ? '1' : '0'};
+        transform: translateY(${redirect ? '0px' : '50px'});
+        text-decoration: none;
+    `;
     
-    const handleClick = () => {
+    const handleClick = async() => {
         if (!props.checkInputs()) {
             setError(true);
             return;
         }
+        // Remove any error that may be active
         setError(false);
 
         // Set state to loading
         setLoading(true);
 
         // Upload article to API server
-        // fetch('http://localhost:4000/articles', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json; charset=utf-8'
-        //     },
-        //     body: JSON.stringify(props.data)
-        // })
-        props.request(props.data, props.id)
-        .then(res => res.json())
-        .then(data => {
-            setId(data._id);
+        const res = await props.request(props.data, props.id)
+    
+        if (!(res instanceof Error)) {
+            if (res._id != null) setId(res._id);
+            else setId(props.id);
             setFinished(true);
             setLoading(false);
-        })
-        .then(() => console.log('Upload/saved article!'))
-        .catch(err => console.log('Error: ', err));
+        } else {
+            setLoading(false);
+            setFinished(true);
+        }
     }
 
     // Redirect to article after a delay
@@ -95,7 +93,7 @@ const Upload = (props) => {
 
             <WarningText show={error}>Check all inputs, some are required</WarningText>
 
-            <StyledLink to={'/article/' + id} redirect={redirect} onClick={() => props.updateArticles()}>
+            <StyledLink to={'/article/' + id} onClick={() => props.updateArticles()}>
                 <LogoButton 
                     logo='/icons/exit.svg' 
                     text='Go to article' 

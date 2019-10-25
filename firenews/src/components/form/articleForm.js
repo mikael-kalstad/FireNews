@@ -61,7 +61,7 @@ const ArticleForm = (props) => {
 
         // The rest of the code should only run if the articleData is defined
         if (!articleData) return;
-        console.log(articleData);
+    
         // Convert object into array
         const arr = Object.entries(inputs);
 
@@ -94,7 +94,7 @@ const ArticleForm = (props) => {
         obj.value = e.target.value;
 
         // If warning is enabled and the input is not empty, the warning should be disabled
-        if (inputs[e.target.name].warning && e.target.value != '') 
+        if (inputs[e.target.name].warning && e.target.value !== '') 
             obj.warning = false;
 
         // Update input with the new value

@@ -114,7 +114,7 @@ const Article = (props) => {
     if (props.preview) {
         return (
             <Container>
-                <UnderTitle>{render && article.category || <Skeleton />}</UnderTitle>
+                <UnderTitle>{(render && article.category) || <Skeleton />}</UnderTitle>
                 <Title>{article.title}</Title>
                 <AuthorWrapper>
                     <Author>By {article.author ? article.author : 'Author name'}, {article.time}</Author>
@@ -137,7 +137,7 @@ const Article = (props) => {
         <Container>
             {!props.hideBackBtn && <Back />}
 
-            <UnderTitle>{render && article.category || <Skeleton />}</UnderTitle>
+            <UnderTitle>{(render && article.category) || <Skeleton />}</UnderTitle>
             <Title>{(render && article.title) || <Skeleton count={3} />}</Title>
             
             <AuthorWrapper>

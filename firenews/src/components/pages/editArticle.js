@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import LoadingBtn from '../btn/loadingBtn';
 import ArticleForm from '../form/articleForm';
 import LogoButton from '../btn/logoBtn';
 import { Link } from 'react-router-dom';
 import Dialog from '../dialog';
+import { updateArticle, deleteArticle } from '../../dao/articleDAO';
 
 const DangerWrapper = styled.div`
     max-width: 1200px;
@@ -39,14 +40,6 @@ const Message = styled.p`
     color: black;
 `;
 
-const StyledLink = styled(props => <Link {...props} />)`
-    transition: all 500ms ease;
-    display: ${props => props.redirect ? 'block' : 'hidden'};
-    opacity: ${props => props.redirect ? '1' : '0'};
-    transform: translateY(${props => props.redirect ? '0px' : '50px'});
-    text-decoration: none;
-`;
-
 const EditArticle = props => {
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
@@ -54,43 +47,56 @@ const EditArticle = props => {
     const [showDialog, setShowDialog] = useState(false);
     const [error, setError] = useState(false);
 
+    const StyledLink = styled(props => <Link {...props} />)`
+        transition: all 500ms ease;
+        display: ${redirect ? 'block' : 'hidden'};
+        opacity: ${redirect ? '1' : '0'};
+        transform: translateY(${redirect ? '0px' : '50px'});
+        text-decoration: none;
+    `;
+
     const toggleShowDialog = () => setShowDialog(!showDialog);
 
-    const deleteArticle = () => {
+    const handleClick = async() => {
         toggleShowDialog();
+
+    //     setLoading(true);
+
+    //     fetch('http://localhost:4000/articles/' + props.match.params.id, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-type': 'application/json; charset=utf-8'
+    //         },
+    //     })
+    //     .then(res => {
+    //         if (!res.ok) setError(true);
+    //     })
+    //     .then(() => {
+    //         setLoading(false);
+    //         setFinished(true);
+    //     })
+    //     .catch(err => console.log('Error: ', err));
+    // }
 
         setLoading(true);
 
-        fetch('http://localhost:4000/articles/' + props.match.params.id, {
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json; charset=utf-8'
-            },
-        })
-        .then(res => {
-            if (!res.ok) setError(true);
-        })
-        .then(() => {
+        const res = await deleteArticle(props.match.params.id);
+        console.log(res instanceof Error)
+        
+        if (!res instanceof Error) {
             setLoading(false);
             setFinished(true);
-        })
-        .catch(err => console.log('Error: ', err));
-    }
+        } else {
+            setLoading(false);
+            setFinished(true);
+            setError(true);
+        }
 
-    if (finished && !loading) {
-        setTimeout(() => {
-            setRedirect(true);
-        }, 1000);
-    }
-
-    const request = (data, id) => {
-        return fetch('http://localhost:4000/articles/' + id, {
-            method: 'PATCH',
-            headers: {
-                'Content-type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(data)
-        })
+        if (finished && !loading) {
+            setTimeout(() => {
+                setRedirect(true);
+            }, 800);
+        }
     }
 
     return (
@@ -106,7 +112,7 @@ const EditArticle = props => {
                 id={props.match.params.id}
                 disabled={loading || finished}
                 updateArticles={props.updateArticles}
-                request={request}
+                request={updateArticle}
             />
 
             {showDialog && 
@@ -115,7 +121,7 @@ const EditArticle = props => {
                     text='Are you sure you want to delete this article?'
                     btnActionText='Yes, delete article'
                     btnSecondaryText='Cancel'
-                    actionClick={deleteArticle}
+                    actionClick={handleClick}
                     display={showDialog}
                     toggleDisplay={toggleShowDialog}
                 />
@@ -136,7 +142,7 @@ const EditArticle = props => {
                 {finished && !error && <Message>Article deleted</Message>}
                 {error && <Message>An error occured, could not delete the article</Message>}
 
-                <StyledLink to='/edit' redirect={redirect} onClick={() => props.updateArticles()}>
+                <StyledLink to='/edit' onClick={() => props.updateArticles()}>
                     <LogoButton 
                         logo='/icons/exit.svg' 
                         text='Exit' 

@@ -82,7 +82,7 @@ const ArticleFormInputs = props => (
         <InputTitle>Author</InputTitle>
         <Input 
             name='author'
-            placeholder={titlePlaceHolder}
+            placeholder={namePlaceHolder}
             onChange={e => props.handleChange(e)}
             value={props.inputs['author'].value}
             warning={props.inputs['author'].warning}
