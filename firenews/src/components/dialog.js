@@ -48,9 +48,9 @@ const ButtonWrapper = styled.div`
 `;
 
 const Btn = styled.button`
-    background: ${props => props.action ? '#df2e06' : 'white'};
-    border: ${props => props.action ? 'none' : '1px solid #777'};
-    color: ${props => props.action ? 'white' : '#777'};
+    background: ${props => props.action === 'true' ? '#df2e06' : 'white'};
+    border: ${props => props.action === 'true' ? 'none' : '1px solid #777'};
+    color: ${props => props.action === 'true' ? 'white' : '#777'};
     border-radius: 5px;
     outline: none;
     padding: 9px 15px;
@@ -98,7 +98,7 @@ const Dialog = props => {
                             props.actionClick();
                             toggleDisplay();
                         }}
-                        action={true}
+                        action='true'
                     >
                         {props.btnActionText}
                     </Btn>

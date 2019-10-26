@@ -65,7 +65,7 @@ const EditArticle = props => {
         const res = await deleteArticle(props.match.params.id);
         console.log(res instanceof Error)
 
-        if (!res instanceof Error) {
+        if (!(res instanceof Error)) {
             setLoading(false);
             setFinished(true);
         } else {
@@ -73,12 +73,11 @@ const EditArticle = props => {
             setFinished(true);
             setError(true);
         }
-
-        if (finished && !loading) {
-            setTimeout(() => {
-                setRedirect(true);
-            }, 800);
-        }
+    }
+    if (finished && !loading) {
+        setTimeout(() => {
+            setRedirect(true);
+        }, 800);
     }
 
     return (
