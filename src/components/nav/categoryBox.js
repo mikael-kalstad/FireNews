@@ -19,24 +19,16 @@ const Image = styled.img`
     object-fit: cover;
 `;
 
-const ImageBox = styled.div`
-    width: 40%;
-    padding-bottom: 50%;
-    border-radius: 50%;
-    background-color: var(--color-light);
-`;
-
 const CategoryBox = (props) => {
     // Container box for each category
     const Container = styled.div`
-        /* padding-top: 50%; */
-        height: ${props.width*1.2 + 'px'};
+        height: ${props.width*1.1 + 'px'};
         background-color: ${props.active ? '#F1F1F9' : 'white'};
         border-bottom: 2px solid var(--color-border);
         cursor: ${props.name ? 'pointer' : 'default'};
 
         :hover {
-            background-color: var(--color-light);
+            background-color: ${!props.loading && 'var(--color-light)'};
         }
 
         display: grid;
@@ -46,10 +38,10 @@ const CategoryBox = (props) => {
     `;
 
     const Box = (
-        <Container onClick={() => props.handleClick(props.name)}>
+        <Container onClick={() => !props.loading && props.handleClick(props.name)}>
             {props.img 
                 ? <Image src={props.img}></Image>
-                : <ImageBox />
+                : <Skeleton circle={true} height={50} width={50}/>
             }
 
             <Text>{props.name || <Skeleton />}</Text>

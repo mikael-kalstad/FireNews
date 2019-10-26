@@ -41,8 +41,10 @@ const App = () => {
   const [categoryData, setCategoryData] = useState([]);
 
   const fetchData = async() => {
-    setArticleData(await getArticles());
-    setCategoryData(await getCategories());
+    setTimeout(async() => {
+      setArticleData(await getArticles());
+      setCategoryData(await getCategories());
+    }, 1500)
   }
 
   // Get article data when component mounts

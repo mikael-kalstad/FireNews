@@ -70,6 +70,7 @@ const SideNav = (props) => {
             <CategoryBox
                 key={i}
                 width={width}
+                loading={true}
             />
         )
     }
@@ -88,7 +89,7 @@ const SideNav = (props) => {
                     key={c._id}
                     active={props.category === c.name}
                     handleClick={handleBoxClick}
-                    img='icons/flame.svg'
+                    img={`icons/categories/${c.name.toLowerCase()}.svg`}
                     name={c.name}
                     width={width}
                 />

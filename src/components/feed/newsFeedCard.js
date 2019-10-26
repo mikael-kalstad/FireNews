@@ -26,7 +26,7 @@ const Time = styled.p`
     font-size: 12px;
     font-weight: 400;
     color: #646464;
-    width: 50%;
+    width: 70%;
     grid-column: 2/3;
     margin: 0;
 `;
@@ -72,20 +72,34 @@ const ArrowLogo = styled.img`
     }
 `;
 
-const NewsFeedCard = (props) => (
-    <Link to={props.link} style={{ textDecoration: 'none' }}>
+const NewsFeedCard = props => {
+    const card = (
         <Container>
-            <Logo src={'/icons/flame.svg'}/>
-
-            <Time>{shortHandTimeFormat(props.time) || <Skeleton />}</Time>
-            <Content>{props.content || <Skeleton count={3} />}</Content>
-
-            <ReadArticle>
-                <Text>Read article</Text>
-                <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
-            </ReadArticle>
+            <Logo src={props.category && `icons/categories/${props.category.toLowerCase()}.svg`}/>
+            {!props.category && <Skeleton circle={true} height={50} width={50} />}
+    
+    
+            <Time>{(props.time && shortHandTimeFormat(props.time)) || <Skeleton />}</Time>
+            <Content>{props.content || <Skeleton count={2} />}</Content>
+    
+            {!props.loading && 
+                <ReadArticle>
+                    <Text>Read article</Text>
+                    <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
+                </ReadArticle>
+            }
         </Container>
-    </Link>
-);
+    );
+
+    if (props.link) {
+        return (
+            <Link to={props.link} style={{ textDecoration: 'none' }}>
+                {card}
+            </Link>
+        );
+    }
+    
+    return <>{card}</>
+}
 
 export default NewsFeedCard

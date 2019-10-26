@@ -41,11 +41,11 @@ const CategoryChooser = (props) => {
 
     for (let i = 0; i < 7; i++) {
         categories.push(
-            <CategorySelector key={i}/>
+            <CategorySelector key={i} loading={true}/>
         )
     }
 
-    if (props.data) {
+    if (props.data && props.data.length !== 0) {
         // clear all skeleton data
         categories = [];
 

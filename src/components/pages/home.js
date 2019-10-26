@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import ArticleCard from '../articleCard';
 import { shortHandTimeFormat } from '../../scripts/timeFormat';
 import styled from 'styled-components';
@@ -58,6 +59,30 @@ const Articles = styled.div`
     }
 `
 
+const Button = styled.button`
+    width: 170px;
+    height: 60px;
+    background-color: var(--color-main);
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 60px auto;
+
+    :hover {
+        filter: brightness(110%);
+    }
+`;
+
+const Text = styled.p`
+    margin-top: 160px;
+    font-size: 36px;
+    font-weight: 400;
+    color: #8a8a8a;
+`;
+
 const Home = (props) => {
     const [width, setWidth] = useState();
 
@@ -70,11 +95,12 @@ const Home = (props) => {
 
     // Render "skeleton" articles for loading
     let articles = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 11; i++) {
         articles.push(
             <ArticleCard 
                 key={i}
                 size={i === 0 ? 'big' : 'small'}
+                loading={true}
             />
         );
     }
@@ -83,13 +109,24 @@ const Home = (props) => {
     if (props.data !== null && props.data !== undefined && props.data.length !== 0) {
         // Remove skeleton data
         articles = [];
+        let articles_temp = [];
 
+        // Go through all articles and only save those that fit on the page (requirements)
         for (let i = 0; i < props.data.length; i++) {
             let a = props.data[i];
 
-            // If category is set, 
-            // if (props.category && props.category !== a.category) continue;  
-            // console.log('date: ', shortHandTimeFormat(new Date(a.date)));
+            // Only articles with frontpage = true should render on the main news page
+            if (props.category === 'Main' && !a.frontPage) continue;  
+
+            // Check if article is in correct category
+            if (props.category !== 'Main' && props.category !== a.category) continue;
+
+            articles_temp.push(a);
+        }
+        
+        // Add all articles that matched requirements to page
+        for (let i = 0; i < articles_temp.length; i++) {
+            let a = articles_temp[i];
             articles.push(
                 <ArticleCard
                     key={a._id}
@@ -117,6 +154,15 @@ const Home = (props) => {
     return (
         <Container>
             <Title><span style={{fontWeight: 700}}>{props.category}</span> news</Title>
+
+            {articles.length === 0 &&
+                <>
+                    <Text>There are no articles in this category. Create one!</Text>
+                    <Link to='/add'>
+                        <Button>New article</Button>
+                    </Link>
+                </>
+            }
 
             <FrontPage id='frontPage-container'>
                 <MainArticles>

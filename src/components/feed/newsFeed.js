@@ -23,7 +23,14 @@ const Title = styled.p`
 const NewsFeed = (props) => {
     let cards = [];
 
-    if (props.data) {
+    for (let i = 0; i < 6; i++) {
+        cards.push(
+            <NewsFeedCard key={i} loading={true}/>
+        )
+    }
+
+    if (props.data && props.data.length !== 0) {
+        cards = [];
         props.data.forEach(a => {
             cards.push(
                 <NewsFeedCard
@@ -31,6 +38,7 @@ const NewsFeed = (props) => {
                     link={'/article/' + a._id}
                     time={a.date}
                     content={a.title}
+                    category={a.category}
                 />
             )
         });

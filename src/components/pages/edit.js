@@ -47,6 +47,7 @@ const Edit = props => {
             <ArticleCard 
                 key={i}
                 size='small'
+                loading={true}
             />
         );
     }

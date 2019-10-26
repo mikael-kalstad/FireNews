@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import Back from '../btn/back';
+import { timeFormat } from '../../scripts/timeFormat';
 
 const Container = styled.div`
     max-width: 900px;
@@ -110,14 +111,14 @@ const Article = (props) => {
         
         imgLarge = !imgLarge;
     }
-
+    
     if (props.preview) {
         return (
             <Container>
-                <UnderTitle>{(render && article.category) || <Skeleton />}</UnderTitle>
+                <UnderTitle>{article.categor ? article.category : 'Category'}</UnderTitle>
                 <Title>{article.title}</Title>
                 <AuthorWrapper>
-                    <Author>By {article.author ? article.author : 'Author name'}, {article.time}</Author>
+                    <Author>By {article.author ? article.author : 'Author name'}, {timeFormat(new Date(Date.now()))}</Author>
                     <Line></Line>
                 </AuthorWrapper>
 
@@ -132,7 +133,8 @@ const Article = (props) => {
             </Container>
         );
     }
-
+    if (article && article.date)
+        console.log(article.date);
     return (
         <Container>
             {!props.hideBackBtn && <Back />}
@@ -141,7 +143,7 @@ const Article = (props) => {
             <Title>{(render && article.title) || <Skeleton count={3} />}</Title>
             
             <AuthorWrapper>
-                {(render && <Author>By {article.author}, {props.time}</Author>) || <Skeleton width={'30%'} />}  
+                {(render && <Author>By {article.author}, {render && timeFormat(new Date(article.date))}</Author>) || <Skeleton width={'30%'} />}  
                 <Line></Line>
             </AuthorWrapper>
 

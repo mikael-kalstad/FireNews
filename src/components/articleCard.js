@@ -28,6 +28,7 @@ const ArticleCard = (props) => {
 
         :hover {
             box-shadow: ${props.editMode && '0px 5px 5px rgba(0, 0, 0, 0.3)'};
+            outline: ${props.editMode && '1px solid var(--color-main)'};
         }
     `;
 
@@ -53,7 +54,7 @@ const ArticleCard = (props) => {
 
         /* Hover should only work when the title is loaded */
         ${Container}:hover & {
-            bottom: ${props.editMode ? 'none' : '50px'};
+            bottom: ${props.editMode || props.loading ? 'none' : '50px'};
         }
 
         @media screen and (min-width: 1400px) {
@@ -75,7 +76,7 @@ const ArticleCard = (props) => {
 
         /* Hover should only work when the title is loaded */
         ${Container}:hover & {
-            opacity: ${props.editMode ? 0 : 1};
+            opacity: ${props.editMode || props.loading ? 0 : 1};
         }
     `;
 
@@ -117,10 +118,12 @@ const ArticleCard = (props) => {
                 }
                 <Title>{props.title || <Skeleton count={2}/>}</Title>
 
-                <ReadMore>
-                    <Text>Read more</Text> 
-                    <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
-                </ReadMore>
+                {!props.loading && 
+                    <ReadMore>
+                        <Text>Read more</Text> 
+                        <ArrowLogo src='/icons/arrow.svg'></ArrowLogo>
+                    </ReadMore>
+                }
 
                 <Time>{props.time || <Skeleton />}</Time>
             </Container>
