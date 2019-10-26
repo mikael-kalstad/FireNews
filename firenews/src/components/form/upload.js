@@ -30,6 +30,7 @@ const Upload = (props) => {
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    const [warning, setWarning] = useState(false);
     const [error, setError] = useState(false);
     const [id, setId] = useState('');
 
@@ -43,24 +44,26 @@ const Upload = (props) => {
     
     const handleClick = async() => {
         if (!props.checkInputs()) {
-            setError(true);
+            setWarning(true);
             return;
         }
         // Remove any error that may be active
-        setError(false);
+        setWarning(false);
 
         // Set state to loading
         setLoading(true);
 
         // Upload article to API server
         const res = await props.request(props.data, props.id)
-    
+       
         if (!(res instanceof Error)) {
             if (res._id != null) setId(res._id);
             else setId(props.id);
+            
             setFinished(true);
             setLoading(false);
         } else {
+            setError(true);
             setLoading(false);
             setFinished(true);
         }
@@ -84,6 +87,7 @@ const Upload = (props) => {
                 finished={finished}
                 handleClick={handleClick}
                 disabled={props.disabled || finished || loading}
+                error={error}
             />
 
             <Text>
@@ -91,7 +95,7 @@ const Upload = (props) => {
                 {finished && props.finishedMsg}
             </Text>
 
-            <WarningText show={error}>Check all inputs, some are required</WarningText>
+            <WarningText show={warning}>Check all inputs, some are required</WarningText>
 
             <StyledLink to={'/article/' + id} onClick={() => props.updateArticles()}>
                 <LogoButton 

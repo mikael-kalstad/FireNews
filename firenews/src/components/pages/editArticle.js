@@ -60,29 +60,11 @@ const EditArticle = props => {
     const handleClick = async() => {
         toggleShowDialog();
 
-    //     setLoading(true);
-
-    //     fetch('http://localhost:4000/articles/' + props.match.params.id, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Content-type': 'application/json; charset=utf-8'
-    //         },
-    //     })
-    //     .then(res => {
-    //         if (!res.ok) setError(true);
-    //     })
-    //     .then(() => {
-    //         setLoading(false);
-    //         setFinished(true);
-    //     })
-    //     .catch(err => console.log('Error: ', err));
-    // }
-
         setLoading(true);
 
         const res = await deleteArticle(props.match.params.id);
         console.log(res instanceof Error)
-        
+
         if (!res instanceof Error) {
             setLoading(false);
             setFinished(true);

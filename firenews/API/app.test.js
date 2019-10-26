@@ -1,4 +1,4 @@
-const hello = () => 'hello'
+const hello = () => 'Hello'
 
 describe('test', () => {
     it('should output hello', () => {

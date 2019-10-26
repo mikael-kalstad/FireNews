@@ -27,12 +27,12 @@ export function shortHandTimeFormat(date) {
 }
 
 export function timeFormat(date) {
-     // Must be an object of type Date
-     if (!date instanceof Date) return false;
+    // Must be an object of type Date
+    if (!date instanceof Date) return false;
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-     return date.getDay() + '.' + months[date.getMonth()] + ' ' + date.getFullYear();
+    return date.getDate() + '.' + months[date.getMonth() - 1] + ' ' + date.getFullYear();
 }
 
 const daysBetween = (first, second) => {

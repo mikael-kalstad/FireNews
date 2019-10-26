@@ -40,14 +40,13 @@ const App = () => {
   const [articleData, setArticleData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
 
+  const fetchData = async() => {
+    setArticleData(await getArticles());
+    setCategoryData(await getCategories());
+  }
 
   // Get article data when component mounts
   useEffect(() => {
-    const fetchData = async() => {
-      setArticleData(await getArticles());
-      setCategoryData(await getCategories());
-    }
-    
     fetchData();
   }, []);
 
@@ -88,13 +87,13 @@ const App = () => {
           <RouteWithLayout 
             path='/edit/:id' 
             render={(props) => <EditArticle {...props} data={articleData} 
-            updateArticles={getArticles} 
+            updateArticles={fetchData} 
             categoryData={categoryData} />}
           />
           <RouteWithLayout 
             path='/add' 
             render={(props) => <Add {...props} 
-            updateArticles={getArticles} 
+            updateArticles={fetchData} 
             categoryData={categoryData} />} 
           />
 

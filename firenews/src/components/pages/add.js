@@ -1,15 +1,6 @@
 import React from 'react';
 import ArticleForm from '../form/articleForm';
-
-const request = data => {
-    return fetch('http://localhost:4000/articles', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json; charset=utf-8'
-        },
-        body: JSON.stringify(data)
-    });
-}
+import { newArticle } from '../../dao/articleDAO';
 
 const Add = props => (
     <ArticleForm
@@ -19,7 +10,7 @@ const Add = props => (
         finishedMsg='Article published'
         categoryData={props.categoryData}
         updateArticles={props.updateArticles}
-        request={request}
+        request={newArticle}
     />
 );
 

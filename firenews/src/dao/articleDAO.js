@@ -23,10 +23,26 @@ export async function updateArticle(data, id) {
     })
     
     const ok = await res.ok;
-    const json = await res.json();
+    const newData = await res.json();
     
-    if (ok && checkData(json)) return data;
+    if (ok && checkData(newData)) return newData;
     return new Error('Error when updating article')
+}
+
+export async function newArticle(data) {
+    const res = await fetch('http://localhost:4000/articles', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const ok = await res.ok;
+    const newData = await res.json();
+    
+    if (ok && checkData(newData)) return newData;
+    return new Error('Error when creating new article');
 }
 
 export async function deleteArticle(id) {

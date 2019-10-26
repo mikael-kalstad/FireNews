@@ -89,7 +89,7 @@ const Home = (props) => {
 
             // If category is set, 
             // if (props.category && props.category !== a.category) continue;  
-
+            // console.log('date: ', shortHandTimeFormat(new Date(a.date)));
             articles.push(
                 <ArticleCard
                     key={a._id}
