@@ -41,15 +41,15 @@ const App = () => {
   const [categoryData, setCategoryData] = useState([]);
 
   const fetchData = async() => {
-    setTimeout(async() => {
+    // setTimeout(async() => {
       setArticleData(await getArticles());
       setCategoryData(await getCategories());
-    }, 1500)
+    // }, 1500)
   }
 
   // Get article data when component mounts
   useEffect(() => {
-    fetchData();
+      fetchData();
   }, []);
 
   const RouteWithLayout = ({layout, component, render, ...rest}) => (
@@ -82,8 +82,8 @@ const App = () => {
             render={(props) => <Article {...props} data={articleData} />}
           />
           <RouteWithLayout 
-            path='/edit' 
-            exact 
+            path='/edit'  
+            exact
             render={(props) => <Edit {...props} data={articleData} />}
           />
           <RouteWithLayout 
@@ -92,6 +92,7 @@ const App = () => {
             updateArticles={fetchData} 
             categoryData={categoryData} />}
           />
+        
           <RouteWithLayout 
             path='/add' 
             render={(props) => <Add {...props} 
@@ -101,6 +102,7 @@ const App = () => {
 
            {/* 404 page not found */}
           <Route component={PageNotFound} />
+          
         </Switch>
     </Router>
   );

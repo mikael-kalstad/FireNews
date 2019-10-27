@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import MobileLayout from './components/nav/mobileLayout';
 import DesktopLayout from './components/nav/desktopLayout';
 
-const Layout = (props) => {
+const Layout = props => {
     const [width, setWidth] = useState(0);
 
     useEffect(() => {
+        // Set width
         setWidth(window.innerWidth);
 
         window.addEventListener('resize', () => setWidth(window.innerWidth));
@@ -22,7 +23,6 @@ const Layout = (props) => {
         setCategory: props.setCategory,
         categoryData: props.categoryData,
         refreshData: props.refreshData,
-        articleData: props.articleData
     };
 
     return (

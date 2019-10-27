@@ -16,7 +16,7 @@ const Overlay = styled.div`
 // Margin for title and time 
 let marginLeft = 30;
 
-const ArticleCard = (props) => {
+const ArticleCard = props => {
     const Container = styled.div`
         position: relative;
         padding-bottom: ${(props.size === 'small' ? 75 : 62) + '%'};
@@ -34,12 +34,15 @@ const ArticleCard = (props) => {
 
     const Logo = styled.div`
         position: absolute;
-        width: ${(props.size === 'small' ? 45 : 90) + 'px'};
-        height: ${(props.size === 'small' ? 45 : 90) + 'px'};
+        width: ${(props.size === 'small' ? 40 : 80) + 'px'};
+        height: ${(props.size === 'small' ? 40 : 80) + 'px'};
         border-radius: 50%;
         background-color: white;
         margin-left: ${marginLeft + 'px'};
         top: ${marginLeft + 'px'};
+        display: grid;
+        justify-items: center;
+        align-items: center;
     `;
 
     const Title = styled.h2`
@@ -83,6 +86,7 @@ const ArticleCard = (props) => {
     const ArrowLogo = styled.img`
         height: 40%;
         transition: all 200ms ease;
+        filter: ${!props.img ? 'brightness(30%)' : 'none'};
 
         ${Container}:active & {
             margin-left: 10px;
@@ -92,23 +96,33 @@ const ArticleCard = (props) => {
     const Text = styled.p`
         font-size: ${(props.size === 'big' ? 14 : 7) + 'px'};
         font-weight: ${props.img ? 200 : 700};
-        color: ${props.img ? 'white': '#B9C0D3'};
+        color: ${props.img ? 'white': '#555'};
     `;
 
     const Time = styled.p`
         position: absolute;
         bottom: 10px;
-        font-size: ${(props.size === 'big' ? 14 : 7) + 'px'};
+        font-size: ${(props.size === 'big' ? 14 : 9) + 'px'};
         font-weight: ${props.img ? 200 : 700};
         width: 30%;
         margin-left: ${marginLeft + 'px'};
-        color: ${props.img ? 'white': '#B9C0D3'};
+        color: ${props.img ? 'white': '#838794'};
+    `;
+
+    const Icon = styled.img`
+        width: ${props => props.width ? props.width : '40%'};
+        object-fit: cover;
     `;
     
     const card = (
         <SkeletonTheme color={'#F9FAFC'}>
             <Container>
-                {props.img ? <Overlay></Overlay> : <Logo></Logo>}
+                {props.img 
+                    ? <Overlay></Overlay> 
+                    : <Logo>
+                        <Icon src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`}/>
+                      </Logo>
+                }
 
                 {/* Lazy load image until props.img is defined */}
                 {!props.img && !props.title &&
@@ -128,10 +142,7 @@ const ArticleCard = (props) => {
                 <Time>{props.time || <Skeleton />}</Time>
             </Container>
         </SkeletonTheme>
-    );
-
-    // console.log("Title: " + props.title + ", Img: " + props.img);
-        
+    );  
 
     if (props.link) 
         return (

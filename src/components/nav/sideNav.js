@@ -89,7 +89,7 @@ const SideNav = (props) => {
                     key={c._id}
                     active={props.category === c.name}
                     handleClick={handleBoxClick}
-                    img={`icons/categories/${c.name.toLowerCase()}.svg`}
+                    img={`/icons/categories/${c.name.toLowerCase()}.svg`}
                     name={c.name}
                     width={width}
                 />

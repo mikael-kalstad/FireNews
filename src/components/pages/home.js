@@ -112,7 +112,8 @@ const Home = (props) => {
         let articles_temp = [];
 
         // Go through all articles and only save those that fit on the page (requirements)
-        for (let i = 0; i < props.data.length; i++) {
+        // Newest article should appear on the top
+        for (let i = props.data.length; i--; i >= 0) {
             let a = props.data[i];
 
             // Only articles with frontpage = true should render on the main news page
@@ -135,6 +136,7 @@ const Home = (props) => {
                     title={a.title}
                     time={shortHandTimeFormat(new Date(a.date))}
                     size={i === 0 ? 'big' : 'small'}
+                    category={a.category}
                 />
             );
         }

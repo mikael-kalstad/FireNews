@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SideNav from './sideNav';
 import FireIcon from '../btn/fireIcon';
 import RefreshIcon from '../btn/refreshIcon';
+import NewsFeed from '../feed/newsFeed';
 
 const Container = styled.div`
 
@@ -88,6 +89,7 @@ const MobileLayout = (props) => {
             </Header>
 
             <Content>
+                <NewsFeed mobile={true} />
                 {props.data.children}
             </Content>
         </Container>

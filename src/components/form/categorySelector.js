@@ -36,7 +36,7 @@ const CategorySelector = props => {
         <SkeletonTheme color={'#fafafa'}>
             <Container onClick={() => !props.disabled && !props.loading && props.setActive(props.name)} >
                 {(props.name 
-                    && <Icon src={props.name && `icons/categories/${props.name.toLowerCase()}.svg`}/>)
+                    && <Icon src={props.name && `/icons/categories/${props.name.toLowerCase()}.svg`}/>)
                     || <Skeleton circle={true} height={30} width={30} />
                 }
                 

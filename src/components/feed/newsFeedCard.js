@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { shortHandTimeFormat } from '../../scripts/timeFormat';
 
 const Container = styled.div`
+    width: ${props => props.mobile ? '170px' : 'auto'};
     position: relative;
     height: 70px;
     background-color: var(--color-light-secondary);
@@ -74,8 +75,8 @@ const ArrowLogo = styled.img`
 
 const NewsFeedCard = props => {
     const card = (
-        <Container>
-            <Logo src={props.category && `icons/categories/${props.category.toLowerCase()}.svg`}/>
+        <Container mobile={props.mobile}>
+            <Logo src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`}/>
             {!props.category && <Skeleton circle={true} height={50} width={50} />}
     
     
