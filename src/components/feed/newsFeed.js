@@ -75,7 +75,7 @@ const NewsFeed = props => {
         setInterval(() => {
             fetchData();
         }, 10000);
-    }); 
+    }, []); 
 
     let cards = [];
 
