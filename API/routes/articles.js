@@ -101,6 +101,7 @@ router.delete('/:id', getArticle, async (req, res) => {
     }
 });
 
+// -- MIDDLEWARE --
 // Find an article with id
 async function getArticle(req, res, next) {
     let article;

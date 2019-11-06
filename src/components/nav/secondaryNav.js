@@ -5,7 +5,7 @@ import RefreshIcon from '../btn/refreshIcon';
 
 const LinkWrapper = styled.div`
     position: relative;
-    width: 200px;
+    width: 240px;
     top: 15px;
     left: 150px;
     display: grid;
@@ -15,11 +15,15 @@ const LinkWrapper = styled.div`
 `;
 
 const StyledLink = styled(props => <Link {...props} />)`
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--color-main);  
     text-decoration: none;
-    transition: all 500ms ease;
+    transition: all 100ms ease;
+
+    :hover {
+        filter: brightness(50%);
+    }
 `;
 
 const SecondaryNav = (props) => {
