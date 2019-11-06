@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         const categories = await Category.find();
 
         // Send back categories in json if successful
-        res.json(categories);
+        res.status(200).json(categories);
     }
 
     catch (err) {

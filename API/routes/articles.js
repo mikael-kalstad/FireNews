@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     // });
    try {
        const articles = await Article.find();
-       res.json(articles);
+       res.status(200).json(articles);
    }
 
    catch (err) {
