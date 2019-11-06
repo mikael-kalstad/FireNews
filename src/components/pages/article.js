@@ -154,6 +154,7 @@ const Article = (props) => {
                 <Image 
                     src={article.img} id='article-img' 
                     onClick={() => handleImgClick()}
+                    alt={article.imgDescription}
                 />)
                 || <Skeleton height={300} />
             }

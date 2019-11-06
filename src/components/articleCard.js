@@ -120,7 +120,7 @@ const ArticleCard = props => {
                 {props.img 
                     ? <Overlay></Overlay> 
                     : <Logo>
-                        <Icon src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`}/>
+                        <Icon src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`} alt={props.imgDescription} />
                       </Logo>
                 }
 
