@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-flow": "^7.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "flow-bin": "^0.111.3",
     "mongoose": "^5.7.0",
     "multer": "^1.4.2",
     "react": "^16.9.0",

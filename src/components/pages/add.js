@@ -1,6 +1,8 @@
 import React from 'react';
 import ArticleForm from '../form/articleForm';
-import { newArticle } from '../../dao/articleDAO';
+import ArticleDAO from '../../dao/articleDAO';
+
+const articleDAO = new ArticleDAO();
 
 const Add = props => (
     <ArticleForm
@@ -10,7 +12,7 @@ const Add = props => (
         finishedMsg='Article published'
         categoryData={props.categoryData}
         updateArticles={props.updateArticles}
-        request={newArticle}
+        request={articleDAO.newArticle}
     />
 );
 

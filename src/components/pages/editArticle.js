@@ -5,7 +5,9 @@ import ArticleForm from '../form/articleForm';
 import LogoButton from '../btn/logoBtn';
 import { Link } from 'react-router-dom';
 import Dialog from '../dialog';
-import { updateArticle, deleteArticle } from '../../dao/articleDAO';
+import ArticleDAO from '../../dao/articleDAO';
+
+const articleDAO = new ArticleDAO();
 
 const DangerWrapper = styled.div`
     max-width: 1200px;
@@ -62,7 +64,7 @@ const EditArticle = props => {
 
         setLoading(true);
 
-        const res = await deleteArticle(props.match.params.id);
+        const res = await articleDAO.deleteArticle(props.match.params.id);
         console.log(res instanceof Error)
 
         if (!(res instanceof Error)) {
@@ -93,7 +95,7 @@ const EditArticle = props => {
                 id={props.match.params.id}
                 disabled={loading || finished}
                 updateArticles={props.updateArticles}
-                request={updateArticle}
+                request={articleDAO.updateArticle}
             />
 
             {showDialog && 

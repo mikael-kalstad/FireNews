@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import NewsFeedCard from './newsFeedCard';
-import { getArticles } from '../../dao/articleDAO';
-import CategoryChooser from '../form/categoryChooser';
+import ArticleDAO from '../../dao/articleDAO';
+
+// Initiate DAO class
+const articleDAO = new ArticleDAO();
 
 const Container = styled.div`
     position: fixed;
@@ -66,7 +68,7 @@ const Title = styled.p`
 const NewsFeed = props => {
     const [newsFeedData, setNewsFeedData] = useState([]);
 
-    const fetchData = async() => setNewsFeedData(await getArticles());
+    const fetchData = async() => setNewsFeedData(await articleDAO.getArticles());
 
     // Get newsfeeddata every 10 seconds
     useEffect(() => {

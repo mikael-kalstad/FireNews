@@ -1,4 +1,6 @@
-export function shortHandTimeFormat(date) {
+// @flow
+
+export function shortHandTimeFormat(date: Date) {
     date = new Date(date);
     
     let timeFormat = ''; 
@@ -26,7 +28,7 @@ export function shortHandTimeFormat(date) {
     return timeFormat;
 }
 
-export function timeFormat(date) {
+export function timeFormat(date: Date) {
     // Must be an object of type Date
     if (!date instanceof Date) return false;
 
@@ -35,6 +37,6 @@ export function timeFormat(date) {
     return date.getDate() + '.' + months[date.getMonth() - 1] + ' ' + date.getFullYear();
 }
 
-const daysBetween = (first, second) => {
+const daysBetween = (first: Date, second: Date) => {
     return Math.round((second-first)/(1000*60*60*24));
 }

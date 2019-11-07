@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import Layout from './layout';
 
 // DAO methods
-import { getArticles } from './dao/articleDAO';
+import ArticleDAO from './dao/articleDAO';
 import { getCategories } from './dao/categoryDAO';
 
 // Pages for react router
@@ -15,6 +15,9 @@ import Add from './components/pages/add';
 import Edit from './components/pages/edit';
 import EditArticle from './components/pages/editArticle';
 import PageNotFound from './components/pages/pageNotFound';
+
+// Initiate DAO classes
+const articleDAO = new ArticleDAO(); 
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -42,7 +45,7 @@ const App = () => {
 
   const fetchData = async() => {
     setTimeout(async() => {
-      setArticleData(await getArticles());
+      setArticleData(await articleDAO.getArticles());
       setCategoryData(await getCategories());
     }, 1500)
   }
@@ -57,7 +60,7 @@ const App = () => {
       category={category}
       setCategory={setCategory}
       categoryData={categoryData}
-      refreshData={getArticles}
+      refreshData={articleDAO.getArticles}
       articleData={articleData}
     >
       <Route {...rest} render={render} component={component}/>
@@ -73,7 +76,7 @@ const App = () => {
             <Home {...props} 
               data={articleData} 
               category={category} 
-              refreshData={getArticles}
+              refreshData={articleDAO.getArticles}
             />
           }/>
 
