@@ -14,6 +14,27 @@ const Container = styled.div`
     background-color: var(--color-light);
     border-left: 2px solid var(--color-border);
     padding-top: 20px;
+
+    overflow-y: overlay;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        position: absolute;
+        display: none;
+    }
+
+    :hover {
+        ::-webkit-scrollbar {
+            width: 5px;
+            display: block;
+        }
+    }
+
+    /*  The draggable scrolling element resizes depending on the size of the scrollable element. */
+    ::-webkit-scrollbar-thumb {
+        background-color: #cfcfcf;
+        border-radius: 10px;
+    }
 `;
 
 const MobileContainer = styled.div`

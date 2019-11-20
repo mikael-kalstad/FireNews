@@ -10,6 +10,7 @@ const Add = props => (
         text='Write an article below and publish something you would like to share with the world.'
         btnName='Publish'
         finishedMsg='Article published'
+        preSetCategory={props.match.params.category}
         categoryData={props.categoryData}
         updateArticles={props.updateArticles}
         request={articleDAO.newArticle}

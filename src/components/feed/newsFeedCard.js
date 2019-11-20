@@ -75,7 +75,7 @@ const ArrowLogo = styled.img`
 
 const NewsFeedCard = props => {
     const card = (
-        <Container mobile={props.mobile}>
+        <Container mobile={props.mobile} onClick={() => window.scrollTo(0, 0)}>
             <Logo src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`}/>
             {!props.category && <Skeleton circle={true} height={50} width={50} />}
     

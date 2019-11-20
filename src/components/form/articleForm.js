@@ -12,7 +12,7 @@ const Container = styled.div`
     margin: auto;
 `;
 
-const ArticleForm = (props) => {
+const ArticleForm = props => {
     // State object that holds all values to the inputs
     const [inputs, setInputs] = useState({
         'title': {
@@ -47,7 +47,7 @@ const ArticleForm = (props) => {
     });
     
     const [frontPage, setFrontPage] = useState(false);
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(props.preSetCategory || '');
     const [categoryWarning, setCategoryWarning] = useState(false);
     const [disabled, setDisabled] = useState(false);
 

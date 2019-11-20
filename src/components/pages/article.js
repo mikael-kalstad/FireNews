@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import Back from '../btn/back';
@@ -135,6 +135,8 @@ const Article = (props) => {
     }
     if (article && article.date)
         console.log(article.date);
+
+
     return (
         <Container>
             {!props.hideBackBtn && <Back />}

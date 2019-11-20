@@ -8,7 +8,7 @@ const Overlay = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60%;
+    height: 70%;
     background-image: linear-gradient(rgba(0,0,0, 0.0), rgb(0,0,0));
     border-radius: 5px;
 `;

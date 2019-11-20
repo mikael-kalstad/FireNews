@@ -160,7 +160,7 @@ const Home = (props) => {
             {articles.length === 0 &&
                 <>
                     <Text>There are no articles in this category. Create one!</Text>
-                    <Link to='/add'>
+                    <Link to={`/add/${props.category}`}>
                         <Button>New article</Button>
                     </Link>
                 </>
@@ -182,7 +182,7 @@ const Home = (props) => {
                     </SideArticles>
                 }
 
-                <FloatButton />
+                {width > breakpoint && <FloatButton />}
             </FrontPage>
 
             <Articles>

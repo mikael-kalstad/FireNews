@@ -28,9 +28,10 @@ const GlobalStyles = createGlobalStyle`
 
 const Overlay = styled.div`
   position: fixed;
-  z-index: 9999;
+  z-index: 9998;
   width: 100vw;
   height: 100vh;
+  top: 0;
   background: rgba(0, 0, 0, 0.6);
   display: none;
 `;
@@ -98,6 +99,14 @@ const App = () => {
         
           <RouteWithLayout 
             path='/add' 
+            exact
+            render={(props) => <Add {...props} 
+            updateArticles={fetchData} 
+            categoryData={categoryData} />} 
+          />
+          
+          <RouteWithLayout 
+            path='/add/:category' 
             render={(props) => <Add {...props} 
             updateArticles={fetchData} 
             categoryData={categoryData} />} 

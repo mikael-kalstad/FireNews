@@ -57,7 +57,7 @@ const Edit = props => {
         // Remove skeleton data
         articles = [];
 
-        for (let i = 0; i < props.data.length; i++) {
+        for (let i = props.data.length; i--; i >= 0) {
             let a = props.data[i];
 
             articles.push(
@@ -86,4 +86,4 @@ const Edit = props => {
     );
 } 
 
-export default Edit;
+export default Edit

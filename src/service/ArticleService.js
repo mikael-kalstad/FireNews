@@ -1,6 +1,6 @@
-// @flow;
+//@flow;
 
-class ArticleDAO {
+export default class ArticleService {
     async getArticles() {
         const res = await fetch('http://localhost:4000/articles', {
             method: 'GET',
@@ -16,14 +16,15 @@ class ArticleDAO {
         return new Error('Error when getting articles')
     }
 
+    // Alias for object type Article
     Article = {
         author: String,
         title: String,
         content: String,
         date: Date,
         summary: String,
-        img: String,
-        imgDescription: String,
+        img: String = null,
+        imgDescription: String = null,
         frontPage: Boolean,
         category: String,
     }
@@ -83,5 +84,4 @@ let checkData = data => {
     if (data.message && data.message === 'pool destroyed') return false;
     return true;
 }
-
-export default ArticleDAO;
+}

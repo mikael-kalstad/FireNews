@@ -1,5 +1,3 @@
-// @flow
-
 export function shortHandTimeFormat(date) {
     date = new Date(date);
     

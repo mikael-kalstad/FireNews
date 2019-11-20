@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-    position: absolute;
-    bottom: 0;
+    position: ${props => props.mobile ? 'fixed' : 'absolute'};
+    z-index: 9999;
+    bottom: 0; 
     right: 0;
+    margin: ${props => props.mobile && '30px'};
     display: grid;
     grid-gap: 5px;
     grid-template-columns: auto auto auto;
@@ -15,8 +17,8 @@ const Container = styled.div`
 
 const Circle = styled.div`
     margin-left: 5px;
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: #54C5EB;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -35,7 +37,7 @@ const Logo = styled.img`
 const StyledLink = styled(props => <Link {...props} />)`
     position: relative;
     width: ${props => props.width ? props.width + 'px': 'auto'};
-    height: 45px;
+    height: 50px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10000px;
     background-color: black;
@@ -43,7 +45,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     grid-template-columns: 40px auto;
     justify-items: center;
     align-items: center;
-    padding-right: 10px;
+    padding-right: 15px;
     transition: all 200ms ease;
     text-decoration: none;
 
@@ -54,7 +56,7 @@ const StyledLink = styled(props => <Link {...props} />)`
 
 const Text = styled.p`
     text-align: start;
-    font-size: 10px;
+    font-size: 12px;
     color: white;
     font-weight: 500;
     justify-self: start;
@@ -66,7 +68,7 @@ const Text = styled.p`
     }
 `;
 
-const FloatButton = (props) => {
+const FloatButton = props => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [clicked, setClicked] = useState(false);
 
@@ -99,10 +101,10 @@ const FloatButton = (props) => {
     return (
         // Menu can only be actived by hovering the circle component
         // Menu can only be hidden by leaving the mouse from the container component
-        <Container onMouseLeave={onHoverLeave}>
+        <Container onMouseLeave={onHoverLeave} mobile={props.mobile}>
             {/* Render if the current location is not the same as the link*/}
             {window.location.pathname !== '/add' &&
-                <StyledLink menuopen={menuOpen.toString()} to='/add'>
+                <StyledLink menuopen={menuOpen.toString()} to='/add' onclick={() => setMenuOpen(false)}>
                     <Logo src={'/icons/add.svg'}></Logo>
                     <Text>Add article</Text>
                 </StyledLink>
@@ -110,7 +112,7 @@ const FloatButton = (props) => {
 
             {/* Render if the current location is not the same as the link*/}
             {window.location.pathname !== '/edit' &&
-                <StyledLink menuopen={menuOpen.toString()} to='/edit'>
+                <StyledLink menuopen={menuOpen.toString()} to='/edit' onclick={() => setMenuOpen(false)}>
                     <Logo src={'/icons/edit.svg'} heigth='50%'></Logo>
                     <Text>Edit</Text>
                 </StyledLink>

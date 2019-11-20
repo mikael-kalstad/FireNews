@@ -52,8 +52,8 @@ const Img = styled.img`
     object-fit: cover;
 `;
 
-const SideNav = (props) => {
-    const handleBoxClick = (name) => {
+const SideNav = props => {
+    const handleBoxClick = name => {
         // Set category
         props.setCategory(name);
 
