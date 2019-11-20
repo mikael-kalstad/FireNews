@@ -38,6 +38,11 @@ const Content = styled.p`
     color: var(--color-main);
     width: 80%;
     align-self: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 const ReadArticle = styled.div`
