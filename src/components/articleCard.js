@@ -24,7 +24,7 @@ const ArticleCard = props => {
         background-color: var(--color-light);
         background-image: url(${props.img});
         background-size: cover;
-        transition: all 200ms ease;
+        transition: all 100ms ease;
 
         :hover {
             box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
