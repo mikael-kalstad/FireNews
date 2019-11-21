@@ -66,16 +66,16 @@ const ArticleForm = props => {
         const arr = Object.entries(inputs);
 
         // Check every input in array
-        for (let i in arr) {
+        arr.forEach(input => {
             // Only update input if articleData is defined
-            if (articleData[arr[i][0]]) {
-                const obj = arr[i];
-                obj[1].value = articleData[arr[i][0]];
+            if (articleData[input[0]]) {
+                const obj = input;
+                obj[1].value = articleData[input[0]];
         
                 // Update inputs with new object
-                setInputs({...inputs, [arr[i][0]]: obj[1]});
-            }  
-        }
+                setInputs({...inputs, [input[0]]: obj[1]});
+            }   
+        });
 
         // Set other settings in state
         if (articleData.category)
@@ -131,11 +131,11 @@ const ArticleForm = props => {
         }
        
         // Check every inpuut in array
-        for (let i in arr) {
-            let name = arr[i][0];
+        arr.forEach(input => {
+            let name = input[0];
 
             // Check if input has a value if its required
-            if ((arr[i][1]['required'] && arr[i][1]['value'].length === 0)) {
+            if ((input[1]['required'] && input[1]['value'].length === 0)) {
                 // updateWarning(arr[i][0], true);
                 // Update warning in state
                 const obj = inputs[name];
@@ -144,8 +144,8 @@ const ArticleForm = props => {
                 // Update inputs with new object
                 setInputs({...inputs, [name]: obj});
                 check = false;
-            }
-        }
+            } 
+        });
 
         if (arr[2][1].value !== '' && arr[3][1].value === '')
             updateWarning(arr[3][0], true);

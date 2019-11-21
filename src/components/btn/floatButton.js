@@ -104,7 +104,7 @@ const FloatButton = props => {
         <Container onMouseLeave={onHoverLeave} mobile={props.mobile}>
             {/* Render if the current location is not the same as the link*/}
             {window.location.pathname !== '/add' &&
-                <StyledLink menuopen={menuOpen.toString()} to='/add' onclick={() => setMenuOpen(false)}>
+                <StyledLink menuopen={menuOpen.toString()} to='/add' onClick={() => setMenuOpen(false)}>
                     <Logo src={'/icons/add.svg'}></Logo>
                     <Text>Add article</Text>
                 </StyledLink>
@@ -112,7 +112,7 @@ const FloatButton = props => {
 
             {/* Render if the current location is not the same as the link*/}
             {window.location.pathname !== '/edit' &&
-                <StyledLink menuopen={menuOpen.toString()} to='/edit' onclick={() => setMenuOpen(false)}>
+                <StyledLink menuopen={menuOpen.toString()} to='/edit' onClick={() => setMenuOpen(false)}>
                     <Logo src={'/icons/edit.svg'} heigth='50%'></Logo>
                     <Text>Edit</Text>
                 </StyledLink>

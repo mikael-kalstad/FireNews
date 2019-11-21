@@ -128,11 +128,13 @@ const Home = (props) => {
         // Add all articles that matched requirements to page
         for (let i = 0; i < articles_temp.length; i++) {
             let a = articles_temp[i];
+            
             articles.push(
                 <ArticleCard
                     key={a._id}
                     link={`/article/${a._id}`}
                     img={a.img}
+                    imgDescription={a.imgDescription}
                     title={a.title}
                     time={shortHandTimeFormat(new Date(a.date))}
                     size={i === 0 ? 'big' : 'small'}

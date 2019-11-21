@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
@@ -22,13 +22,10 @@ const ArticleCard = props => {
         padding-bottom: ${(props.size === 'small' ? 75 : 62) + '%'};
         border-radius: 5px;
         background-color: var(--color-light);
-        background-image: url(${props.img});
-        background-size: cover;
         transition: all 100ms ease;
 
         :hover {
             box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
-            // outline: 1px solid var(--color-main);
             transform: scale(1.005);
         }
 
@@ -93,15 +90,27 @@ const ArticleCard = props => {
         width: ${props => props.width ? props.width : '40%'};
         object-fit: cover;
     `;
+
+    const Img = styled.img`
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-size: cover;
+        border-radius: 5px;
+    `;
     
     const card = (
         <SkeletonTheme color={'#F9FAFC'}>
-            {/* <SizeWrapper id='articleCardWrapper'> */}
                 <Container>
                     {props.img 
-                        ? <Overlay></Overlay> 
+                        ? (
+                            <>
+                                <Img src={props.img} alt={props.imgDescription} />
+                                <Overlay></Overlay> 
+                            </>
+                        )
                         : <Logo>
-                            <Icon src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`} alt={props.imgDescription} />
+                            <Icon src={props.category && `/icons/categories/${props.category.toLowerCase()}.svg`} alt={props.category && (props.category + " icon")} />
                         </Logo>
                     }
 
@@ -115,7 +124,6 @@ const ArticleCard = props => {
 
                     <Time>{props.time || <Skeleton />}</Time>
                 </Container>
-            {/* </SizeWrapper> */}
         </SkeletonTheme>
     );  
 
