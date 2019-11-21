@@ -9,7 +9,7 @@ class ArticleDAO {
             }
         });
         
-        const ok = await res.ok;
+        const ok = res.ok;
         const json = await res.json();
         
         if (ok && checkData(json)) return json;
@@ -37,7 +37,7 @@ class ArticleDAO {
             body: JSON.stringify(data)
         })
         
-        const ok = await res.ok;
+        const ok = res.ok;
         const newData = await res.json();
         
         if (ok && checkData(newData)) return newData;
@@ -53,7 +53,7 @@ class ArticleDAO {
             body: JSON.stringify(data)
         });
     
-        const ok = await res.ok;
+        const ok = res.ok;
         const newData = await res.json();
         
         if (ok && checkData(newData)) return newData;
@@ -69,7 +69,7 @@ class ArticleDAO {
             }
         });
         
-        const ok = await res.ok;
+        const ok = res.ok;
         const json = await res.json();
         
         if (ok && checkData(json)) return json;

@@ -14,7 +14,7 @@ const Overlay = styled.div`
 `;
 
 // Margin for title and time 
-let marginLeft = 30;
+let marginLeft = 10;
 
 const ArticleCard = props => {
     const Container = styled.div`
@@ -37,16 +37,12 @@ const ArticleCard = props => {
             font-size: ${(props.size === 'big' ? 30 : 15) + 'px'};
         }
 
-        @media screen and (max-width: 1200px) {
-            font-size: ${(props.size === 'big' ? 40 : 25) + 'px'};
+        @media screen and (max-width: 1400px) {
+            font-size: ${(props.size === 'big' ? 32 : 14) + 'px'};
         }
 
-        @media screen and (max-width: 1200px) {
-            font-size: ${(props.size === 'big' ? 40 : 25) + 'px'};
-        }
-
-        @media screen and (max-width: 800px) {
-            font-size: ${(props.size === 'big' ? 28 : 18) + 'px'};
+        @media screen and (max-width: 750px) {
+            font-size: ${(props.size === 'big' ? 32 : 18) + 'px'};
         }
     `;
 
@@ -56,8 +52,8 @@ const ArticleCard = props => {
         height: ${(props.size === 'small' ? 27 : 35) + '%'};
         border-radius: 50%;
         background-color: white;
-        margin-left: ${marginLeft + 'px'};
-        top: ${marginLeft + 'px'};
+        margin-left: ${marginLeft + '%'};
+        top: ${marginLeft + '%'};
         display: grid;
         justify-items: center;
         align-items: center;
@@ -70,7 +66,7 @@ const ArticleCard = props => {
         font-size: 100%;
         font-weight: 500;
         width: 80%;
-        margin-left: ${marginLeft + 'px'};
+        margin-left: ${marginLeft + '%'};
         color: ${props.img ? 'white' : '#44519e'};
         transition: all 200ms ease;
     `;
@@ -82,7 +78,7 @@ const ArticleCard = props => {
         font-size: 60%;
         font-weight: ${props.img ? 200 : 700};
         width: 50%;
-        margin-left: ${marginLeft + 'px'};
+        margin-left: ${marginLeft + '%'};
         color: ${props.img ? 'white': '#838794'};
     `;
 

@@ -6,7 +6,7 @@ import Layout from './layout';
 
 // DAO methods
 import ArticleDAO from './dao/articleDAO';
-import { getCategories } from './dao/categoryDAO';
+import CategoryDAO from './dao/categoryDAO';
 
 // Pages for react router
 import Home from './components/pages/home';
@@ -18,6 +18,7 @@ import PageNotFound from './components/pages/pageNotFound';
 
 // Initiate DAO classes
 const articleDAO = new ArticleDAO(); 
+const categoryDAO = new CategoryDAO();
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -45,10 +46,10 @@ const App = () => {
   const [categoryData, setCategoryData] = useState([]);
 
   const fetchData = async() => {
-    setTimeout(async() => {
+    // setTimeout(async() => {
       setArticleData(await articleDAO.getArticles());
-      setCategoryData(await getCategories());
-    }, 1500)
+      setCategoryData(await categoryDAO.getCategories());
+    // }, 1500)
   }
 
   // Get article data when component mounts
