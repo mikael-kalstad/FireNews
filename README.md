@@ -31,6 +31,7 @@ npm start
 
 ## Screenshots/gifs
 ### Main pages/features
+NB! The lag when loading new pages is because of the screen capture software
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/frontPage.gif' width='75%' alt="Main page features gif"/>
 
 ### 404 page
