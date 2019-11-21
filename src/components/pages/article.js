@@ -133,9 +133,6 @@ const Article = (props) => {
             </Container>
         );
     }
-    if (article && article.date)
-        console.log(article.date);
-
 
     return (
         <Container>
