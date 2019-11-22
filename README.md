@@ -87,7 +87,16 @@ const WarningText = styled.p`
 <br/>
 
 ### Lazy loading, please wait...
+If fetching the data takes longer than rendering the components, it is a better UX if the 'outline' of components is rendered without any content. This gives the user an idea of the layout of the site, and what can be expected when the conten loads. It is also much better than a blank screen!
+To achieve this effect I used a package called **react-loading-skeleton**. 
+````javascript
+// Render skeleton component if title is not defined
+<Title>{props.title || <Skeleton count={2}/>}</Title>
+````
+*This is how the article looks with a delay before fetching data*
 
+<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
+<br/>
 
 
 ### React Hooks!
