@@ -11,21 +11,28 @@ A community news site project in the subject TDAT2003 Systemutvikling 2 med web-
 <br/>
 
 
-## How to launch page
+## How to launch website
 1. Clone project and install dependencies
 ```terminal
 git clone https://gitlab.stud.iie.ntnu.no/mikaek/firenews
 npm install
 ```
 
-2. Start API server from command line
+2. Start API server (from command line)
 ```terminal
 cd api 
 node start.js
 ```
-3. Start react server
+3. Start react server (from command line)
 ````terminal
 npm start
+````
+<br/>
+
+## Structure 
+### Page routing
+I used **react-router** for loading components on different urls on the site. 
+````javascript
 ````
 <br/>
 
