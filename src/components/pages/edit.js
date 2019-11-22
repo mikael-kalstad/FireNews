@@ -65,10 +65,11 @@ const Edit = props => {
                     key={a._id}
                     link={`/edit/${a._id}`}
                     img={a.img}
+                    imgDescription={a.imgDescription}
                     title={a.title}
                     time={shortHandTimeFormat(new Date(a.date))}
                     size={'small'}
-                    editMode={true}
+                    category={a.category}
                 />
             );
         }
