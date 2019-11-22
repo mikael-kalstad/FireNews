@@ -1,5 +1,7 @@
 A community news site project in the subject TDAT2003 Systemutvikling 2 med web-applikasjoner (2019)
 
+<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/frontPage.PNG' width='100%' alt="front page screenshot"/>
+
 <br/>
 
 ## Technologies used in this project
@@ -53,7 +55,7 @@ I used **react-router** for loading components on different urls on the site. So
 ````
 In the example above, the article component will only be rendered if the url-path is /article/some-id. The layout component will also be rendered around the content in the article component. 
 
-Note: if the article is not found with the given id in the database, the page will redirect to the 404 page not found page using the **Redirect** component from react-router.
+*Note: if the article is not found with the given id in the database, the page will redirect to the 404 page not found page using the **Redirect** component from react-router.*
 ````javascript
 // Redirect to 404 page is article does not exist
 if (props.data && article === null) 
@@ -87,7 +89,7 @@ const WarningText = styled.p`
 <br/>
 
 ### Lazy loading, please wait...
-If fetching the data takes longer than rendering the components, it is a better UX if the 'outline' of components is rendered without any content. This gives the user an idea of the layout of the site, and what can be expected when the conten loads. It is also much better than a blank screen!
+If fetching the data takes longer than rendering the components, it is a better UX if the 'outline' of components is rendered without any content. This gives the user an idea of the layout of the site, and what can be expected when the data loads. It is also much better than a blank screen!
 To achieve this effect I used a package called **react-loading-skeleton**. 
 ````javascript
 // Render skeleton component if title is not defined
@@ -123,9 +125,6 @@ useEffect(() => {
 <br/>
 
 ## Screenshots/gifs
-### Main pages/features
-NB! The lag when loading new pages is because of the screen capture software
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/frontPage.gif' width='75%' alt="Main page features gif"/>
 
 ### 404 page
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/404.PNG' width='75%' alt="404 page screenshot"/>
