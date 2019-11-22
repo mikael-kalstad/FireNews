@@ -63,6 +63,37 @@ if (props.data && article === null)
 ````
 <br/>
 
+### Type checker
+**Front-end:** Flow, a static type checker for javascript.
+````javascript
+Article = {
+    author: String,
+    title: String,
+    content: String,
+    date: Date,
+    summary: String,
+    img: String,
+    imgDescription: String,
+    frontPage: Boolean,
+    category: String,
+}
+
+async updateArticle(data: Article, id: number) {
+    ...
+}
+````
+**Back-end:** Mongoose schemas, which is used when creating, updating and checking objects in the API.
+````javascript
+const categorySchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    }
+});
+````
+<br/>
+
+
 ### Styling components
 Instead of using seperate .css files, I chose to use the **styled-components** package. The great thing with styled-components is that you can have the styling in the same file as the jsx (works best for smaller components). Styled-components also allows javascript inline with css, which can be used for more dynamic and complex styling. 
 
@@ -98,7 +129,7 @@ To achieve this effect I used a package called **react-loading-skeleton**.
 *This is how the article looks with a delay before fetching data*
 
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
-<br/>
+<br/><br/>
 
 
 ### React Hooks!
@@ -123,6 +154,8 @@ useEffect(() => {
 }, []);
 ````
 <br/>
+
+
 
 ## Screenshots/gifs
 
