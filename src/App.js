@@ -49,7 +49,7 @@ const App = () => {
     // setTimeout(async() => {
       setArticleData(await articleDAO.getArticles());
       setCategoryData(await categoryDAO.getCategories());
-    // }, 1500)
+    // }, 2500)
   }
 
   // Get article data when component mounts
@@ -115,7 +115,6 @@ const App = () => {
 
            {/* 404 page not found */}
           <Route component={PageNotFound} />
-          
         </Switch>
     </Router>
   );

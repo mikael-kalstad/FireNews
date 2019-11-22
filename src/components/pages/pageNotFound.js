@@ -60,7 +60,7 @@ const PageNotFound = () => (
         <Wrapper>
             <Title>404</Title>
             <UnderTitle>Page not found</UnderTitle>
-            <Text>The page you are looking for isn't available. Click the button to back to home</Text>
+            <Text>The page you are looking for does not exist. Click the button to back to home</Text>
 
 
             <Link to='/'>

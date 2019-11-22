@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
+import { Redirect } from 'react-router-dom';
 import Back from '../btn/back';
 import { timeFormat } from '../../scripts/timeFormat';
 
@@ -16,6 +17,10 @@ const Title = styled.h1`
     text-transform: uppercase;
     width: 75%;
     margin: 0;
+
+    @media screen and (max-width: 1300px) {
+        font-size: 50px;
+    }
 `
 const UnderTitle = styled.h2`
     font-size: 18px;
@@ -92,12 +97,12 @@ const Text = styled.p`
     }
 `;
 
-const Article = (props) => {
+const Article = props => {
     let imgLarge = false;
-    let article;
+    let article = null;
   
     // Find aricle with the given id
-    if (props.data)
+    if (props.data) 
         article = props.data.find(a => a._id === props.match.params.id);
 
     if (props.previewData)
@@ -111,6 +116,10 @@ const Article = (props) => {
         
         imgLarge = !imgLarge;
     }
+
+    // Redirect to 404 page is article does not exist
+    if (props.data && article === null) 
+        return <Redirect to='/404' />
     
     if (props.preview) {
         return (

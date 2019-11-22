@@ -27,7 +27,7 @@ const Layout = props => {
 
     return (
         <div id='layout-container'>    
-             {mobileView 
+            {mobileView 
                 ? <MobileLayout data={data} />
                 : <DesktopLayout data={data} />
             }    
