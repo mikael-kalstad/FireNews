@@ -65,6 +65,9 @@ if (props.data && article === null)
 
 ### Type checker
 **Front-end:** Flow, a static type checker for javascript.
+
+*Example from project*
+
 ````javascript
 Article = {
     author: String,
@@ -83,6 +86,9 @@ async updateArticle(data: Article, id: number) {
 }
 ````
 **Back-end:** Mongoose schemas, which is used when creating, updating and checking objects in the API.
+
+*Example from project*
+
 ````javascript
 const categorySchema = new mongoose.Schema({
     name: {
@@ -122,6 +128,8 @@ const WarningText = styled.p`
 ### Lazy loading, please wait...
 If fetching the data takes longer than rendering the components, it is a better UX if the 'outline' of components is rendered without any content. This gives the user an idea of the layout of the site, and what can be expected when the data loads. It is also much better than a blank screen!
 To achieve this effect I used a package called **react-loading-skeleton**. 
+
+*Example from project*
 ````javascript
 // Render skeleton component if title is not defined
 <Title>{props.title || <Skeleton count={2}/>}</Title>
@@ -145,7 +153,7 @@ const [articleData, setArticleData] = useState([]);
 const [categoryData, setCategoryData] = useState([]);
 ````
 
-**useEffect hook** from React.js [documentation](https://reactjs.org/docs/hooks-effect.html): 
+**useEffect hook**, explained from the from React.js [documentation](https://reactjs.org/docs/hooks-effect.html): 
 >  If you’re familiar with React class lifecycle methods, you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
 ````javascript
 // Fetch data when component mounts
@@ -168,5 +176,5 @@ useEffect(() => {
 ### Input validation
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/input.gif' width='75%' alt="Input validation gif"/>
 
-### Edit article & delte confirmation
+### Edit article & delete confirmation
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/delete.gif' width='75%' alt="Edit article and delete validation gif" />
