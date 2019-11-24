@@ -1,7 +1,7 @@
+import { createGlobalStyle } from "styled-components";
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { createGlobalStyle } from "styled-components";
 import Layout from './layout';
 
 // DAO methods
@@ -10,7 +10,7 @@ import CategoryDAO from './dao/categoryDAO';
 
 // Pages for react router
 import Home from './components/pages/home';
-import Article from './components/pages/article';
+import ArticlePage from './components/pages/articlePage';
 import Add from './components/pages/add';
 import Edit from './components/pages/edit';
 import EditArticle from './components/pages/editArticle';
@@ -45,16 +45,15 @@ const App = () => {
   const [articleData, setArticleData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
 
+  // Fetch data from API server
   const fetchData = async() => {
-    // setTimeout(async() => {
-      setArticleData(await articleDAO.getArticles());
-      setCategoryData(await categoryDAO.getCategories());
-    // }, 2500)
+    setArticleData(await articleDAO.getArticles());
+    setCategoryData(await categoryDAO.getCategories());
   }
 
   // Get article data when component mounts
   useEffect(() => {
-      fetchData();
+    fetchData();
   }, []);
 
   const RouteWithLayout = ({layout, component, render, ...rest}) => (
@@ -84,7 +83,7 @@ const App = () => {
 
           <RouteWithLayout 
             path='/article/:id' 
-            render={(props) => <Article {...props} data={articleData} />}
+            render={(props) => <ArticlePage {...props} data={articleData} />}
           />
           <RouteWithLayout 
             path='/edit'  

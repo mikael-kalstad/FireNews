@@ -45,6 +45,10 @@ const Icon = styled.div`
     display: grid;
     justify-items: center;
     align-items: center;
+
+    :hover {
+        filter: brightness(92%);
+    }
 `;
 
 const Img = styled.img`

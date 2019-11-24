@@ -21,6 +21,7 @@ const Layout = props => {
         children: props.children,
         category: props.category,
         setCategory: props.setCategory,
+        articleData: props.articleData,
         categoryData: props.categoryData,
         refreshData: props.refreshData,
     };

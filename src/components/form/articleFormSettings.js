@@ -25,7 +25,7 @@ const UnderTitle = styled.h3`
 
 const Text = styled.p`
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     color: #6A6A6A;
     margin-bottom: 100px;
 `;

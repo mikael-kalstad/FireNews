@@ -90,15 +90,16 @@ const NewsFeed = props => {
     const [newsFeedData, setNewsFeedData] = useState([]);
 
     const fetchData = async() => setNewsFeedData(await articleDAO.getArticles());
-
+    
     // Get newsfeeddata every 10 seconds
     useEffect(() => {
-        fetchData();
+        // Set initial data to data already fetched from API, to avoid unnecessary requests
+        setNewsFeedData(props.data);
 
         setInterval(() => {
             fetchData();
         }, 10000);
-    }, []); 
+    }, [props.data]); 
 
     let cards = [];
 

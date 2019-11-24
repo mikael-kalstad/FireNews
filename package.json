@@ -61,5 +61,6 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "eslint-plugin-react-hooks": "^2.3.0"
-  }
+  },
+  "homepage": "."
 }

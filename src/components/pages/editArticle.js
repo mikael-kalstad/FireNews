@@ -65,7 +65,6 @@ const EditArticle = props => {
         setLoading(true);
 
         const res = await articleDAO.deleteArticle(props.match.params.id);
-        console.log(res instanceof Error)
 
         if (!(res instanceof Error)) {
             setLoading(false);

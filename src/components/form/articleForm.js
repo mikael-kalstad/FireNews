@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Upload from './upload';
 import TabSplit from './tabSplit';
-import Article from '../pages/article';
+import ArticlePage from '../pages/articlePage';
 import ArticleFormInputs from './articleFormInputs';
 import ArticleFormSettings from './articleFormSettings';
 
@@ -194,7 +194,7 @@ const ArticleForm = props => {
     );
 
     // Right tab component, article
-    const preview = <Article preview={true} previewData={formatData()} />
+    const preview = <ArticlePage preview={true} previewData={formatData()} />
 
     return (
         <Container>

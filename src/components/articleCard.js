@@ -25,8 +25,8 @@ const ArticleCard = props => {
         transition: all 100ms ease;
 
         :hover {
-            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
-            transform: scale(1.005);
+            box-shadow: ${!props.loading && '0px 5px 5px rgba(0, 0, 0, 0.3)'};
+            transform: ${!props.loading && 'scale(1.005)'};
         }
 
         @media screen and (min-width: 1700px) {

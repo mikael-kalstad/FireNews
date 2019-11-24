@@ -7,7 +7,6 @@ export function shortHandTimeFormat(date) {
     // Get the current day
     let dateNow = new Date();
     let difference = daysBetween(dateNow, date);
-    // console.log('Days between ' + difference);
 
     if (difference === 0) timeFormat += 'Today ';
     else if (difference === -1) timeFormat += 'Yesterday '; 

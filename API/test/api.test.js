@@ -1,6 +1,5 @@
 const app = require('../app.js');
 const req = require('supertest');
-// const req = supertest(app);
 
 const testData = { 
     "category": "Sport",

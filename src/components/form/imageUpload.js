@@ -75,7 +75,7 @@ const Text = styled.p`
 
 let Upload = (
     <ImgBox>
-        <Logo src='icons/imagePlaceholder.svg' />
+        <Logo src='/icons/imagePlaceholder.svg' />
         <input type='file'/>
     </ImgBox>
 );
