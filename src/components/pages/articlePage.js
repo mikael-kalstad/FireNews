@@ -99,11 +99,11 @@ const Text = styled.p`
 
 const ArticlePage = props => {
     let imgLarge = false;
-    let article = null;
+    let article;
   
     // Find aricle with the given id
     if (props.data)
-        article = props.data.find(a => a._id === props.match.params.id);
+        article = props.data.find(a => a._id === props.match.params.id)
 
     if (props.previewData)
         article = props.previewData;
@@ -116,10 +116,6 @@ const ArticlePage = props => {
         
         imgLarge = !imgLarge;
     }
-
-    // Redirect to 404 page is article does not exist
-    if (props.data && article == null) 
-        return <Redirect to='/404' />
     
     if (props.preview) {
         return (
