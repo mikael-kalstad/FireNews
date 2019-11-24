@@ -63,6 +63,43 @@ if (props.data && article === null)
 ````
 <br/>
 
+### Type checker
+**Front-end:** Flow, a static type checker for javascript.
+
+*Example from project*
+
+````javascript
+Article = {
+    author: String,
+    title: String,
+    content: String,
+    date: Date,
+    summary: String,
+    img: String,
+    imgDescription: String,
+    frontPage: Boolean,
+    category: String,
+}
+
+async updateArticle(data: Article, id: number) {
+    ...
+}
+````
+**Back-end:** Mongoose schemas, which is used when creating, updating and checking objects in the API.
+
+*Example from project*
+
+````javascript
+const categorySchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    }
+});
+````
+<br/>
+
+
 ### Styling components
 Instead of using seperate .css files, I chose to use the **styled-components** package. The great thing with styled-components is that you can have the styling in the same file as the jsx (works best for smaller components). Styled-components also allows javascript inline with css, which can be used for more dynamic and complex styling. 
 
@@ -91,6 +128,8 @@ const WarningText = styled.p`
 ### Lazy loading, please wait...
 If fetching the data takes longer than rendering the components, it is a better UX if the 'outline' of components is rendered without any content. This gives the user an idea of the layout of the site, and what can be expected when the data loads. It is also much better than a blank screen!
 To achieve this effect I used a package called **react-loading-skeleton**. 
+
+*Example from project*
 ````javascript
 // Render skeleton component if title is not defined
 <Title>{props.title || <Skeleton count={2}/>}</Title>
@@ -98,7 +137,7 @@ To achieve this effect I used a package called **react-loading-skeleton**.
 *This is how the article looks with a delay before fetching data*
 
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
-<br/>
+<br/><br/>
 
 
 ### React Hooks!
@@ -114,7 +153,7 @@ const [articleData, setArticleData] = useState([]);
 const [categoryData, setCategoryData] = useState([]);
 ````
 
-**useEffect hook** from React.js [documentation](https://reactjs.org/docs/hooks-effect.html): 
+**useEffect hook**, explained from the from React.js [documentation](https://reactjs.org/docs/hooks-effect.html): 
 >  If you’re familiar with React class lifecycle methods, you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
 ````javascript
 // Fetch data when component mounts
@@ -123,6 +162,8 @@ useEffect(() => {
 }, []);
 ````
 <br/>
+
+
 
 ## Screenshots/gifs
 
@@ -135,5 +176,5 @@ useEffect(() => {
 ### Input validation
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/input.gif' width='75%' alt="Input validation gif"/>
 
-### Edit article & delte confirmation
+### Edit article & delete confirmation
 <img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/delete.gif' width='75%' alt="Edit article and delete validation gif" />
