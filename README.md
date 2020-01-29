@@ -12,6 +12,14 @@ A community news site project in the subject TDAT2003 Systemutvikling 2 med web-
 - Jest (for js) and supertest (for API)
 <br/>
 
+## What I learned
+- Using a noSQL database (mongoDB)
+- Creating an RESTful API with node.js (express.js)
+- Lazy-loading components that depends on async API calls
+- Using react-router with layout component
+- Making react components that can be reused for multiple purposes
+- Creating a design that follows the WCAG 2.0 standard
+
 
 ## How to launch website
 1. Clone project and install dependencies
