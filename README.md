@@ -1,6 +1,6 @@
 A community news site project in the subject TDAT2003 Systemutvikling 2 med web-applikasjoner (2019)
 
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/frontPage.PNG' width='100%' alt="front page screenshot"/>
+<img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/frontPage.PNG' width='100%' alt="front page screenshot"/>
 
 <br/>
 
@@ -16,7 +16,7 @@ A community news site project in the subject TDAT2003 Systemutvikling 2 med web-
 ## How to launch website
 1. Clone project and install dependencies
 ```terminal
-git clone https://gitlab.stud.iie.ntnu.no/mikaek/firenews
+git clone https://https://github.com/mikael-kalstad/FireNews
 npm install
 ```
 
@@ -136,7 +136,7 @@ To achieve this effect I used a package called **react-loading-skeleton**.
 ````
 *This is how the article looks with a delay before fetching data*
 
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
+<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
 <br/><br/>
 
 
@@ -168,13 +168,13 @@ useEffect(() => {
 ## Screenshots/gifs
 
 ### 404 page
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/404.PNG' width='75%' alt="404 page screenshot"/>
+<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/404.PNG' width='75%' alt="404 page screenshot"/>
 
 ### Article publish
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/publish.PNG' width='75%' alt="Publish aricle page screenshot"/>
+<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/publish.PNG' width='75%' alt="Publish aricle page screenshot"/>
 
 ### Input validation
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/input.gif' width='75%' alt="Input validation gif"/>
+<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/input.gif' width='75%' alt="Input validation gif"/>
 
 ### Edit article & delete confirmation
-<img src='https://gitlab.stud.iie.ntnu.no/mikaek/firenews/raw/master/images/delete.gif' width='75%' alt="Edit article and delete validation gif" />
+<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/delete.gif' width='75%' alt="Edit article and delete validation gif" />
