@@ -2,6 +2,15 @@ A community news site project in the subject TDAT2003 Systemutvikling 2 med web-
 
 <img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/frontPage.PNG' width='100%' alt="front page screenshot"/>
 
+## What I learned
+- Using a noSQL database (mongoDB)
+- Creating an RESTful API with node.js (express.js)
+- Lazy-loading components that depends on async API calls
+- Using react-router with layout component
+- Making react components that can be reused for multiple purposes
+- Creating a design that follows the WCAG 2.0 standard
+
+
 <br/>
 
 ## Technologies used in this project
@@ -11,14 +20,6 @@ A community news site project in the subject TDAT2003 Systemutvikling 2 med web-
 - React.js
 - Jest (for js) and supertest (for API)
 <br/>
-
-## What I learned
-- Using a noSQL database (mongoDB)
-- Creating an RESTful API with node.js (express.js)
-- Lazy-loading components that depends on async API calls
-- Using react-router with layout component
-- Making react components that can be reused for multiple purposes
-- Creating a design that follows the WCAG 2.0 standard
 
 
 ## How to launch website
