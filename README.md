@@ -136,7 +136,7 @@ To achieve this effect I used a package called **react-loading-skeleton**.
 ````
 *This is how the article looks with a delay before fetching data*
 
-<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
+<img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/loading.gif' width='75%' alt="Main page features gif"/>
 <br/><br/>
 
 
@@ -168,13 +168,13 @@ useEffect(() => {
 ## Screenshots/gifs
 
 ### 404 page
-<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/404.PNG' width='75%' alt="404 page screenshot"/>
+<img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/404.PNG' width='75%' alt="404 page screenshot"/>
 
 ### Article publish
-<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/publish.PNG' width='75%' alt="Publish aricle page screenshot"/>
+<img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/publish.PNG' width='75%' alt="Publish aricle page screenshot"/>
 
 ### Input validation
-<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/input.gif' width='75%' alt="Input validation gif"/>
+<img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/input.gif' width='75%' alt="Input validation gif"/>
 
 ### Edit article & delete confirmation
-<img src='https://https://github.com/mikael-kalstad/FireNews/raw/master/images/delete.gif' width='75%' alt="Edit article and delete validation gif" />
+<img src='https://github.com/mikael-kalstad/FireNews/raw/master/images/delete.gif' width='75%' alt="Edit article and delete validation gif" />
